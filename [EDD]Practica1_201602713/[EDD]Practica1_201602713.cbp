@@ -34,9 +34,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Mapa.h" />
 		<Unit filename="include/Matriz.h" />
+		<Unit filename="include/Sopa.h" />
+		<Unit filename="include/Totito.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Mapa.cpp" />
 		<Unit filename="src/Matriz.cpp" />
+		<Unit filename="src/Sopa.cpp" />
+		<Unit filename="src/Totito.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -1,12 +1,13 @@
 # depslib dependency file v1.0
-1544163555 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\main.cpp
+1544168972 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\main.cpp
 	<iostream>
 	<stdio.h>
 	"Matriz.h"
+	"Sopa.h"
 
 1544163555 c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\include\matriz.h
 
-1544163969 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\src\matriz.cpp
+1544164097 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\src\matriz.cpp
 	"Matriz.h"
 	<iostream>
 	<fstream>
@@ -17,4 +18,28 @@
 	<stdlib.h>
 	<conio.h>
 	<math.h>
+
+1544167359 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\src\mapa.cpp
+	"Mapa.h"
+
+1544167359 c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\include\mapa.h
+
+1544167336 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\src\totito.cpp
+	"Totito.h"
+
+1544167336 c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\include\totito.h
+
+1544171718 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\src\sopa.cpp
+	"Sopa.h"
+	<iostream>
+	<fstream>
+	<sstream>
+	<vector>
+	<string>
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<math.h>
+
+1544168704 c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\include\sopa.h
 

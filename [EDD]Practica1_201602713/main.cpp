@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include "Matriz.h"
+#include "Sopa.h"
 
 using namespace std;
 
@@ -252,6 +253,69 @@ int main()
                         break;
 
                     case 8:
+                        goto FirstMenu;
+                        break;
+
+                    default:
+                        printf("\n   Seleccione un valor valido!");
+                        break;
+                }
+                break;
+
+            case 3:
+                MenuSopa:
+                system("cls");
+                printf( "\n   ------------------------------------------");
+                printf( "\n          3. Sopa de Letras");
+                printf( "\n\n   Introduzca opcion (1-5): ");
+                printf( "\n\n   3.1. Cargar Sopa.");
+                printf( "\n   3.2. Calcular Determinante.");
+                printf( "\n   3.3. Mostrar Matriz.");
+                printf( "\n   3.4. Mostrar Matriz Transpuesta.");
+                printf( "\n   3.5. Regresar.\n\n" );
+                printf( "\n\n   Su eleccion: ");
+
+                scanf( "%d", &opcion );
+
+                /* Inicio del anidamiento */
+
+                switch ( opcion )
+                {
+                    case 1:
+                        CargarSopa:
+                        system("cls");
+                        printf( "\n   ------------------------------------------");
+                        printf( "\n          3.1. Cargar Matriz");
+                        printf( "\n\n   Introduzca opcion (1-2): ");
+                        printf( "\n\n   3.1.1. Insertar ruta.");
+                        printf( "\n   3.1.2. Regresar.\n\n" );
+                        printf( "\n\n   Su eleccion: ");
+
+                        scanf( "%d", &opcion );
+
+                        /* Inicio del anidamiento */
+
+                        switch ( opcion )
+                        {
+                            case 1:
+                                cargarSopa();
+                                graficarSopa();
+                                system("pause");
+                                goto CargarSopa;
+                                break;
+
+                            case 2:
+                                goto MenuSopa;
+                                break;
+
+                            default:
+                                printf("\n   Seleccione un valor valido!");
+                                goto CargarSopa;
+                                break;
+                        }
+                        break;
+
+                    case 5:
                         goto FirstMenu;
                         break;
 
