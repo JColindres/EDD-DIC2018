@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1544163555 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\main.cpp
+	<iostream>
+	<stdio.h>
+	"Matriz.h"
+
+1544163555 c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\include\matriz.h
+
+1544163969 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\src\matriz.cpp
+	"Matriz.h"
+	<iostream>
+	<fstream>
+	<sstream>
+	<vector>
+	<string>
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<math.h>
+
