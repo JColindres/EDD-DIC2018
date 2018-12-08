@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "Matriz.h"
 #include "Sopa.h"
+#include "Mapa.h"
 
 using namespace std;
 
@@ -315,7 +316,91 @@ int main()
                         }
                         break;
 
-                    case 5:
+                }
+            case 4:
+                MenuMapa:
+                system("cls");
+                printf( "\n   ------------------------------------------");
+                printf( "\n          4. Mapa");
+                printf( "\n\n   Introduzca opcion (1-5): ");
+                printf( "\n\n   4.1. Cargar Mapa.");
+                printf( "\n   4.2. Mostrar Lista de Islas.");
+                printf( "\n   4.3. Mostrar Mapa.");
+                printf( "\n   4.4. Regresar.\n\n" );
+                printf( "\n\n   Su eleccion: ");
+
+                scanf( "%d", &opcion );
+
+                /* Inicio del anidamiento */
+
+                switch ( opcion )
+                {
+                    case 1:
+                        CargarMapa:
+                        system("cls");
+                        printf( "\n   ------------------------------------------");
+                        printf( "\n          4.1. Cargar Mapa");
+                        printf( "\n\n   Introduzca opcion (1-2): ");
+                        printf( "\n\n   4.1.1. Insertar ruta.");
+                        printf( "\n   4.1.2. Regresar.\n\n" );
+                        printf( "\n\n   Su eleccion: ");
+
+                        scanf( "%d", &opcion );
+
+                        /* Inicio del anidamiento */
+
+                        switch ( opcion )
+                        {
+                            case 1:
+                                cargarMapa();
+                                system("pause");
+                                goto CargarMapa;
+                                break;
+
+                            case 2:
+                                goto MenuMapa;
+                                break;
+
+                            default:
+                                printf("\n   Seleccione un valor valido!");
+                                goto CargarMapa;
+                                break;
+                        }
+                        break;
+
+                    case 2:
+                        MostrarIslas:
+                        system("cls");
+                        printf( "\n   ------------------------------------------");
+                        printf( "\n          4.1. Mostrar Lista de Islas");
+                        printf( "\n\n   Introduzca opcion (1-2): ");
+                        printf( "\n\n   4.1.1. Mostrar.");
+                        printf( "\n   4.1.2. Regresar.\n\n" );
+                        printf( "\n\n   Su eleccion: ");
+
+                        scanf( "%d", &opcion );
+
+                        /* Inicio del anidamiento */
+
+                        switch ( opcion )
+                        {
+                            case 1:
+                                bi(0,0);
+                                system("pause");
+                                goto MostrarIslas;
+                                break;
+
+                            case 2:
+                                goto MenuMapa;
+                                break;
+
+                            default:
+                                printf("\n   Seleccione un valor valido!");
+                                goto MostrarIslas;
+                                break;
+                        }
+                        break;
+                    case 4:
                         goto FirstMenu;
                         break;
 
