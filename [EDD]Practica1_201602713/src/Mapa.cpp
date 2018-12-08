@@ -110,7 +110,6 @@ void buscarIslas(int iii, int jjj)
         if(!esta("(" + ii + "," + jj + ")"))
         {
             listaIslas[k] = "(" + ii + "," + jj + ")";
-            cout<<"("<< ii << "," << jj << ")";
             islas[kk] = islas[kk] + listaIslas[k];
             k++;
         }
@@ -141,6 +140,7 @@ void bi(int i, int j)
             }
         }
     }
+    cout<<"\n";
     for(int t = 0; t < kk; t++)
     {
         if(islas[t] != "")
