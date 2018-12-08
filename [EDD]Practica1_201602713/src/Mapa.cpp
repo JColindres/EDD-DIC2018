@@ -25,6 +25,7 @@ int linMa = 0;
 int colMa = 0;
 int num = 0;
 int k = 0;
+int kk = 0;
 string **mapa;
 string *listaIslas;
 string *islas;
@@ -62,7 +63,7 @@ void llenarMapa(string rm)
     num = vect.size();
     int contVect = 0;
     mapa = new string*[linMa];
-    listaIslas = new string[num/2];
+    listaIslas = new string[num];
     islas = new string[num];
     for(i = 0; i < linMa; i++)
     {
@@ -100,23 +101,9 @@ bool esta(string a)
 }
 
 void buscarIslas(int iii, int jjj)
-{/*
-    int k = 0;
-    for(int i = 0; i < linMa; i++)
-    {
-        for(int j = 0; j < colMa; j++)
-        {
-            if(mapa[i][j] == "1")
-            {
-                string ii = to_string(i);
-                string jj = to_string(j);
-                listaIslas[k] = "(" + ii + "," + jj + ")";
-                cout<<"("<< ii << "," << jj << ")";
-                k++;
-            }
-        }
-    }*//*
-    if(mapa[i][j] == "1" && i < linMa && j < colMa)
+{
+    int i = iii; int j = jjj;
+    if(mapa[i][j] == "1")
     {
         string ii = to_string(i);
         string jj = to_string(j);
@@ -124,6 +111,7 @@ void buscarIslas(int iii, int jjj)
         {
             listaIslas[k] = "(" + ii + "," + jj + ")";
             cout<<"("<< ii << "," << jj << ")";
+            islas[kk] = islas[kk] + listaIslas[k];
             k++;
         }
         if(mapa[i][j+1] == "1")
@@ -134,46 +122,29 @@ void buscarIslas(int iii, int jjj)
         {
             buscarIslas(i+1,j);
         }
-    }*/
-    int i = iii; int j = jjj;/*
-    for(int i = iii; i < linMa; i++)
-    {
-        for(int j = jjj; j < colMa; j++)
-        {*/
-            if(mapa[i][j] == "1")
-            {
-                string ii = to_string(i);
-                string jj = to_string(j);
-                if(!esta("(" + ii + "," + jj + ")"))
-                {
-                    listaIslas[k] = "(" + ii + "," + jj + ")";
-                    cout<<"("<< ii << "," << jj << ")";
-                    k++;
-                }
-                if(mapa[i][j+1] == "1")
-                {
-                    buscarIslas(i,j+1);
-                }
-                if(mapa[i+1][j] == "1")
-                {
-                    buscarIslas(i+1,j);
-                }
-            }/*
-        }
-    }*/
+    }
 }
 
 void bi(int i, int j)
 {
+    kk = 0;
     for(int i = 0; i < linMa; i++)
     {
         for(int j = 0; j < colMa; j++)
         {
-            if(mapa[i][j] == "1")
+            string ii = to_string(i);
+            string jj = to_string(j);
+            if(mapa[i][j] == "1" && !esta("(" + ii + "," + jj + ")"))
             {
                 buscarIslas(i,j);
+                kk++;
             }
         }
+    }
+    for(int t = 0; t < kk; t++)
+    {
+        if(islas[t] != "")
+            cout<<"\n   Isla "<<t+1<<": "<<islas[t]<<endl;
     }
 }
 
