@@ -270,10 +270,9 @@ int main()
                 printf( "\n          3. Sopa de Letras");
                 printf( "\n\n   Introduzca opcion (1-5): ");
                 printf( "\n\n   3.1. Cargar Sopa.");
-                printf( "\n   3.2. Calcular Determinante.");
-                printf( "\n   3.3. Mostrar Matriz.");
-                printf( "\n   3.4. Mostrar Matriz Transpuesta.");
-                printf( "\n   3.5. Regresar.\n\n" );
+                printf( "\n   3.2. Buscar Palabras.");
+                printf( "\n   3.3. Mostrar Sopa.");
+                printf( "\n   3.4. Regresar.\n\n" );
                 printf( "\n\n   Su eleccion: ");
 
                 scanf( "%d", &opcion );
@@ -300,7 +299,6 @@ int main()
                         {
                             case 1:
                                 cargarSopa();
-                                graficarSopa();
                                 system("pause");
                                 goto CargarSopa;
                                 break;
@@ -314,6 +312,30 @@ int main()
                                 goto CargarSopa;
                                 break;
                         }
+                        break;
+
+                    case 2:
+                        system("cls");
+                        printf( "\n   ------------------------------------------");
+                        printf( "\n          3.2. Cargar Matriz\n\n\n");
+                        system("pause");
+                        goto MenuSopa;
+                        break;
+
+                    case 3:
+                        system("cls");
+                        graficarSopa();
+                        system("pause");
+                        goto MenuSopa;
+                        break;
+
+                    case 4:
+                        goto FirstMenu;
+                        break;
+
+                    default:
+                        printf("\n   Seleccione un valor valido!");
+                        goto MenuSopa;
                         break;
 
                 }
@@ -372,10 +394,10 @@ int main()
                         MostrarIslas:
                         system("cls");
                         printf( "\n   ------------------------------------------");
-                        printf( "\n          4.1. Mostrar Lista de Islas");
+                        printf( "\n          4.2. Mostrar Lista de Islas");
                         printf( "\n\n   Introduzca opcion (1-2): ");
-                        printf( "\n\n   4.1.1. Mostrar.");
-                        printf( "\n   4.1.2. Regresar.\n\n" );
+                        printf( "\n\n   4.2.1. Mostrar.");
+                        printf( "\n   4.2.2. Regresar.\n\n" );
                         printf( "\n\n   Su eleccion: ");
 
                         scanf( "%d", &opcion );
@@ -400,6 +422,40 @@ int main()
                                 break;
                         }
                         break;
+
+                    case 3:
+                        MostrarIslasG:
+                        system("cls");
+                        printf( "\n   ------------------------------------------");
+                        printf( "\n          4.3. Mostrar Islas");
+                        printf( "\n\n   Introduzca opcion (1-2): ");
+                        printf( "\n\n   4.3.1. Mostrar.");
+                        printf( "\n   4.3.2. Regresar.\n\n" );
+                        printf( "\n\n   Su eleccion: ");
+
+                        scanf( "%d", &opcion );
+
+                        /* Inicio del anidamiento */
+
+                        switch ( opcion )
+                        {
+                            case 1:
+                                graficarMapa();
+                                system("pause");
+                                goto MostrarIslasG;
+                                break;
+
+                            case 2:
+                                goto MenuMapa;
+                                break;
+
+                            default:
+                                printf("\n   Seleccione un valor valido!");
+                                goto MostrarIslasG;
+                                break;
+                        }
+                        break;
+
                     case 4:
                         goto FirstMenu;
                         break;

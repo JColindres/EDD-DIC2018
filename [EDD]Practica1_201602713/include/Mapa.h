@@ -4,6 +4,8 @@
 void cargarMapa();
 void graficarMapa();
 void bi(int, int);
+void graficarMapa();
+
 class Mapa
 {
     public:

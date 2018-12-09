@@ -29,7 +29,6 @@ int kk = 0;
 string **mapa;
 string *listaIslas;
 string *islas;
-bool encontrado = false;
 
 void llenarMapa(string rm)
 {
@@ -110,22 +109,34 @@ void buscarIslas(int iii, int jjj)
         if(!esta("(" + ii + "," + jj + ")"))
         {
             listaIslas[k] = "(" + ii + "," + jj + ")";
-            islas[kk] = islas[kk] + listaIslas[k];
+            int aux = kk;
+            if(aux > 9)
+            {
+                aux = aux - 10;
+            }
+            islas[kk] = islas[kk] + to_string(aux) + listaIslas[k];
             k++;
         }
-        if(mapa[i][j+1] == "1")
+        if(j + 1 < colMa)
         {
-            buscarIslas(i,j+1);
+            if(mapa[i][j+1] == "1")
+            {
+                buscarIslas(i,j+1);
+            }
         }
-        if(mapa[i+1][j] == "1")
+        if(i + 1 < linMa)
         {
-            buscarIslas(i+1,j);
+            if(mapa[i+1][j] == "1")
+            {
+                buscarIslas(i+1,j);
+            }
         }
     }
 }
 
 void bi(int i, int j)
 {
+    k = 0;
     kk = 0;
     for(int i = 0; i < linMa; i++)
     {
@@ -159,6 +170,8 @@ void cargarMapa()
 void graficarMapa()
 {
     ofstream arc;
+    string colores[10] = {"red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon"};
+    //int idcolor = 0;
     arc.open("mapa.dot", ios::out);
     arc<<"digraph G { table [ shape = plaintext label=<<table>"<<endl;
     for(int i = 0; i < linMa; i++)
@@ -166,7 +179,30 @@ void graficarMapa()
         arc<<"<tr>"<<endl;
         for(int j = 0; j < colMa; j++)
         {
-            arc<<"<td>" + mapa[i][j] + "</td>";
+            string ii = to_string(i);
+            string jj = to_string(j);
+            if(mapa[i][j] == "1")
+            {
+                for(int a = 0; a < kk; a++)
+                {
+                    int aux = a;
+                    if(aux > 9)
+                    {
+                        aux = aux - 10;
+                    }
+                    string aa = to_string(aux);
+                    string jeje = "(" + ii + "," + jj + ")";
+                    if(islas[a].find(jeje) != string::npos)
+                    {
+                        arc<<"<td bgcolor=\""+ colores[aux] + "\">" + mapa[i][j] + "</td>";
+                    }
+                }
+                //idcolor++;
+            }
+            else
+            {
+                arc<<"<td>" + mapa[i][j] + "</td>";
+            }
         }
         arc<<"</tr>"<<endl;
     }

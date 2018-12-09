@@ -77,6 +77,37 @@ void llenarSopa(string rm)
         }
         cout<<"\n";
     }
+
+    cout<<"\n   Escriba la ruta:"<<endl;
+    cin>>rutaSopa;
+
+    ifstream pal(rutaSopa);
+    string lineapa;
+    vector<string> vect2;
+    string l;
+    int contVect2 = 0;
+
+    if(pal.is_open())
+    {
+        while(getline(pal,lineapa))
+        {
+            stringstream ss(lineapa);
+            while(ss >> l)
+            {
+                vect2.push_back(l);
+                if(ss.peek() == ',')
+                    ss.ignore();
+            }
+        }
+        pal.close();
+    }
+
+    contVect2 = vect2.size();
+
+    for(int z = 0; z < contVect2; z++)
+    {
+        cout<<"   "<<vect2.at(z)<<endl;
+    }
 }
 
 void cargarSopa()
