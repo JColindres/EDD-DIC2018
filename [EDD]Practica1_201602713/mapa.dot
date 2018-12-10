@@ -1,16 +1,14 @@
 digraph G { table [ shape = plaintext label=<<table>
 <tr>
-<td bgcolor="red">1</td><td bgcolor="red">1</td><td>0</td><td>0</td><td>0</td><td bgcolor="pink">1</td><td>0</td><td>0</td><td>0</td><td bgcolor="orange">1</td><td>0</td><td bgcolor="yellow">1</td><td bgcolor="yellow">1</td><td>0</td><td>0</td><td>0</td><td bgcolor="magenta">1</td></tr>
+<td bgcolor="red">1</td><td bgcolor="red">1</td><td bgcolor="red">1</td><td>0</td><td>0</td><td bgcolor="pink">1</td><td bgcolor="pink">1</td><td bgcolor="pink">1</td><td bgcolor="pink">1</td><td bgcolor="pink">1</td><td>0</td></tr>
 <tr>
-<td bgcolor="red">1</td><td bgcolor="red">1</td><td>0</td><td>0</td><td bgcolor="green">1</td><td>0</td><td bgcolor="blue">1</td><td>0</td><td>0</td><td bgcolor="orange">1</td><td>0</td><td bgcolor="yellow">1</td><td bgcolor="yellow">1</td><td>0</td><td>0</td><td>0</td><td bgcolor="magenta">1</td></tr>
+<td bgcolor="red">1</td><td bgcolor="red">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td bgcolor="pink">1</td><td>0</td><td>0</td><td bgcolor="pink">1</td><td>0</td></tr>
 <tr>
-<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td bgcolor="purple">1</td><td>0</td><td>0</td><td>0</td><td bgcolor="orange">1</td><td>0</td><td bgcolor="yellow">1</td><td>0</td><td>0</td><td>0</td><td bgcolor="gray">1</td><td bgcolor="magenta">1</td></tr>
+<td>0</td><td>0</td><td>0</td><td bgcolor="orange">1</td><td>0</td><td>0</td><td bgcolor="pink">1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr>
-<td>0</td><td bgcolor="maroon">1</td><td bgcolor="maroon">1</td><td bgcolor="maroon">1</td><td>0</td><td>0</td><td bgcolor="red">1</td><td bgcolor="red">1</td><td>0</td><td bgcolor="orange">1</td><td>0</td><td>0</td><td>0</td><td bgcolor="pink">1</td><td>0</td><td bgcolor="gray">1</td><td>0</td></tr>
+<td>0</td><td>0</td><td>0</td><td>0</td><td bgcolor="yellow">1</td><td>0</td><td bgcolor="pink">1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr>
-<td bgcolor="orange">1</td><td bgcolor="maroon">1</td><td bgcolor="maroon">1</td><td bgcolor="maroon">1</td><td>0</td><td>0</td><td bgcolor="red">1</td><td bgcolor="red">1</td><td>0</td><td bgcolor="orange">1</td><td>0</td><td bgcolor="yellow">1</td><td>0</td><td bgcolor="pink">1</td><td>0</td><td bgcolor="gray">1</td><td bgcolor="gray">1</td></tr>
+<td bgcolor="magenta">1</td><td bgcolor="magenta">1</td><td bgcolor="magenta">1</td><td>0</td><td>0</td><td>0</td><td bgcolor="pink">1</td><td bgcolor="pink">1</td><td>0</td><td bgcolor="green">1</td><td>0</td></tr>
 <tr>
-<td>0</td><td>0</td><td>0</td><td>0</td><td bgcolor="magenta">1</td><td bgcolor="magenta">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td bgcolor="green">1</td><td bgcolor="yellow">1</td><td>0</td><td bgcolor="pink">1</td><td>0</td><td>0</td><td bgcolor="gray">1</td></tr>
-<tr>
-<td bgcolor="blue">1</td><td bgcolor="blue">1</td><td bgcolor="blue">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td bgcolor="purple">1</td><td bgcolor="purple">1</td><td bgcolor="purple">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td bgcolor="gray">1</td><td bgcolor="gray">1</td><td>0</td></tr>
+<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td bgcolor="blue">1</td></tr>
 </table>>];}

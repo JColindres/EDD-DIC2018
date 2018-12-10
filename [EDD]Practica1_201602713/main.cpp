@@ -3,6 +3,7 @@
 #include "Matriz.h"
 #include "Sopa.h"
 #include "Mapa.h"
+#include "Totito.h"
 
 using namespace std;
 
@@ -193,16 +194,10 @@ int main()
                 HojaMenu:
                 system("cls");
                 printf( "\n   ------------------------------------------");
-                printf( "\n          2. Hoja de Calculo");
-                printf( "\n\n   Introduzca opcion (1-7): ");
-                printf( "\n\n   2.1. Crear Hoja.");
-                printf( "\n   2.2. Insertar.");
-                printf( "\n   2.3. Sumar.");
-                printf( "\n   2.4. Restar.");
-                printf( "\n   2.5. Multiplicar.");
-                printf( "\n   2.6. Deshacer.");
-                printf( "\n   2.7. Graficar.");
-                printf( "\n   2.8. Regresar.\n\n" );
+                printf( "\n          2. Totito");
+                printf( "\n\n   Introduzca opcion (1-2): ");
+                printf( "\n\n   2.1. Cargar Totito.");
+                printf( "\n   2.2. Regresar.\n\n" );
                 printf( "\n\n   Su eleccion: ");
 
                 scanf( "%d", &opcion );
@@ -212,48 +207,39 @@ int main()
                 switch ( opcion )
                 {
                     case 1:
-                        //crearhoja();
-                        system("pause");
-                        goto HojaMenu;
+                        CargarT:
+                        system("cls");
+                        printf( "\n   ------------------------------------------");
+                        printf( "\n          2.1. Cargar Totito");
+                        printf( "\n\n   Introduzca opcion (1-2): ");
+                        printf( "\n\n   2.1.1. Insertar ruta.");
+                        printf( "\n   2.1.2. Regresar.\n\n" );
+                        printf( "\n\n   Su eleccion: ");
+
+                        scanf( "%d", &opcion );
+
+                        /* Inicio del anidamiento */
+
+                        switch ( opcion )
+                        {
+                            case 1:
+                                cargarTotito();
+                                system("pause");
+                                goto CargarT;
+                                break;
+
+                            case 2:
+                                goto HojaMenu;
+                                break;
+
+                            default:
+                                printf("\n   Seleccione un valor valido!");
+                                goto CargarT;
+                                break;
+                        }
                         break;
 
                     case 2:
-                        //insertarCelda();
-                        system("pause");
-                        goto HojaMenu;
-                        break;
-
-                    case 3:
-                        //suma();
-                        system("pause");
-                        goto HojaMenu;
-                        break;
-
-                    case 4:
-                        //resta();
-                        system("pause");
-                        goto HojaMenu;
-                        break;
-
-                    case 5:
-                        //multiplicar();
-                        system("pause");
-                        goto HojaMenu;
-                        break;
-
-                    case 6:
-                        //deshacer();
-                        system("pause");
-                        goto HojaMenu;
-                        break;
-
-                    case 7:
-                        //graficarHC();
-                        system("pause");
-                        goto HojaMenu;
-                        break;
-
-                    case 8:
                         goto FirstMenu;
                         break;
 

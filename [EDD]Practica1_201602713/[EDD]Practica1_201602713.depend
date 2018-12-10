@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1544318911 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\main.cpp
+1544420517 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\main.cpp
 	<iostream>
 	<stdio.h>
 	"Matriz.h"
 	"Sopa.h"
 	"Mapa.h"
+	"Totito.h"
 
 1544163555 c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\include\matriz.h
 
@@ -33,10 +34,19 @@
 
 1544306621 c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\include\mapa.h
 
-1544167336 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\src\totito.cpp
+1544420625 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\src\totito.cpp
 	"Totito.h"
+	<iostream>
+	<fstream>
+	<sstream>
+	<vector>
+	<string>
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<math.h>
 
-1544167336 c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\include\totito.h
+1544420495 c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\include\totito.h
 
 1544416848 source:c:\users\pablo\desktop\edd-dic2018\[edd]practica1_201602713\src\sopa.cpp
 	"Sopa.h"

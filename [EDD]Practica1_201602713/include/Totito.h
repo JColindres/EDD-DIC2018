@@ -1,6 +1,7 @@
 #ifndef TOTITO_H
 #define TOTITO_H
 
+void cargarTotito();
 
 class Totito
 {
