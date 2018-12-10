@@ -1,20 +1,28 @@
 digraph G { table [ shape = plaintext label=<<table>
 <tr>
-<td>a</td><td>b</td><td>c</td><td>g</td><td>g</td><td>y</td><td>n</td><td>z</td><td>r</td></tr>
+<td bgcolor="red">P</td><td bgcolor="red">A</td><td bgcolor="red">R</td><td bgcolor="red">E</td><td bgcolor="red">D</td><td>Z</td><td>E</td><td>Q</td><td>W</td><td bgcolor="orange">E</td><td>R</td><td>T</td><td bgcolor="pink">P</td></tr>
 <tr>
-<td>a</td><td>b</td><td>c</td><td>g</td><td>g</td><td>y</td><td>n</td><td>z</td><td>r</td></tr>
+<td>O</td><td>U</td><td>I</td><td>O</td><td>P</td><td>A</td><td>F</td><td>S</td><td bgcolor="orange">F</td><td>F</td><td>G</td><td>H</td><td bgcolor="pink">A</td></tr>
 <tr>
-<td>a</td><td>b</td><td>c</td><td>g</td><td>o</td><td>y</td><td>n</td><td>z</td><td>r</td></tr>
+<td bgcolor="yellow">F</td><td bgcolor="yellow">L</td><td bgcolor="yellow">O</td><td bgcolor="yellow">R</td><td bgcolor="yellow">E</td><td bgcolor="yellow">S</td><td>A</td><td bgcolor="orange">A</td><td>V</td><td bgcolor="magenta">L</td><td>B</td><td>N</td><td bgcolor="pink">N</td></tr>
 <tr>
-<td>a</td><td>b</td><td>c</td><td>g</td><td>i</td><td>o</td><td>n</td><td>z</td><td>r</td></tr>
+<td>D</td><td>L</td><td>Q</td><td>W</td><td>E</td><td>R</td><td bgcolor="orange">C</td><td>T</td><td>Y</td><td bgcolor="magenta">E</td><td>U</td><td>I</td><td>O</td></tr>
 <tr>
-<td>a</td><td>r</td><td>c</td><td>l</td><td>g</td><td>y</td><td>n</td><td>z</td><td>r</td></tr>
+<td>P</td><td>I</td><td>O</td><td>S</td><td>D</td><td>F</td><td>G</td><td>H</td><td>J</td><td bgcolor="magenta">N</td><td>K</td><td>L</td><td>N</td></tr>
 <tr>
-<td>a</td><td>t</td><td>c</td><td>x</td><td>g</td><td>y</td><td>n</td><td>z</td><td>r</td></tr>
+<td>Z</td><td>X</td><td>N</td><td>R</td><td>V</td><td>B</td><td>N</td><td>M</td><td>Q</td><td bgcolor="magenta">T</td><td>W</td><td>E</td><td>R</td></tr>
 <tr>
-<td>a</td><td>b</td><td>c</td><td>j</td><td>j</td><td>y</td><td>n</td><td>z</td><td>r</td></tr>
+<td>T</td><td>Y</td><td>U</td><td>E</td><td>E</td><td>O</td><td>P</td><td>A</td><td>S</td><td bgcolor="magenta">E</td><td>D</td><td>F</td><td>G</td></tr>
 <tr>
-<td>a</td><td>b</td><td>c</td><td>g</td><td>g</td><td>y</td><td>n</td><td>z</td><td>r</td></tr>
+<td>H</td><td>J</td><td>K</td><td>L</td><td>R</td><td>P</td><td>Z</td><td>X</td><td>C</td><td bgcolor="magenta">S</td><td>V</td><td>B</td><td>N</td></tr>
 <tr>
-<td>a</td><td>b</td><td>z</td><td>g</td><td>j</td><td>t</td><td>p</td><td>q</td><td>r</td></tr>
+<td>M</td><td>Q</td><td>W</td><td>E</td><td>R</td><td>O</td><td>T</td><td>Y</td><td>U</td><td>I</td><td>O</td><td>P</td><td>A</td></tr>
+<tr>
+<td bgcolor="gray">P</td><td bgcolor="gray">A</td><td bgcolor="gray">S</td><td bgcolor="gray">T</td><td bgcolor="gray">I</td><td bgcolor="gray">L</td><td bgcolor="gray">L</td><td bgcolor="gray">A</td><td bgcolor="gray">S</td><td>S</td><td>D</td><td>F</td><td>G</td></tr>
+<tr>
+<td bgcolor="purple">L</td><td bgcolor="purple">I</td><td bgcolor="purple">B</td><td bgcolor="purple">R</td><td bgcolor="purple">O</td><td bgcolor="purple">S</td><td>H</td><td bgcolor="green">C</td><td bgcolor="green">A</td><td bgcolor="green">S</td><td bgcolor="green">C</td><td bgcolor="green">O</td><td>J</td></tr>
+<tr>
+<td>K</td><td>L</td><td>N</td><td>Z</td><td>X</td><td>C</td><td>V</td><td>B</td><td>N</td><td>M</td><td>Q</td><td>W</td><td>E</td></tr>
+<tr>
+<td bgcolor="blue">P</td><td bgcolor="blue">A</td><td bgcolor="blue">P</td><td bgcolor="blue">E</td><td bgcolor="blue">L</td><td>R</td><td>T</td><td>Y</td><td>U</td><td>I</td><td>O</td><td>P</td><td>A</td></tr>
 </table>>];}

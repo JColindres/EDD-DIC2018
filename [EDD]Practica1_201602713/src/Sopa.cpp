@@ -29,9 +29,12 @@ int numL = 0;
 int cant = 0;
 int k2 = 0;
 int kkk = 0;
+int aux = 0;
 string **sopa;
 string *letras;
+string eee;
 string *encontrados;
+string *pintados;
 vector<string> vect2;
 string cad1;
 string cad2;
@@ -121,44 +124,191 @@ void llenarSopa(string rm)
     encontrados = new string[contVect2];
 }
 
-void buscarPalabras(int iii, int jjj)
+void horizontal(int i, int j, int F, int C, int l, int ii, int jj)
 {
-    int i = iii; int j = jjj;
-    if(k2 >= cant)
+    if(i < F)
+    {
+        if(sopa[i][j] == letras[l])
+        {
+            string iii = to_string(i);
+            string jjj = to_string(j);
+            eee = eee + "(" + iii + "," + jjj + ")";
+        }
+        if(sopa[i][j+1] != letras[l+1])
+        {
+            l = 0;
+        }
+        j++;
+    }
+}
+
+void buscarPalabrasH(int i, int j, int F, int C, int l, int ii, int jj)
+{
+    if(i < F && l < cant)
+    {
+        horizontal(i, j, F, C, l, ii, jj);
+        l++;
+        j++;
+        if(sopa[i][j] != letras[l] && l < cant)
+        {
+            l = 0;
+        }
+        if(j < C)
+        {
+            buscarPalabrasH(i, j, F, C, l, ii, jj);
+        }
+        else
+        {
+            i++;
+            buscarPalabrasH(i, 0, F, C, l, ii, jj);
+        }
+    }
+    if(l == cant)
     {
         enc = true;
     }
-    else if(k2 < cant)
+}
+
+void vertical(int i, int j, int F, int C, int l, int ii, int jj)
+{
+    if(j < C && aux < cant)
     {
-        if(sopa[i][j] == letras[k2])
+        if(sopa[i][j] == letras[l])
         {
-            string ii = to_string(i);
-            string jj = to_string(j);
-            int aux = kkk;
-            if(aux > 9)
+            string iii = to_string(i);
+            string jjj = to_string(j);
+            eee = eee + "(" + iii + "," + jjj + ")";
+            //cout<<eee<<endl;
+            i++;
+            vertical(i, j, F, C, l+1, ii, jj);
+            l = l + 1;
+            if(l == cant)
             {
-                aux = aux - 10;
-            }
-            encontrados[kkk] = encontrados[kkk] + to_string(aux) + "(" + ii + "," + jj + ")";
-            //cout<<"(" << ii << "," << jj << ")"<<endl;
-            cout<<letras[k2]<<endl;
-            if(j + 1 < colS)
-            {
-                if(sopa[i][j+1] == letras[k2+1])
-                {
-                    k2++;
-                    buscarPalabras(i,j+1);
-                }
-            }
-            else if(i + 1 < linS)
-            {
-                if(sopa[i+1][j] == letras[k2+1])
-                {
-                    k2++;
-                    buscarPalabras(i+1,j);
-                }
+                aux = l;
             }
         }
+        else
+        {
+            l = 0;
+        }
+    }
+}
+
+void buscarPalabrasV(int i, int j, int F, int C, int l, int ii, int jj)
+{
+    if(i < F && aux < cant)
+    {
+        vertical(i, j, F, C, l, ii, jj);
+        j++;
+        if(j < C)
+        {
+            buscarPalabrasV(i, j, F, C, l, ii, jj);
+        }
+        else
+        {
+            i++;
+            buscarPalabrasV(i, 0, F, C, l, ii, jj);
+        }
+    }
+    if(aux == cant)
+    {
+        enc = true;
+    }
+}
+
+void diagonalA(int i, int j, int F, int C, int l, int ii, int jj)
+{
+    if(i > -1 && i < F && aux < cant)
+    {
+        if(sopa[i][j] == letras[l])
+        {
+            //cout<<i<<"-"<<j<<endl;
+            string iii = to_string(i);
+            string jjj = to_string(j);
+            eee = eee + "(" + iii + "," + jjj + ")";
+            i--;
+            j++;
+            diagonalA(i, j, F, C, l+1, ii, jj);
+            l = l + 1;
+            if(l == cant)
+            {
+                aux = l;
+            }
+        }
+        else
+        {
+            l = 0;
+        }
+    }
+}
+
+void buscarPalabrasDA(int i, int j, int F, int C, int l, int ii, int jj)
+{
+    if(i < F && aux < cant)
+    {
+        diagonalA(i, j, F, C, l, ii, jj);
+        j++;
+        if(j < C)
+        {
+            buscarPalabrasDA(i, j, F, C, l, ii, jj);
+        }
+        else
+        {
+            i++;
+            buscarPalabrasDA(i, 0, F, C, l, ii, jj);
+        }
+    }
+    if(aux == cant)
+    {
+        enc = true;
+    }
+}
+
+void diagonalB(int i, int j, int F, int C, int l, int ii, int jj)
+{
+    if(j < C && i < F && aux < cant)
+    {
+        if(sopa[i][j] == letras[l])
+        {
+            string iii = to_string(i);
+            string jjj = to_string(j);
+            eee = eee + "(" + iii + "," + jjj + ")";
+            //cout<<eee<<endl;
+            i++;
+            j++;
+            diagonalB(i, j, F, C, l+1, ii, jj);
+            l = l + 1;
+            if(l == cant)
+            {
+                aux = l;
+            }
+        }
+        else
+        {
+            l = 0;
+        }
+    }
+}
+
+void buscarPalabrasDB(int i, int j, int F, int C, int l, int ii, int jj)
+{
+    if(i < F && aux < cant)
+    {
+        diagonalB(i, j, F, C, l, ii, jj);
+        j++;
+        if(j < C)
+        {
+            buscarPalabrasDB(i, j, F, C, l, ii, jj);
+        }
+        else
+        {
+            i++;
+            buscarPalabrasDB(i, 0, F, C, l, ii, jj);
+        }
+    }
+    if(aux == cant)
+    {
+        enc = true;
     }
 }
 
@@ -169,6 +319,7 @@ void bp()
     {
         cad1 = vect2.at(z);
         cant = cad1.length();
+        cout<<cant<<cad1<<endl;
         if(linS >= colS)
         {
             numL = linS;
@@ -185,23 +336,42 @@ void bp()
             cad2 = cad1.substr(t,1);
             letras[t] = cad2;
         }
-        for(int i = 0; i < linS; i++)
+        enc = false;
+        eee = "";
+        buscarPalabrasH(0, 0, linS, colS, 0, 0, 0);
+        if(!enc)
         {
-            for(int j  = 0; j < colS; j++)
+            buscarPalabrasV(0, 0, linS, colS, 0, 0, 0);
+        }
+        if(!enc)
+        {
+            buscarPalabrasDA(0, 0, linS, colS, 0, 0, 0);
+        }
+        if(!enc)
+        {
+            buscarPalabrasDB(0, 0, linS, colS, 0, 0, 0);
+        }
+        if(enc)
+        {
+            int e3 = eee.length();
+            int e2 = 0;
+            int pos;
+            for(int y = e3; y > -1; y--)
             {
-                k2 = 0;
-                string ii = to_string(i);
-                string jj = to_string(j);
-                enc = false;
-                if(sopa[i][j] == letras[k2])
+                if(eee[y] == '(')
                 {
-                    buscarPalabras(i,j);
-                    cout<<"asdasd"<<endl;
-                    kkk++;
+                    e2++;
+                }
+                if(e2 == cant)
+                {
+                    pos = y;
                     break;
                 }
             }
-            break;
+            string e4 = eee.substr(pos);
+            cout<<e4<<endl;
+            encontrados[kkk] = e4;
+            kkk++;
         }
     }
     for(int p = 0; p < contVect2; p++)
@@ -219,21 +389,100 @@ void cargarSopa()
     bp();
 }
 
+bool estaSopa(string a)
+{
+    for(int p = 0; p < contVect2; p++)
+    {
+        if(encontrados[p].find(a) != string::npos)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool estaPin(string a)
+{
+    for(int p = 0; p < contVect2; p++)
+    {
+        if(pintados[p] == a)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 void graficarSopa()
 {
     ofstream arc;
+    string colores[50] = {"red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon","red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon","red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon","red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon","red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon"};
+    int **clr;
+    clr = new int*[linS];
+    pintados = new string[linS*colS];
+    for(int i = 0; i < linS; i++)
+    {
+        clr[i] = new int[colS];
+    }
+    kkk = 0;
+    for(int i = 0; i < linS; i++)
+    {
+        for(int j = 0; j < colS; j++)
+        {
+            string ii = to_string(i);
+            string jj = to_string(j);
+            if(estaSopa("(" + ii + "," + jj + ")"))
+            {
+                clr[i][j] = 1;
+            }
+            else
+            {
+                clr[i][j] = 0;
+            }
+        }
+    }
+
+
     arc.open("sopa.dot", ios::out);
     arc<<"digraph G { table [ shape = plaintext label=<<table>"<<endl;
+    cout<<"digraph G { table [ shape = plaintext label=<<table>"<<endl;
     for(int i = 0; i < linS; i++)
     {
         arc<<"<tr>"<<endl;
+        cout<<"<tr>"<<endl;
         for(int j = 0; j < colS; j++)
         {
-            arc<<"<td>" + sopa[i][j] + "</td>";
+            string ii = to_string(i);
+            string jj = to_string(j);
+            if(clr[i][j] == 1)
+            {
+                for(int a = 0; a < contVect2; a++)
+                {
+                    int aux = a;
+                    if(aux > 9)
+                    {
+                        aux = aux - 10;
+                    }
+                    string jeje = "(" + ii + "," + jj + ")";
+                    if(encontrados[a].find(jeje) != string::npos && !estaPin(jeje))
+                    {
+                        arc<<"<td bgcolor=\""+ colores[aux] + "\">" + sopa[i][j] + "</td>";
+                        pintados[kkk] = jeje;
+                        kkk++;
+                    }
+                }
+                //idcolor++;
+            }
+            else
+            {
+                arc<<"<td>" + sopa[i][j] + "</td>";
+            }
         }
         arc<<"</tr>"<<endl;
+        cout<<"</tr>"<<endl;
     }
     arc<<"</table>>];}"<<endl;
+    cout<<"</table>>];}"<<endl;
     arc.close();
 
     system("dot -Tjpg sopa.dot -o sopa.jpg");

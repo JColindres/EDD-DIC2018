@@ -1,9 +1,0 @@
-a,b,c,g,g,y,n,z,r
-a,b,c,g,g,y,n,z,r
-a,b,c,g,o,y,n,z,r
-a,b,c,g,i,o,n,z,r
-a,r,c,l,g,y,n,z,r
-a,t,c,x,g,y,n,z,r
-a,b,c,j,j,y,n,z,r
-a,b,c,g,g,y,n,z,r
-a,b,z,g,j,t,p,q,r

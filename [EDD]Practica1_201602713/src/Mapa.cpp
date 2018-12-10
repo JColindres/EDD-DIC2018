@@ -170,8 +170,9 @@ void cargarMapa()
 void graficarMapa()
 {
     ofstream arc;
-    string colores[10] = {"red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon"};
-    //int idcolor = 0;
+    string colores[50] = {"red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon","red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon","red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon","red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon","red", "pink", "orange", "yellow", "magenta", "green", "blue", "purple", "gray", "maroon"};
+
+
     arc.open("mapa.dot", ios::out);
     arc<<"digraph G { table [ shape = plaintext label=<<table>"<<endl;
     for(int i = 0; i < linMa; i++)
