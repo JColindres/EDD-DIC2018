@@ -16,8 +16,11 @@ public class EDDProyecto1_Servidor {
     public static void main(String[] args) {
         // TODO code application logic here
         Estructuras.MatrizDispersa md = new Estructuras.MatrizDispersa();
-        md.tamanioX(5);
-        md.tamanioY(8);
+        //md.tamanioX(5);
+        //md.tamanioY(8);
+        md.insertar(7, 1);
+        md.insertar(4, 1);
+        md.insertar(6, 1);
         md.mostrarFyC();
     }
     
