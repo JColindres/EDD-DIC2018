@@ -1,0 +1,21 @@
+digraph G {
+rankdir=LR;
+0[shape=doublecircle, label="-3"]
+1[shape=circle, label="5"]
+2[shape=circle, label="10"]
+3[shape=circle, label="16"]
+4[shape=circle, label="25"]
+5[shape=doublecircle, label="351"]
+0->1;
+0->5;
+1->0;
+1->2;
+2->1;
+2->3;
+3->2;
+3->4;
+4->3;
+4->5;
+5->4;
+5->0;
+}

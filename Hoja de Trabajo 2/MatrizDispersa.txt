@@ -1,0 +1,50 @@
+digraph G {
+m[shape=square;label="Matriz"; group = 1];
+x1[shape=square;label="1"; group = 2];
+x3[shape=square;label="3"; group = 3];
+x5[shape=square;label="5"; group = 5];
+m->x1;
+x1->x3;
+x3->x1;
+x3->x5;
+x5->x3;
+{rank = same; m;x1;x3;x5}
+
+y1[shape=square;label="1"; group = 1];
+y2[shape=square;label="2"; group = 1];
+y3[shape=square;label="3"; group = 1];
+m->y1;
+y1->y2;
+y2->y1;
+y2->y3;
+y3->y2;
+
+l1[shape = square; label = "A"; group = 2]
+y1->l1;
+l1->y1;
+x1->l1;
+l1->x1;
+{rank = same; y1;l1}
+
+l2[shape = square; label = "B"; group = 3]
+y2->l2;
+l2->y2;
+x3->l2;
+l2->x3;
+{rank = same; y2;l2}
+
+l3[shape = square; label = "C"; group = 3]
+y3->l3;
+l3->y3;
+l2->l3;
+l3->l2;
+{rank = same; y3;l3}
+
+l4[shape = square; label = "D"; group = 4]
+l2->l4;
+l4->l2;
+x5->l4;
+l4->x5;
+{rank = same; y2;l4}
+
+}
