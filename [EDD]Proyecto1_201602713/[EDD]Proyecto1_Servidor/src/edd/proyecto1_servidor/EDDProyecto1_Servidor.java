@@ -45,7 +45,7 @@ public class EDDProyecto1_Servidor {
         md.insertar(3, 8, "darkgreen");
         md.insertar(4, 7, "darkgreen");
         md.insertar(4, 8, "darkgreen");
-        
+        /*
         md.insertar(1, 4, "green");
         md.insertar(2, 2, "green");
         md.insertar(2, 3, "green");
@@ -67,7 +67,7 @@ public class EDDProyecto1_Servidor {
         md.insertar(8, 2, "green");
         md.insertar(9, 2, "green");
         md.insertar(10, 2, "green");
-        
+        */
         md.insertar(1, 5, "gray");
         md.insertar(1, 6, "gray");
         md.insertar(2, 5, "gray");

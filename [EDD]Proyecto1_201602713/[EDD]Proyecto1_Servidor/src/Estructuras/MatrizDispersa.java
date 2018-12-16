@@ -262,6 +262,7 @@ public class MatrizDispersa {
                                 celda.arriba = auxCeldax;
                                 celda.abajo = auxCeldax.abajo;
                                 auxCeldax.abajo.arriba = celda;
+                                auxCeldax.abajo = celda;
                                 break;
                             } else {
                                 auxCeldax = auxCeldax.abajo;
