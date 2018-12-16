@@ -54,9 +54,10 @@ class Celda {
     Celda derecha;
     Celda izquierda;
 
-    Celda(int posx, int posy) {
+    Celda(int posx, int posy, String tipo) {
         this.posx = posx;
         this.posy = posy;
+        this.tipo = tipo;
         arriba = null;
         abajo = null;
         derecha = null;
@@ -71,8 +72,8 @@ public class MatrizDispersa {
     NodoMDY filas;
     NodoMDY ultimoy;
 
-    public void insertar(int x, int y) {
-        Celda celda = new Celda(x, y);
+    public void insertar(int x, int y, String tipo) {
+        Celda celda = new Celda(x, y, tipo);
         NodoMDX nuevox = new NodoMDX(x);
         NodoMDX auxx = columnas;
         NodoMDY nuevoy = new NodoMDY(y);
@@ -96,16 +97,18 @@ public class MatrizDispersa {
             while (auxx != null) {
                 if (nuevox.columna < columnas.columna) {
                     nuevox.siguiente = columnas;
+                    columnas.anterior = nuevox;
                     columnas = nuevox;
                     break;
                 }
-                else if (nuevox.columna > auxx.columna && auxx.siguiente == null) {
+                if (nuevox.columna > auxx.columna && auxx.siguiente == null) {
                     ultimox.siguiente = nuevox;
                     nuevox.anterior = ultimox;
                     ultimox = nuevox;
                     break;
                 } else if (nuevox.columna > auxx.columna && nuevox.columna < auxx.siguiente.columna) {
                     nuevox.siguiente = auxx.siguiente;
+                    auxx.siguiente.anterior = nuevox;
                     nuevox.anterior = auxx;
                     auxx.siguiente = nuevox;
                     break;
@@ -133,6 +136,7 @@ public class MatrizDispersa {
             while (auxy != null) {
                 if (nuevoy.fila < filas.fila) {
                     nuevoy.siguiente = filas;
+                    filas.anterior = nuevoy;
                     filas = nuevoy;
                     break;
                 }
@@ -143,6 +147,7 @@ public class MatrizDispersa {
                     break;
                 } else if (nuevoy.fila > auxy.fila && nuevoy.fila < auxy.siguiente.fila) {
                     nuevoy.siguiente = auxy.siguiente;
+                    auxy.siguiente.anterior = nuevoy;
                     nuevoy.anterior = auxy;
                     auxy.siguiente = nuevoy;
                     break;
@@ -166,32 +171,102 @@ public class MatrizDispersa {
                         celda.arriba = auxx.abajo;
                         celda.izquierda = auxy.derecha;
                     } else if (auxx.abajo == null && auxy.derecha != null) {
-                        while (auxCelday.derecha != null) {
-                            auxCelday = auxCelday.derecha;
+                        while (auxCelday != null) {
+                            if (celda.posx < auxCelday.posx) {
+                                celda.derecha = auxCelday;
+                                celda.izquierda = auxy.derecha;
+                                auxCelday.izquierda = celda;
+                                celda.arriba = auxx.abajo;
+                                auxy.derecha = celda;
+                                break;
+                            } else if (celda.posx > auxCelday.posx && auxCelday.derecha == null) {
+                                auxCelday.derecha = celda;
+                                auxx.abajo = celda;
+                                celda.arriba = auxx.abajo;
+                                celda.izquierda = auxCelday;
+                                break;
+                            } else if (celda.posx > auxCelday.posx && celda.posx < auxCelday.derecha.posx) {
+                                celda.izquierda = auxCelday;
+                                celda.derecha = auxCelday.derecha;
+                                auxCelday.derecha.izquierda = celda;
+                                auxCelday.derecha = celda;
+                                celda.arriba = auxx.abajo;
+                                auxx.abajo = celda;
+                                break;
+                            } else {
+                                auxCelday = auxCelday.derecha;
+                            }
                         }
-                        auxCelday.derecha = celda;
-                        auxx.abajo = celda;
-                        celda.arriba = auxx.abajo;
-                        celda.izquierda = auxCelday;
                     } else if (auxx.abajo != null && auxy.derecha == null) {
-                        while (auxCeldax.abajo != null) {
-                            auxCeldax = auxCeldax.abajo;
+                        while (auxCeldax != null) {
+                            if (celda.posy < auxCeldax.posy) {
+                                celda.abajo = auxCeldax;
+                                auxx.abajo = celda;
+                                auxCeldax.arriba = celda;
+                                celda.arriba = auxx.abajo;
+                                auxy.derecha = celda;
+                                celda.izquierda = auxy.derecha;
+                                break;
+                            } else if (celda.posy > auxCeldax.posy && auxCeldax.abajo == null) {
+                                auxCeldax.abajo = celda;
+                                auxy.derecha = celda;
+                                celda.izquierda = auxy.derecha;
+                                celda.arriba = auxCeldax;
+                                break;
+                            } else if (celda.posy > auxCeldax.posy && celda.posy < auxCeldax.abajo.posy) {
+                                celda.arriba = auxCeldax;
+                                celda.abajo = auxCeldax.abajo;
+                                auxCeldax.abajo.arriba = celda;
+                                auxCeldax.abajo = celda;
+                                celda.izquierda = auxy.derecha;
+                                auxy.derecha = celda;
+                                break;
+                            } else {
+                                auxCeldax = auxCeldax.abajo;
+                            }
                         }
-                        auxCeldax.abajo = celda;
-                        auxy.derecha = celda;
-                        celda.izquierda = auxy.derecha;
-                        celda.arriba = auxCeldax;
                     } else {
-                        while (auxCelday.derecha != null) {
-                            auxCelday = auxCelday.derecha;
+                        while (auxCelday != null) {
+                            if (celda.posx < auxCelday.posx) {
+                                celda.derecha = auxCelday;
+                                celda.izquierda = auxy.derecha;
+                                auxCelday.izquierda = celda;
+                                auxy.derecha = celda;
+                                break;
+                            } else if (celda.posx > auxCelday.posx && auxCelday.derecha == null) {
+                                auxCelday.derecha = celda;
+                                celda.izquierda = auxCelday;
+                                break;
+                            } else if (celda.posx > auxCelday.posx && celda.posx < auxCelday.derecha.posx) {
+                                celda.izquierda = auxCelday;
+                                celda.derecha = auxCelday.derecha;
+                                auxCelday.derecha.izquierda = celda;
+                                auxCelday.derecha = celda;
+                                break;
+                            } else {
+                                auxCelday = auxCelday.derecha;
+                            }
                         }
-                        while (auxCeldax.abajo != null) {
-                            auxCeldax = auxCeldax.abajo;
+                        while (auxCeldax != null) {
+                            if (celda.posy < auxCeldax.posy) {
+                                celda.abajo = auxCeldax;
+                                auxx.abajo = celda;
+                                auxCeldax.arriba = celda;
+                                celda.arriba = auxx.abajo;
+                                break;
+                            } else if (celda.posy > auxCeldax.posy && auxCeldax.abajo == null) {
+                                auxCeldax.abajo = celda;
+                                celda.arriba = auxCeldax;
+                                break;
+                            } else if (celda.posy > auxCeldax.posy && celda.posy < auxCeldax.abajo.posy) {
+                                celda.arriba = auxCeldax;
+                                celda.abajo = auxCeldax.abajo;
+                                auxCeldax.abajo.arriba = celda;
+                                break;
+                            } else {
+                                auxCeldax = auxCeldax.abajo;
+                            }
                         }
-                        auxCelday.derecha = celda;
-                        auxCeldax.abajo = celda;
-                        celda.izquierda = auxCelday;
-                        celda.arriba = auxCeldax;
                     }
                 }
                 auxx = auxx.siguiente;
@@ -209,7 +284,7 @@ public class MatrizDispersa {
             System.out.print("[" + auxx.columna + "]");
             auxx = auxx.siguiente;
         }
-        System.out.println("");
+        System.out.println(" ");
 
         while (auxy != null) {
             System.out.println("[" + auxy.fila + "]");
@@ -268,30 +343,34 @@ public class MatrizDispersa {
             while (auxy != null) {
                 Celda auxCelday = auxy.derecha;
                 rank = "";
-                
+
                 while (auxCelday != null) {
-                    pw.println(auxCelday.posx + "" + auxCelday.posy + "[shape=square; label = \"0\"; group =" + auxCelday.posx + "];");
-                    rank = rank + ";" + auxCelday.posx + "" + auxCelday.posy;
-                    
+                    pw.println("C" + auxCelday.posx + "L" + auxCelday.posy + "[shape=square; label = \"" + "\"; color=" + auxCelday.tipo + "; style = filled; group =" + auxCelday.posx + "];");
+                    rank = rank + ";" + "C" + auxCelday.posx + "L" + auxCelday.posy;
+
                     if (auxCelday == auxy.derecha) {
-                        pw.println("y" + auxCelday.posy + "->" + auxCelday.posx + "" + auxCelday.posy + ";");
-                        pw.println(auxCelday.posx + "" + auxCelday.posy + "->" + "y" + auxCelday.posy + ";");
-                    
+                        pw.println("y" + auxCelday.posy + "->" + "C" + auxCelday.posx + "L" + auxCelday.posy + ";");
+                        pw.println("C" + auxCelday.posx + "L" + auxCelday.posy + "->" + "y" + auxCelday.posy + ";");
+
                     } else if (auxCelday.izquierda.posx != auxCelday.posx) {
-                        pw.println(auxCelday.izquierda.posx + "" + auxCelday.izquierda.posy + "->" + auxCelday.posx + "" + auxCelday.posy + ";");
-                        pw.println(auxCelday.posx + "" + auxCelday.posy + "->" + auxCelday.izquierda.posx + "" + auxCelday.izquierda.posy + ";");
-                    
+                        pw.println("C" + auxCelday.izquierda.posx + "L" + auxCelday.izquierda.posy + "->" + "C" + auxCelday.posx + "L" + auxCelday.posy + ";");
+                        pw.println("C" + auxCelday.posx + "L" + auxCelday.posy + "->" + "C" + auxCelday.izquierda.posx + "L" + auxCelday.izquierda.posy + ";");
+
                     }
                     auxx = columnas;
                     while (auxx != null) {
-                        if (auxCelday == auxx.abajo) {
-                            pw.println("x" + auxCelday.posx + "->" + auxCelday.posx + "" + auxCelday.posy + ";");
-                            pw.println(auxCelday.posx + "" + auxCelday.posy + "->" + "x" + auxCelday.posx + ";");
-                            break;
-                        } else if (auxCelday.arriba.posy != auxCelday.posy) {
-                            pw.println(auxCelday.arriba.posx + "" + auxCelday.arriba.posy + "->" + auxCelday.posx + "" + auxCelday.posy + ";");
-                            pw.println(auxCelday.posx + "" + auxCelday.posy + "->" + auxCelday.arriba.posx + "" + auxCelday.arriba.posy + ";");
-                            break;
+                        Celda auxCeldax = auxx.abajo;
+                        while (auxCeldax != null) {
+                            if (auxCelday == auxx.abajo) {
+                                pw.println("x" + auxCelday.posx + "->" + "C" + auxCelday.posx + "L" + auxCelday.posy + ";");
+                                pw.println("C" + auxCelday.posx + "L" + auxCelday.posy + "->" + "x" + auxCelday.posx + ";");
+                                break;
+                            } else if (auxCelday == auxCeldax) {
+                                pw.println("C" + auxCeldax.arriba.posx + "L" + auxCeldax.arriba.posy + "->" + "C" + auxCeldax.posx + "L" + auxCeldax.posy + ";");
+                                pw.println("C" + auxCeldax.posx + "L" + auxCeldax.posy + "->" + "C" + auxCeldax.arriba.posx + "L" + auxCeldax.arriba.posy + ";");
+                                break;
+                            }
+                            auxCeldax = auxCeldax.abajo;
                         }
                         auxx = auxx.siguiente;
                     }
@@ -306,8 +385,6 @@ public class MatrizDispersa {
             e.printStackTrace();
         } finally {
             try {
-                // Nuevamente aprovechamos el finally para 
-                // asegurarnos que se cierra el fichero.
                 if (null != fichero) {
                     fichero.close();
                 }
@@ -319,8 +396,6 @@ public class MatrizDispersa {
         try {
             String command = "dot -Tjpg MD.txt -o MD.jpg";
             Process child = Runtime.getRuntime().exec(command);
-            //command = "start MD.jpg";
-            //child = Runtime.getRuntime().exec(command);
         } catch (IOException e) {
             System.out.println("ex: " + e.getMessage());
         }
