@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package edd.proyecto1_servidor;
+
+import Interfaz.inter;
+
 /**
  *
  * @author pablo
@@ -16,24 +19,26 @@ public class EDDProyecto1_Servidor {
     public static void main(String[] args) {
         // TODO code application logic here
         Estructuras.MatrizDispersa md = new Estructuras.MatrizDispersa();
+        Interfaz.inter i = new inter();
         
-        md.insertar(1, 1, "lightblue");
-        md.insertar(2, 1, "lightblue");
-        md.insertar(3, 1, "lightblue");
-        md.insertar(3, 2, "lightblue");
-        md.insertar(3, 3, "lightblue");
-        md.insertar(4, 3, "lightblue");
-        md.insertar(5, 3, "lightblue");
-        md.insertar(6, 3, "lightblue");
-        md.insertar(7, 3, "lightblue");
-        md.insertar(8, 3, "lightblue");
-        md.insertar(8, 4, "lightblue");
-        md.insertar(8, 5, "lightblue");
-        md.insertar(8, 6, "lightblue");
-        md.insertar(8, 7, "lightblue");
-        md.insertar(8, 8, "lightblue");
-        md.insertar(9, 3, "lightblue");
-        md.insertar(10, 3, "lightblue");
+        /*
+        md.insertar(1, 1, "blue");
+        md.insertar(2, 1, "blue");
+        md.insertar(3, 1, "blue");
+        md.insertar(3, 2, "blue");
+        md.insertar(3, 3, "blue");
+        md.insertar(4, 3, "blue");
+        md.insertar(5, 3, "blue");
+        md.insertar(6, 3, "blue");
+        md.insertar(7, 3, "blue");
+        md.insertar(8, 3, "blue");
+        md.insertar(8, 4, "blue");
+        md.insertar(8, 5, "blue");
+        md.insertar(8, 6, "blue");
+        md.insertar(8, 7, "blue");
+        md.insertar(8, 8, "blue");
+        md.insertar(9, 3, "blue");
+        md.insertar(10, 3, "blue");
         
         md.insertar(1, 2, "darkgreen");
         md.insertar(1, 3, "darkgreen");
@@ -45,7 +50,7 @@ public class EDDProyecto1_Servidor {
         md.insertar(3, 8, "darkgreen");
         md.insertar(4, 7, "darkgreen");
         md.insertar(4, 8, "darkgreen");
-        /*
+        
         md.insertar(1, 4, "green");
         md.insertar(2, 2, "green");
         md.insertar(2, 3, "green");
@@ -67,7 +72,7 @@ public class EDDProyecto1_Servidor {
         md.insertar(8, 2, "green");
         md.insertar(9, 2, "green");
         md.insertar(10, 2, "green");
-        */
+        
         md.insertar(1, 5, "gray");
         md.insertar(1, 6, "gray");
         md.insertar(2, 5, "gray");
@@ -100,7 +105,7 @@ public class EDDProyecto1_Servidor {
         md.insertar(10, 5, "brown");
         md.insertar(10, 6, "brown");
         md.insertar(10, 7, "brown");
-        md.insertar(10, 8, "brown");
+        md.insertar(10, 8, "brown");*/
         /*
         md.insertar(1, 3, "C1L3");
         md.insertar(3, 3, "C3L3");
