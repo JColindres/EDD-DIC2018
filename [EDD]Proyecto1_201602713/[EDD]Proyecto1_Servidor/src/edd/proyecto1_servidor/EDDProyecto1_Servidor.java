@@ -5,7 +5,6 @@
  */
 package edd.proyecto1_servidor;
 
-import Interfaz.inter;
 
 /**
  *
@@ -16,10 +15,9 @@ public class EDDProyecto1_Servidor {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+   // public static void main(String[] args) {
         // TODO code application logic here
-        Estructuras.MatrizDispersa md = new Estructuras.MatrizDispersa();
-        Interfaz.inter i = new inter();
+       // Estructuras.MatrizDispersa md = new Estructuras.MatrizDispersa();
         
         /*
         md.insertar(1, 1, "blue");
@@ -50,7 +48,7 @@ public class EDDProyecto1_Servidor {
         md.insertar(3, 8, "darkgreen");
         md.insertar(4, 7, "darkgreen");
         md.insertar(4, 8, "darkgreen");
-        
+        /*
         md.insertar(1, 4, "green");
         md.insertar(2, 2, "green");
         md.insertar(2, 3, "green");
@@ -105,7 +103,7 @@ public class EDDProyecto1_Servidor {
         md.insertar(10, 5, "brown");
         md.insertar(10, 6, "brown");
         md.insertar(10, 7, "brown");
-        md.insertar(10, 8, "brown");*/
+        md.insertar(10, 8, "brown");
         /*
         md.insertar(1, 3, "C1L3");
         md.insertar(3, 3, "C3L3");
@@ -120,10 +118,10 @@ public class EDDProyecto1_Servidor {
         md.insertar(1, 2, "C1L2");
         md.insertar(1, 1, "C1L1");
         md.insertar(1, 4, "C1L4");
-        md.insertar(1, 3, "C1L3");*/
+        md.insertar(1, 3, "C1L3");
         
         md.mostrarFyC();
-        md.graficar();
-    }
+        md.graficar();*/
+    //}
     
 }

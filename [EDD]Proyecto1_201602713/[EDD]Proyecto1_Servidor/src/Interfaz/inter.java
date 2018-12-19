@@ -11,6 +11,8 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import Estructuras.MatrizDispersa;
+import javax.swing.SpringLayout;
 
 /**
  *
@@ -21,6 +23,9 @@ public class inter extends javax.swing.JFrame {
     /**
      * Creates new form inter
      */
+    
+        MatrizDispersa md = new MatrizDispersa();
+        
     public inter() {
         initComponents();
     }
@@ -71,6 +76,11 @@ public class inter extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton4.setText("Enviar Capa");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -134,12 +144,13 @@ public class inter extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
-        StringBuilder sb = new StringBuilder();
+        
         if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 
             File file = fc.getSelectedFile();
@@ -147,20 +158,47 @@ public class inter extends javax.swing.JFrame {
                 Scanner input = new Scanner(file);
 
                 while (input.hasNext()) {
-
-                    sb.append(input.nextLine());
-                    sb.append("\n");
+                                        
+                    String estring = input.nextLine();
+                    String[] part1 = estring.split(",");
+                    String posx = part1[0];
+                    String[] part2 = part1[1].split(";");
+                    String posy = part2[0];
+                    String environment = part2[1];
+                    
+                    if(environment.contains("agua")){
+                        md.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "blue");
+                    }
+                    else if (environment.contains("grama")){
+                        md.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "green");                        
+                    }
+                    else if (environment.contains("arbol")){
+                        md.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "darkgreen");  
+                    }
+                    else if (environment.contains("carretera")){
+                        md.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "gray");  
+                    }
+                    else if (environment.contains("montania")){
+                        md.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "brown");  
+                    }
                 }
                 input.close();
-
+                jTextArea1.setText("Se cargo capa");
+                System.out.println(jTextField1.getText());
+                md.graficar(jTextField1.getText());
+                
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(inter.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            sb.append("No se selecciono ningun archivo");
+            jTextArea1.setText("No se selecciono ningun archivo");
         }
-        jTextArea1.setText(sb.toString());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        md.prueba();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,19 +1,7 @@
 digraph G {
  m[shape=square;label="Matriz";group = 0];
-x1[shape=square;label="1";group=1];
-m->x1;
-x2[shape=square;label="2";group=2];
-x1->x2;
-x2->x1;
-x3[shape=square;label="3";group=3];
-x2->x3;
-x3->x2;
-x4[shape=square;label="4";group=4];
-x3->x4;
-x4->x3;
 x5[shape=square;label="5";group=5];
-x4->x5;
-x5->x4;
+m->x5;
 x6[shape=square;label="6";group=6];
 x5->x6;
 x6->x5;
@@ -29,508 +17,193 @@ x9->x8;
 x10[shape=square;label="10";group=10];
 x9->x10;
 x10->x9;
-{rank = same; m;x1;x2;x3;x4;x5;x6;x7;x8;x9;x10}
-y1[shape=square;label="1";group=0];
-m->y1;
-y2[shape=square;label="2";group=0];
-y1->y2;
-y2->y1;
-y3[shape=square;label="3";group=0];
-y2->y3;
-y3->y2;
+x11[shape=square;label="11";group=11];
+x10->x11;
+x11->x10;
+x12[shape=square;label="12";group=12];
+x11->x12;
+x12->x11;
+x13[shape=square;label="13";group=13];
+x12->x13;
+x13->x12;
+x14[shape=square;label="14";group=14];
+x13->x14;
+x14->x13;
+x15[shape=square;label="15";group=15];
+x14->x15;
+x15->x14;
+{rank = same; m;x5;x6;x7;x8;x9;x10;x11;x12;x13;x14;x15}
 y4[shape=square;label="4";group=0];
-y3->y4;
-y4->y3;
+m->y4;
 y5[shape=square;label="5";group=0];
 y4->y5;
-y5->y4;
+y4->y5[dir=back];
 y6[shape=square;label="6";group=0];
 y5->y6;
-y6->y5;
+y5->y6[dir=back];
 y7[shape=square;label="7";group=0];
 y6->y7;
-y7->y6;
+y6->y7[dir=back];
 y8[shape=square;label="8";group=0];
 y7->y8;
-y8->y7;
-C1L1[shape=square; label = ""; color=blue; style = filled; group =1];
-y1->C1L1;
-C1L1->y1;
-x1->C1L1;
-C1L1->x1;
-{rank = same; y1;C1L1}
-C2L1[shape=square; label = ""; color=blue; style = filled; group =2];
-C1L1->C2L1;
-C2L1->C1L1;
-x2->C2L1;
-C2L1->x2;
-{rank = same; y1;C1L1;C2L1}
-C3L1[shape=square; label = ""; color=blue; style = filled; group =3];
-C2L1->C3L1;
-C3L1->C2L1;
-x3->C3L1;
-C3L1->x3;
-{rank = same; y1;C1L1;C2L1;C3L1}
-C4L1[shape=square; label = ""; color=green; style = filled; group =4];
-C3L1->C4L1;
-C4L1->C3L1;
-x4->C4L1;
-C4L1->x4;
-{rank = same; y1;C1L1;C2L1;C3L1;C4L1}
-C5L1[shape=square; label = ""; color=brown; style = filled; group =5];
-C4L1->C5L1;
-C5L1->C4L1;
-x5->C5L1;
-C5L1->x5;
-{rank = same; y1;C1L1;C2L1;C3L1;C4L1;C5L1}
-C6L1[shape=square; label = ""; color=brown; style = filled; group =6];
-C5L1->C6L1;
-C6L1->C5L1;
-x6->C6L1;
-C6L1->x6;
-{rank = same; y1;C1L1;C2L1;C3L1;C4L1;C5L1;C6L1}
-C7L1[shape=square; label = ""; color=brown; style = filled; group =7];
-C6L1->C7L1;
-C7L1->C6L1;
-x7->C7L1;
-C7L1->x7;
-{rank = same; y1;C1L1;C2L1;C3L1;C4L1;C5L1;C6L1;C7L1}
-C8L1[shape=square; label = ""; color=brown; style = filled; group =8];
-C7L1->C8L1;
-C8L1->C7L1;
-x8->C8L1;
-C8L1->x8;
-{rank = same; y1;C1L1;C2L1;C3L1;C4L1;C5L1;C6L1;C7L1;C8L1}
-C9L1[shape=square; label = ""; color=brown; style = filled; group =9];
-C8L1->C9L1;
-C9L1->C8L1;
-x9->C9L1;
-C9L1->x9;
-{rank = same; y1;C1L1;C2L1;C3L1;C4L1;C5L1;C6L1;C7L1;C8L1;C9L1}
-C10L1[shape=square; label = ""; color=brown; style = filled; group =10];
-C9L1->C10L1;
-C10L1->C9L1;
-x10->C10L1;
-C10L1->x10;
-{rank = same; y1;C1L1;C2L1;C3L1;C4L1;C5L1;C6L1;C7L1;C8L1;C9L1;C10L1}
-C1L2[shape=square; label = ""; color=darkgreen; style = filled; group =1];
-y2->C1L2;
-C1L2->y2;
-C1L1->C1L2;
-C1L2->C1L1;
-{rank = same; y2;C1L2}
-C2L2[shape=square; label = ""; color=green; style = filled; group =2];
-C1L2->C2L2;
-C2L2->C1L2;
-C2L1->C2L2;
-C2L2->C2L1;
-{rank = same; y2;C1L2;C2L2}
-C3L2[shape=square; label = ""; color=blue; style = filled; group =3];
-C2L2->C3L2;
-C3L2->C2L2;
-C3L1->C3L2;
-C3L2->C3L1;
-{rank = same; y2;C1L2;C2L2;C3L2}
-C4L2[shape=square; label = ""; color=green; style = filled; group =4];
-C3L2->C4L2;
-C4L2->C3L2;
-C4L1->C4L2;
-C4L2->C4L1;
-{rank = same; y2;C1L2;C2L2;C3L2;C4L2}
-C5L2[shape=square; label = ""; color=green; style = filled; group =5];
-C4L2->C5L2;
-C5L2->C4L2;
-C5L1->C5L2;
-C5L2->C5L1;
-{rank = same; y2;C1L2;C2L2;C3L2;C4L2;C5L2}
-C6L2[shape=square; label = ""; color=green; style = filled; group =6];
-C5L2->C6L2;
-C6L2->C5L2;
-C6L1->C6L2;
-C6L2->C6L1;
-{rank = same; y2;C1L2;C2L2;C3L2;C4L2;C5L2;C6L2}
-C7L2[shape=square; label = ""; color=green; style = filled; group =7];
-C6L2->C7L2;
-C7L2->C6L2;
-C7L1->C7L2;
-C7L2->C7L1;
-{rank = same; y2;C1L2;C2L2;C3L2;C4L2;C5L2;C6L2;C7L2}
-C8L2[shape=square; label = ""; color=green; style = filled; group =8];
-C7L2->C8L2;
-C8L2->C7L2;
-C8L1->C8L2;
-C8L2->C8L1;
-{rank = same; y2;C1L2;C2L2;C3L2;C4L2;C5L2;C6L2;C7L2;C8L2}
-C9L2[shape=square; label = ""; color=green; style = filled; group =9];
-C8L2->C9L2;
-C9L2->C8L2;
-C9L1->C9L2;
-C9L2->C9L1;
-{rank = same; y2;C1L2;C2L2;C3L2;C4L2;C5L2;C6L2;C7L2;C8L2;C9L2}
-C10L2[shape=square; label = ""; color=green; style = filled; group =10];
-C9L2->C10L2;
-C10L2->C9L2;
-C10L1->C10L2;
-C10L2->C10L1;
-{rank = same; y2;C1L2;C2L2;C3L2;C4L2;C5L2;C6L2;C7L2;C8L2;C9L2;C10L2}
-C1L3[shape=square; label = ""; color=darkgreen; style = filled; group =1];
-y3->C1L3;
-C1L3->y3;
-C1L2->C1L3;
-C1L3->C1L2;
-{rank = same; y3;C1L3}
-C2L3[shape=square; label = ""; color=green; style = filled; group =2];
-C1L3->C2L3;
-C2L3->C1L3;
-C2L2->C2L3;
-C2L3->C2L2;
-{rank = same; y3;C1L3;C2L3}
-C3L3[shape=square; label = ""; color=blue; style = filled; group =3];
-C2L3->C3L3;
-C3L3->C2L3;
-C3L2->C3L3;
-C3L3->C3L2;
-{rank = same; y3;C1L3;C2L3;C3L3}
-C4L3[shape=square; label = ""; color=blue; style = filled; group =4];
-C3L3->C4L3;
-C4L3->C3L3;
-C4L2->C4L3;
-C4L3->C4L2;
-{rank = same; y3;C1L3;C2L3;C3L3;C4L3}
-C5L3[shape=square; label = ""; color=blue; style = filled; group =5];
-C4L3->C5L3;
-C5L3->C4L3;
-C5L2->C5L3;
-C5L3->C5L2;
-{rank = same; y3;C1L3;C2L3;C3L3;C4L3;C5L3}
-C6L3[shape=square; label = ""; color=blue; style = filled; group =6];
-C5L3->C6L3;
-C6L3->C5L3;
-C6L2->C6L3;
-C6L3->C6L2;
-{rank = same; y3;C1L3;C2L3;C3L3;C4L3;C5L3;C6L3}
-C7L3[shape=square; label = ""; color=blue; style = filled; group =7];
-C6L3->C7L3;
-C7L3->C6L3;
-C7L2->C7L3;
-C7L3->C7L2;
-{rank = same; y3;C1L3;C2L3;C3L3;C4L3;C5L3;C6L3;C7L3}
-C8L3[shape=square; label = ""; color=blue; style = filled; group =8];
-C7L3->C8L3;
-C8L3->C7L3;
-C8L2->C8L3;
-C8L3->C8L2;
-{rank = same; y3;C1L3;C2L3;C3L3;C4L3;C5L3;C6L3;C7L3;C8L3}
-C9L3[shape=square; label = ""; color=blue; style = filled; group =9];
-C8L3->C9L3;
-C9L3->C8L3;
-C9L2->C9L3;
-C9L3->C9L2;
-{rank = same; y3;C1L3;C2L3;C3L3;C4L3;C5L3;C6L3;C7L3;C8L3;C9L3}
-C10L3[shape=square; label = ""; color=blue; style = filled; group =10];
-C9L3->C10L3;
-C10L3->C9L3;
-C10L2->C10L3;
-C10L3->C10L2;
-{rank = same; y3;C1L3;C2L3;C3L3;C4L3;C5L3;C6L3;C7L3;C8L3;C9L3;C10L3}
-C1L4[shape=square; label = ""; color=green; style = filled; group =1];
-y4->C1L4;
-C1L4->y4;
-C1L3->C1L4;
-C1L4->C1L3;
-{rank = same; y4;C1L4}
-C2L4[shape=square; label = ""; color=green; style = filled; group =2];
-C1L4->C2L4;
-C2L4->C1L4;
-C2L3->C2L4;
-C2L4->C2L3;
-{rank = same; y4;C1L4;C2L4}
-C3L4[shape=square; label = ""; color=green; style = filled; group =3];
-C2L4->C3L4;
-C3L4->C2L4;
-C3L3->C3L4;
-C3L4->C3L3;
-{rank = same; y4;C1L4;C2L4;C3L4}
-C4L4[shape=square; label = ""; color=green; style = filled; group =4];
-C3L4->C4L4;
-C4L4->C3L4;
-C4L3->C4L4;
-C4L4->C4L3;
-{rank = same; y4;C1L4;C2L4;C3L4;C4L4}
-C5L4[shape=square; label = ""; color=green; style = filled; group =5];
-C4L4->C5L4;
-C5L4->C4L4;
-C5L3->C5L4;
-C5L4->C5L3;
-{rank = same; y4;C1L4;C2L4;C3L4;C4L4;C5L4}
-C6L4[shape=square; label = ""; color=green; style = filled; group =6];
-C5L4->C6L4;
-C6L4->C5L4;
-C6L3->C6L4;
-C6L4->C6L3;
-{rank = same; y4;C1L4;C2L4;C3L4;C4L4;C5L4;C6L4}
-C7L4[shape=square; label = ""; color=green; style = filled; group =7];
-C6L4->C7L4;
-C7L4->C6L4;
-C7L3->C7L4;
-C7L4->C7L3;
-{rank = same; y4;C1L4;C2L4;C3L4;C4L4;C5L4;C6L4;C7L4}
+y7->y8[dir=back];
+y9[shape=square;label="9";group=0];
+y8->y9;
+y8->y9[dir=back];
+y10[shape=square;label="10";group=0];
+y9->y10;
+y9->y10[dir=back];
+y11[shape=square;label="11";group=0];
+y10->y11;
+y10->y11[dir=back];
+y12[shape=square;label="12";group=0];
+y11->y12;
+y11->y12[dir=back];
+y13[shape=square;label="13";group=0];
+y12->y13;
+y12->y13[dir=back];
+y14[shape=square;label="14";group=0];
+y13->y14;
+y13->y14[dir=back];
+y15[shape=square;label="15";group=0];
+y14->y15;
+y14->y15[dir=back];
 C8L4[shape=square; label = ""; color=blue; style = filled; group =8];
-C7L4->C8L4;
-C8L4->C7L4;
-C8L3->C8L4;
-C8L4->C8L3;
-{rank = same; y4;C1L4;C2L4;C3L4;C4L4;C5L4;C6L4;C7L4;C8L4}
-C9L4[shape=square; label = ""; color=brown; style = filled; group =9];
+y4->C8L4;
+y4->C8L4[dir=back];
+x8->C8L4;
+x8->C8L4[dir=back];
+{rank = same; y4;C8L4}
+C9L4[shape=square; label = ""; color=blue; style = filled; group =9];
 C8L4->C9L4;
-C9L4->C8L4;
-C9L3->C9L4;
-C9L4->C9L3;
-{rank = same; y4;C1L4;C2L4;C3L4;C4L4;C5L4;C6L4;C7L4;C8L4;C9L4}
-C10L4[shape=square; label = ""; color=brown; style = filled; group =10];
+C8L4->C9L4[dir=back];
+x9->C9L4;
+x9->C9L4[dir=back];
+{rank = same; y4;C8L4;C9L4}
+C10L4[shape=square; label = ""; color=blue; style = filled; group =10];
 C9L4->C10L4;
-C10L4->C9L4;
-C10L3->C10L4;
-C10L4->C10L3;
-{rank = same; y4;C1L4;C2L4;C3L4;C4L4;C5L4;C6L4;C7L4;C8L4;C9L4;C10L4}
-C1L5[shape=square; label = ""; color=gray; style = filled; group =1];
-y5->C1L5;
-C1L5->y5;
-C1L4->C1L5;
-C1L5->C1L4;
-{rank = same; y5;C1L5}
-C2L5[shape=square; label = ""; color=gray; style = filled; group =2];
-C1L5->C2L5;
-C2L5->C1L5;
-C2L4->C2L5;
-C2L5->C2L4;
-{rank = same; y5;C1L5;C2L5}
-C3L5[shape=square; label = ""; color=gray; style = filled; group =3];
-C2L5->C3L5;
-C3L5->C2L5;
-C3L4->C3L5;
-C3L5->C3L4;
-{rank = same; y5;C1L5;C2L5;C3L5}
-C4L5[shape=square; label = ""; color=gray; style = filled; group =4];
-C3L5->C4L5;
-C4L5->C3L5;
-C4L4->C4L5;
-C4L5->C4L4;
-{rank = same; y5;C1L5;C2L5;C3L5;C4L5}
-C5L5[shape=square; label = ""; color=gray; style = filled; group =5];
-C4L5->C5L5;
-C5L5->C4L5;
-C5L4->C5L5;
-C5L5->C5L4;
-{rank = same; y5;C1L5;C2L5;C3L5;C4L5;C5L5}
-C6L5[shape=square; label = ""; color=gray; style = filled; group =6];
-C5L5->C6L5;
-C6L5->C5L5;
-C6L4->C6L5;
-C6L5->C6L4;
-{rank = same; y5;C1L5;C2L5;C3L5;C4L5;C5L5;C6L5}
-C7L5[shape=square; label = ""; color=green; style = filled; group =7];
-C6L5->C7L5;
-C7L5->C6L5;
-C7L4->C7L5;
-C7L5->C7L4;
-{rank = same; y5;C1L5;C2L5;C3L5;C4L5;C5L5;C6L5;C7L5}
+C9L4->C10L4[dir=back];
+x10->C10L4;
+x10->C10L4[dir=back];
+{rank = same; y4;C8L4;C9L4;C10L4}
+C11L4[shape=square; label = ""; color=blue; style = filled; group =11];
+C10L4->C11L4;
+C10L4->C11L4[dir=back];
+x11->C11L4;
+x11->C11L4[dir=back];
+{rank = same; y4;C8L4;C9L4;C10L4;C11L4}
+C12L4[shape=square; label = ""; color=blue; style = filled; group =12];
+C11L4->C12L4;
+C11L4->C12L4[dir=back];
+x12->C12L4;
+x12->C12L4[dir=back];
+{rank = same; y4;C8L4;C9L4;C10L4;C11L4;C12L4}
+C13L4[shape=square; label = ""; color=blue; style = filled; group =13];
+C12L4->C13L4;
+C12L4->C13L4[dir=back];
+x13->C13L4;
+x13->C13L4[dir=back];
+{rank = same; y4;C8L4;C9L4;C10L4;C11L4;C12L4;C13L4}
+C14L4[shape=square; label = ""; color=blue; style = filled; group =14];
+C13L4->C14L4;
+C13L4->C14L4[dir=back];
+x14->C14L4;
+x14->C14L4[dir=back];
+{rank = same; y4;C8L4;C9L4;C10L4;C11L4;C12L4;C13L4;C14L4}
+C15L4[shape=square; label = ""; color=blue; style = filled; group =15];
+C14L4->C15L4;
+C14L4->C15L4[dir=back];
+x15->C15L4;
+x15->C15L4[dir=back];
+{rank = same; y4;C8L4;C9L4;C10L4;C11L4;C12L4;C13L4;C14L4;C15L4}
+C7L5[shape=square; label = ""; color=blue; style = filled; group =7];
+y5->C7L5;
+y5->C7L5[dir=back];
+x7->C7L5;
+x7->C7L5[dir=back];
+{rank = same; y5;C7L5}
 C8L5[shape=square; label = ""; color=blue; style = filled; group =8];
 C7L5->C8L5;
-C8L5->C7L5;
+C7L5->C8L5[dir=back];
 C8L4->C8L5;
-C8L5->C8L4;
-{rank = same; y5;C1L5;C2L5;C3L5;C4L5;C5L5;C6L5;C7L5;C8L5}
-C9L5[shape=square; label = ""; color=brown; style = filled; group =9];
-C8L5->C9L5;
-C9L5->C8L5;
-C9L4->C9L5;
-C9L5->C9L4;
-{rank = same; y5;C1L5;C2L5;C3L5;C4L5;C5L5;C6L5;C7L5;C8L5;C9L5}
-C10L5[shape=square; label = ""; color=brown; style = filled; group =10];
-C9L5->C10L5;
-C10L5->C9L5;
-C10L4->C10L5;
-C10L5->C10L4;
-{rank = same; y5;C1L5;C2L5;C3L5;C4L5;C5L5;C6L5;C7L5;C8L5;C9L5;C10L5}
-C1L6[shape=square; label = ""; color=gray; style = filled; group =1];
-y6->C1L6;
-C1L6->y6;
-C1L5->C1L6;
-C1L6->C1L5;
-{rank = same; y6;C1L6}
-C2L6[shape=square; label = ""; color=gray; style = filled; group =2];
-C1L6->C2L6;
-C2L6->C1L6;
-C2L5->C2L6;
-C2L6->C2L5;
-{rank = same; y6;C1L6;C2L6}
-C3L6[shape=square; label = ""; color=gray; style = filled; group =3];
-C2L6->C3L6;
-C3L6->C2L6;
-C3L5->C3L6;
-C3L6->C3L5;
-{rank = same; y6;C1L6;C2L6;C3L6}
-C4L6[shape=square; label = ""; color=gray; style = filled; group =4];
-C3L6->C4L6;
-C4L6->C3L6;
-C4L5->C4L6;
-C4L6->C4L5;
-{rank = same; y6;C1L6;C2L6;C3L6;C4L6}
-C5L6[shape=square; label = ""; color=gray; style = filled; group =5];
-C4L6->C5L6;
-C5L6->C4L6;
-C5L5->C5L6;
-C5L6->C5L5;
-{rank = same; y6;C1L6;C2L6;C3L6;C4L6;C5L6}
-C6L6[shape=square; label = ""; color=gray; style = filled; group =6];
-C5L6->C6L6;
-C6L6->C5L6;
-C6L5->C6L6;
-C6L6->C6L5;
-{rank = same; y6;C1L6;C2L6;C3L6;C4L6;C5L6;C6L6}
-C7L6[shape=square; label = ""; color=green; style = filled; group =7];
-C6L6->C7L6;
-C7L6->C6L6;
+C8L4->C8L5[dir=back];
+{rank = same; y5;C7L5;C8L5}
+C7L6[shape=square; label = ""; color=blue; style = filled; group =7];
+y6->C7L6;
+y6->C7L6[dir=back];
 C7L5->C7L6;
-C7L6->C7L5;
-{rank = same; y6;C1L6;C2L6;C3L6;C4L6;C5L6;C6L6;C7L6}
-C8L6[shape=square; label = ""; color=blue; style = filled; group =8];
-C7L6->C8L6;
-C8L6->C7L6;
-C8L5->C8L6;
-C8L6->C8L5;
-{rank = same; y6;C1L6;C2L6;C3L6;C4L6;C5L6;C6L6;C7L6;C8L6}
-C9L6[shape=square; label = ""; color=brown; style = filled; group =9];
-C8L6->C9L6;
-C9L6->C8L6;
-C9L5->C9L6;
-C9L6->C9L5;
-{rank = same; y6;C1L6;C2L6;C3L6;C4L6;C5L6;C6L6;C7L6;C8L6;C9L6}
-C10L6[shape=square; label = ""; color=brown; style = filled; group =10];
-C9L6->C10L6;
-C10L6->C9L6;
-C10L5->C10L6;
-C10L6->C10L5;
-{rank = same; y6;C1L6;C2L6;C3L6;C4L6;C5L6;C6L6;C7L6;C8L6;C9L6;C10L6}
-C1L7[shape=square; label = ""; color=darkgreen; style = filled; group =1];
-y7->C1L7;
-C1L7->y7;
-C1L6->C1L7;
-C1L7->C1L6;
-{rank = same; y7;C1L7}
-C2L7[shape=square; label = ""; color=darkgreen; style = filled; group =2];
-C1L7->C2L7;
-C2L7->C1L7;
-C2L6->C2L7;
-C2L7->C2L6;
-{rank = same; y7;C1L7;C2L7}
-C3L7[shape=square; label = ""; color=darkgreen; style = filled; group =3];
-C2L7->C3L7;
-C3L7->C2L7;
-C3L6->C3L7;
-C3L7->C3L6;
-{rank = same; y7;C1L7;C2L7;C3L7}
-C4L7[shape=square; label = ""; color=darkgreen; style = filled; group =4];
-C3L7->C4L7;
-C4L7->C3L7;
-C4L6->C4L7;
-C4L7->C4L6;
-{rank = same; y7;C1L7;C2L7;C3L7;C4L7}
-C5L7[shape=square; label = ""; color=gray; style = filled; group =5];
-C4L7->C5L7;
-C5L7->C4L7;
-C5L6->C5L7;
-C5L7->C5L6;
-{rank = same; y7;C1L7;C2L7;C3L7;C4L7;C5L7}
-C6L7[shape=square; label = ""; color=gray; style = filled; group =6];
-C5L7->C6L7;
-C6L7->C5L7;
-C6L6->C6L7;
-C6L7->C6L6;
-{rank = same; y7;C1L7;C2L7;C3L7;C4L7;C5L7;C6L7}
-C7L7[shape=square; label = ""; color=green; style = filled; group =7];
-C6L7->C7L7;
-C7L7->C6L7;
+C7L5->C7L6[dir=back];
+{rank = same; y6;C7L6}
+C7L7[shape=square; label = ""; color=blue; style = filled; group =7];
+y7->C7L7;
+y7->C7L7[dir=back];
 C7L6->C7L7;
-C7L7->C7L6;
-{rank = same; y7;C1L7;C2L7;C3L7;C4L7;C5L7;C6L7;C7L7}
+C7L6->C7L7[dir=back];
+{rank = same; y7;C7L7}
 C8L7[shape=square; label = ""; color=blue; style = filled; group =8];
 C7L7->C8L7;
-C8L7->C7L7;
-C8L6->C8L7;
-C8L7->C8L6;
-{rank = same; y7;C1L7;C2L7;C3L7;C4L7;C5L7;C6L7;C7L7;C8L7}
-C9L7[shape=square; label = ""; color=brown; style = filled; group =9];
-C8L7->C9L7;
-C9L7->C8L7;
-C9L6->C9L7;
-C9L7->C9L6;
-{rank = same; y7;C1L7;C2L7;C3L7;C4L7;C5L7;C6L7;C7L7;C8L7;C9L7}
-C10L7[shape=square; label = ""; color=brown; style = filled; group =10];
-C9L7->C10L7;
-C10L7->C9L7;
-C10L6->C10L7;
-C10L7->C10L6;
-{rank = same; y7;C1L7;C2L7;C3L7;C4L7;C5L7;C6L7;C7L7;C8L7;C9L7;C10L7}
-C1L8[shape=square; label = ""; color=darkgreen; style = filled; group =1];
-y8->C1L8;
-C1L8->y8;
-C1L7->C1L8;
-C1L8->C1L7;
-{rank = same; y8;C1L8}
-C2L8[shape=square; label = ""; color=darkgreen; style = filled; group =2];
-C1L8->C2L8;
-C2L8->C1L8;
-C2L7->C2L8;
-C2L8->C2L7;
-{rank = same; y8;C1L8;C2L8}
-C3L8[shape=square; label = ""; color=darkgreen; style = filled; group =3];
-C2L8->C3L8;
-C3L8->C2L8;
-C3L7->C3L8;
-C3L8->C3L7;
-{rank = same; y8;C1L8;C2L8;C3L8}
-C4L8[shape=square; label = ""; color=darkgreen; style = filled; group =4];
-C3L8->C4L8;
-C4L8->C3L8;
-C4L7->C4L8;
-C4L8->C4L7;
-{rank = same; y8;C1L8;C2L8;C3L8;C4L8}
-C5L8[shape=square; label = ""; color=gray; style = filled; group =5];
-C4L8->C5L8;
-C5L8->C4L8;
-C5L7->C5L8;
-C5L8->C5L7;
-{rank = same; y8;C1L8;C2L8;C3L8;C4L8;C5L8}
-C6L8[shape=square; label = ""; color=gray; style = filled; group =6];
-C5L8->C6L8;
-C6L8->C5L8;
-C6L7->C6L8;
-C6L8->C6L7;
-{rank = same; y8;C1L8;C2L8;C3L8;C4L8;C5L8;C6L8}
-C7L8[shape=square; label = ""; color=green; style = filled; group =7];
-C6L8->C7L8;
-C7L8->C6L8;
+C7L7->C8L7[dir=back];
+C8L5->C8L7;
+C8L5->C8L7[dir=back];
+{rank = same; y7;C7L7;C8L7}
+C7L8[shape=square; label = ""; color=blue; style = filled; group =7];
+y8->C7L8;
+y8->C7L8[dir=back];
 C7L7->C7L8;
-C7L8->C7L7;
-{rank = same; y8;C1L8;C2L8;C3L8;C4L8;C5L8;C6L8;C7L8}
-C8L8[shape=square; label = ""; color=blue; style = filled; group =8];
-C7L8->C8L8;
-C8L8->C7L8;
-C8L7->C8L8;
-C8L8->C8L7;
-{rank = same; y8;C1L8;C2L8;C3L8;C4L8;C5L8;C6L8;C7L8;C8L8}
-C9L8[shape=square; label = ""; color=brown; style = filled; group =9];
-C8L8->C9L8;
-C9L8->C8L8;
-C9L7->C9L8;
-C9L8->C9L7;
-{rank = same; y8;C1L8;C2L8;C3L8;C4L8;C5L8;C6L8;C7L8;C8L8;C9L8}
-C10L8[shape=square; label = ""; color=brown; style = filled; group =10];
-C9L8->C10L8;
-C10L8->C9L8;
-C10L7->C10L8;
-C10L8->C10L7;
-{rank = same; y8;C1L8;C2L8;C3L8;C4L8;C5L8;C6L8;C7L8;C8L8;C9L8;C10L8}
+C7L7->C7L8[dir=back];
+{rank = same; y8;C7L8}
+C7L9[shape=square; label = ""; color=blue; style = filled; group =7];
+y9->C7L9;
+y9->C7L9[dir=back];
+C7L8->C7L9;
+C7L8->C7L9[dir=back];
+{rank = same; y9;C7L9}
+C7L10[shape=square; label = ""; color=blue; style = filled; group =7];
+y10->C7L10;
+y10->C7L10[dir=back];
+C7L9->C7L10;
+C7L9->C7L10[dir=back];
+{rank = same; y10;C7L10}
+C5L11[shape=square; label = ""; color=blue; style = filled; group =5];
+y11->C5L11;
+y11->C5L11[dir=back];
+x5->C5L11;
+x5->C5L11[dir=back];
+{rank = same; y11;C5L11}
+C6L11[shape=square; label = ""; color=blue; style = filled; group =6];
+C5L11->C6L11;
+C5L11->C6L11[dir=back];
+x6->C6L11;
+x6->C6L11[dir=back];
+{rank = same; y11;C5L11;C6L11}
+C7L11[shape=square; label = ""; color=blue; style = filled; group =7];
+C6L11->C7L11;
+C6L11->C7L11[dir=back];
+C7L10->C7L11;
+C7L10->C7L11[dir=back];
+{rank = same; y11;C5L11;C6L11;C7L11}
+C5L12[shape=square; label = ""; color=blue; style = filled; group =5];
+y12->C5L12;
+y12->C5L12[dir=back];
+C5L11->C5L12;
+C5L11->C5L12[dir=back];
+{rank = same; y12;C5L12}
+C5L13[shape=square; label = ""; color=blue; style = filled; group =5];
+y13->C5L13;
+y13->C5L13[dir=back];
+C5L12->C5L13;
+C5L12->C5L13[dir=back];
+{rank = same; y13;C5L13}
+C5L14[shape=square; label = ""; color=blue; style = filled; group =5];
+y14->C5L14;
+y14->C5L14[dir=back];
+C5L13->C5L14;
+C5L13->C5L14[dir=back];
+{rank = same; y14;C5L14}
+C5L15[shape=square; label = ""; color=blue; style = filled; group =5];
+y15->C5L15;
+y15->C5L15[dir=back];
+C5L14->C5L15;
+C5L14->C5L15[dir=back];
+{rank = same; y15;C5L15}
 }
