@@ -23,9 +23,8 @@ public class inter extends javax.swing.JFrame {
     /**
      * Creates new form inter
      */
-    
-        MatrizDispersa md = new MatrizDispersa();
-        
+    MatrizDispersa md = new MatrizDispersa();
+
     public inter() {
         initComponents();
     }
@@ -144,49 +143,46 @@ public class inter extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
-        
+
         if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 
             File file = fc.getSelectedFile();
             try {
                 Scanner input = new Scanner(file);
-
+                MatrizDispersa md1 = new MatrizDispersa();
+                
                 while (input.hasNext()) {
-                                        
+
                     String estring = input.nextLine();
                     String[] part1 = estring.split(",");
                     String posx = part1[0];
                     String[] part2 = part1[1].split(";");
                     String posy = part2[0];
                     String environment = part2[1];
-                    
-                    if(environment.contains("agua")){
-                        md.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "blue");
-                    }
-                    else if (environment.contains("grama")){
-                        md.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "green");                        
-                    }
-                    else if (environment.contains("arbol")){
-                        md.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "darkgreen");  
-                    }
-                    else if (environment.contains("carretera")){
-                        md.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "gray");  
-                    }
-                    else if (environment.contains("montania")){
-                        md.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "brown");  
+
+                    if (environment.contains("agua")) {
+                        md1.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "blue");
+                    } else if (environment.contains("grama")) {
+                        md1.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "green");
+                    } else if (environment.contains("arbol")) {
+                        md1.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "darkgreen");
+                    } else if (environment.contains("carretera")) {
+                        md1.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "gray");
+                    } else if (environment.contains("montania")) {
+                        md1.insertar(Integer.parseInt(posx), Integer.parseInt(posy), "brown");
                     }
                 }
                 input.close();
                 jTextArea1.setText("Se cargo capa");
                 System.out.println(jTextField1.getText());
-                md.graficar(jTextField1.getText());
-                
+                md1.graficar(jTextField1.getText());
+                md.agregarCapa(md1, jTextField1.getText());
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(inter.class.getName()).log(Level.SEVERE, null, ex);
             }
