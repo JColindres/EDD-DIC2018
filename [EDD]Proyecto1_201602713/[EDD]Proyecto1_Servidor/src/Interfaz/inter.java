@@ -69,6 +69,11 @@ public class inter extends javax.swing.JFrame {
         });
 
         jButton3.setText("Eliminar Capa");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -195,6 +200,11 @@ public class inter extends javax.swing.JFrame {
         // TODO add your handling code here:
         md.prueba();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        md.eliminarCapa(jTextField1.getText());
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

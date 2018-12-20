@@ -350,6 +350,39 @@ public class MatrizDispersa {
         }
     }
 
+    public void eliminarCapa(String capa) {
+        if (inicio != null) {
+            ListaCapas aux = inicio;
+            ListaCapas ant = null;
+            do{
+                if (aux.capa == Integer.parseInt(capa)) {
+                    if (ant == null) {
+                        if (aux.siguiente == inicio) {
+                            inicio = null;
+                        } else {
+                            ant = aux.anterior;
+                            ant.siguiente = aux.siguiente;
+                            aux = aux.siguiente;
+                            aux.anterior = ant;
+                            inicio = aux;
+                            ant = null;
+                        }
+                    } else {
+                        aux.anterior = null;
+                        ant.siguiente = aux.siguiente;
+                        aux = aux.siguiente;
+                        aux.anterior = ant;
+                    }
+                } else {
+                    ant = aux;
+                    aux = aux.siguiente;
+                }
+            }while(aux != inicio);
+        }
+    }
+    
+    
+
     public void graficar(String capa) {
         m = new Matriz(columnas, filas);
         FileWriter fichero = null;
@@ -666,17 +699,17 @@ public class MatrizDispersa {
     public int columnasCliente(MatrizDispersa mdd) {
         NodoMDX auxx = mdd.columnas;
         int numeroC = 0;
-        while(auxx != null){
+        while (auxx != null) {
             numeroC++;
             auxx = auxx.siguiente;
         }
         return numeroC;
     }
-    
+
     public int filasCliente(MatrizDispersa mdd) {
         NodoMDY auxy = mdd.filas;
         int numeroF = 0;
-        while(auxy != null){
+        while (auxy != null) {
             numeroF++;
             auxy = auxy.siguiente;
         }
