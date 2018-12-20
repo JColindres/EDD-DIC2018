@@ -9,6 +9,7 @@ package Estructuras;
  *
  * @author pablo
  */
+import edd.proyecto1_servidor.EDDProyecto1_Servidor;
 import java.io.*;
 
 class Matriz {
@@ -98,6 +99,9 @@ public class MatrizDispersa {
     NodoMDY ultimoy;
     Matriz m;
     ListaCapas inicio;
+    //public String tablero;
+
+    EDDProyecto1_Servidor asa = new EDDProyecto1_Servidor();
 
     public void insertar(int x, int y, String tipo) {
         Celda celda = new Celda(x, y, tipo);
@@ -501,6 +505,10 @@ public class MatrizDispersa {
                 lc = lc.siguiente;
             } while (lc != inicio);
             graficarDefinitiva(matrizDefinitiva);
+            asa.mensajemapaC(columnasCliente(matrizDefinitiva));
+            asa.mensajemapaF(filasCliente(matrizDefinitiva));
+            asa.mensajemapa(mapaCliente(matrizDefinitiva));
+            asa.enviarmapa();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -639,5 +647,39 @@ public class MatrizDispersa {
         } catch (IOException e) {
             System.out.println("ex: " + e.getMessage());
         }
+    }
+
+    public String mapaCliente(MatrizDispersa mdd) {
+        NodoMDY auxy = mdd.filas;
+        String mapa = "";
+        while (auxy != null) {
+            Celda auxCelda = auxy.derecha;
+            while (auxCelda != null) {
+                mapa = mapa + auxCelda.posx + "," + auxCelda.posy + "," + auxCelda.tipo + "\n";
+                auxCelda = auxCelda.derecha;
+            }
+            auxy = auxy.siguiente;
+        }
+        return mapa;
+    }
+
+    public int columnasCliente(MatrizDispersa mdd) {
+        NodoMDX auxx = mdd.columnas;
+        int numeroC = 0;
+        while(auxx != null){
+            numeroC++;
+            auxx = auxx.siguiente;
+        }
+        return numeroC;
+    }
+    
+    public int filasCliente(MatrizDispersa mdd) {
+        NodoMDY auxy = mdd.filas;
+        int numeroF = 0;
+        while(auxy != null){
+            numeroF++;
+            auxy = auxy.siguiente;
+        }
+        return numeroF;
     }
 }
