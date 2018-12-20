@@ -220,6 +220,9 @@ public class MatrizDispersa {
                                 celda.arriba = auxx.abajo;
                                 auxx.abajo = celda;
                                 break;
+                            } else if (celda.posx == auxCelday.posx && celda.posy == auxCelday.posy) {
+                                auxCelday.tipo = celda.tipo;
+                                break;
                             } else {
                                 auxCelday = auxCelday.derecha;
                             }
@@ -248,6 +251,9 @@ public class MatrizDispersa {
                                 celda.izquierda = auxy.derecha;
                                 auxy.derecha = celda;
                                 break;
+                            } else if (celda.posx == auxCeldax.posx && celda.posy == auxCeldax.posy) {
+                                auxCeldax.tipo = celda.tipo;
+                                break;
                             } else {
                                 auxCeldax = auxCeldax.abajo;
                             }
@@ -270,6 +276,9 @@ public class MatrizDispersa {
                                 auxCelday.derecha.izquierda = celda;
                                 auxCelday.derecha = celda;
                                 break;
+                            } else if (celda.posx == auxCelday.posx && celda.posy == auxCelday.posy) {
+                                auxCelday.tipo = celda.tipo;
+                                break;
                             } else {
                                 auxCelday = auxCelday.derecha;
                             }
@@ -290,6 +299,9 @@ public class MatrizDispersa {
                                 celda.abajo = auxCeldax.abajo;
                                 auxCeldax.abajo.arriba = celda;
                                 auxCeldax.abajo = celda;
+                                break;
+                            } else if (celda.posx == auxCeldax.posx && celda.posy == auxCeldax.posy) {
+                                auxCeldax.tipo = celda.tipo;
                                 break;
                             } else {
                                 auxCeldax = auxCeldax.abajo;
@@ -431,98 +443,56 @@ public class MatrizDispersa {
         } catch (IOException e) {
             System.out.println("ex: " + e.getMessage());
         }
+
+        fichero = null;
+        pw = null;
+        try {
+            fichero = new FileWriter("MDF" + capa + ".txt");
+            pw = new PrintWriter(fichero);
+
+            NodoMDY auxy = filas;
+            pw.println("digraph G {\n node[shape=square, style=filled, height=1, width=1];");
+
+            while (auxy != null) {
+                Celda auxCelda = auxy.derecha;
+                while (auxCelda != null) {
+                    pw.println("C" + auxCelda.posx + "L" + auxCelda.posy + "[label=" + '"' + '"' + ", pos=" + '"' + auxCelda.posy * 70 + "," + auxCelda.posx * 70 + '"' + ", " + "fillcolor=" + auxCelda.tipo + "]");
+                    auxCelda = auxCelda.derecha;
+                }
+                auxy = auxy.siguiente;
+            }
+            pw.println("}");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fichero) {
+                    fichero.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+
+        try {
+            String command = "neato -n -Tjpg MDF" + capa + ".txt -o MDF" + capa + ".jpg";
+            Process child = Runtime.getRuntime().exec(command);
+        } catch (IOException e) {
+            System.out.println("ex: " + e.getMessage());
+        }
     }
 
     public void prueba() {
-//        try {
-//            ListaCapas lc = inicio;
-//                System.out.println("digraph G {\n m[shape=square;label=\"Matriz\";group = 0];");
-//            do{
-//                NodoMDX auxx = lc.matriz.cabeceraC;
-//                NodoMDY auxy = lc.matriz.cabeceraF;
-//                String rank = "";
-//                while (auxx != null) {
-//
-//                    System.out.println("x" + auxx.columna + "[shape=square;label=\"" + auxx.columna + "\";group=" + auxx.columna + "];");
-//                    rank = rank + ";x" + auxx.columna;
-//                    if (auxx == lc.matriz.cabeceraC) {
-//                        System.out.println("m->x" + auxx.columna + ";");
-//                    } else {
-//                        System.out.println("x" + auxx.anterior.columna + "->" + "x" + auxx.columna + ";");
-//                        System.out.println("x" + auxx.columna + "->" + "x" + auxx.anterior.columna + ";");
-//                    }
-//                    auxx = auxx.siguiente;
-//                }
-//                System.out.println("{rank = same; m" + rank + "}");
-//
-//                while (auxy != null) {
-//
-//                    System.out.println("y" + auxy.fila + "[shape=square;label=\"" + auxy.fila + "\";group=" + 0 + "];");
-//                    if (auxy == lc.matriz.cabeceraF) {
-//                        System.out.println("m->y" + auxy.fila + ";");
-//                    } else {
-//                        System.out.println("y" + auxy.anterior.fila + "->" + "y" + auxy.fila + ";");
-//                        System.out.println("y" + auxy.anterior.fila + "->" + "y" + auxy.fila + "[dir=back];");
-//                    }
-//                    auxy = auxy.siguiente;
-//                }
-//                auxy = lc.matriz.cabeceraF;
-//                while (auxy != null) {
-//                    Celda auxCelday = auxy.derecha;
-//                    rank = "";
-//
-//                    while (auxCelday != null) {
-//                        System.out.println("C" + auxCelday.posx + "L" + auxCelday.posy + "[shape=square; label = \"" + "\"; color=" + auxCelday.tipo + "; style = filled; group =" + auxCelday.posx + "];");
-//                        rank = rank + ";" + "C" + auxCelday.posx + "L" + auxCelday.posy;
-//
-//                        if (auxCelday == auxy.derecha) {
-//                            System.out.println("y" + auxCelday.posy + "->" + "C" + auxCelday.posx + "L" + auxCelday.posy + ";");
-//                            System.out.println("y" + auxCelday.posy + "->" + "C" + auxCelday.posx + "L" + auxCelday.posy + "[dir=back];");
-//
-//                        } else if (auxCelday.izquierda.posx != auxCelday.posx) {
-//                            System.out.println("C" + auxCelday.izquierda.posx + "L" + auxCelday.izquierda.posy + "->" + "C" + auxCelday.posx + "L" + auxCelday.posy + ";");
-//                            System.out.println("C" + auxCelday.izquierda.posx + "L" + auxCelday.izquierda.posy + "->" + "C" + auxCelday.posx + "L" + auxCelday.posy + "[dir=back];");
-//
-//                        }
-//                        auxx = lc.matriz.cabeceraC;
-//                        while (auxx != null) {
-//                            Celda auxCeldax = auxx.abajo;
-//                            while (auxCeldax != null) {
-//                                if (auxCelday == auxx.abajo) {
-//                                    System.out.println("x" + auxCelday.posx + "->" + "C" + auxCelday.posx + "L" + auxCelday.posy + ";");
-//                                    System.out.println("x" + auxCelday.posx + "->" + "C" + auxCelday.posx + "L" + auxCelday.posy + "[dir=back];");
-//                                    break;
-//                                } else if (auxCelday == auxCeldax) {
-//                                    System.out.println("C" + auxCeldax.arriba.posx + "L" + auxCeldax.arriba.posy + "->" + "C" + auxCeldax.posx + "L" + auxCeldax.posy + ";");
-//                                    System.out.println("C" + auxCeldax.arriba.posx + "L" + auxCeldax.arriba.posy + "->" + "C" + auxCeldax.posx + "L" + auxCeldax.posy + "[dir=back];");
-//                                    break;
-//                                }
-//                                auxCeldax = auxCeldax.abajo;
-//                            }
-//                            auxx = auxx.siguiente;
-//                        }
-//                        System.out.println("{rank = same; y" + auxy.fila + rank + "}");
-//                        auxCelday = auxCelday.derecha;
-//                    }
-//                    auxy = auxy.siguiente;
-//                }
-//                lc = lc.siguiente;
-//            }while(lc != inicio);
-//                System.out.println("}");
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        try {            
+        try {
             ListaCapas lc = inicio;
             MatrizDispersa matrizDefinitiva = new MatrizDispersa();
             do {
                 NodoMDY auxy = lc.matriz.cabeceraF;
-                while(auxy != null){
+                while (auxy != null) {
                     Celda auxCelda = auxy.derecha;
-                    while(auxCelda != null){
+                    while (auxCelda != null) {
                         matrizDefinitiva.insertar(auxCelda.posx, auxCelda.posy, auxCelda.tipo);
-                        //System.out.print(auxCelda.posx + auxCelda.posy + auxCelda.tipo+" - ");
                         auxCelda = auxCelda.derecha;
                     }
                     System.out.println("");
@@ -535,7 +505,7 @@ public class MatrizDispersa {
             e.printStackTrace();
         }
     }
-    
+
     public void graficarDefinitiva(MatrizDispersa mdd) {
         FileWriter fichero = null;
         PrintWriter pw = null;
@@ -628,6 +598,43 @@ public class MatrizDispersa {
 
         try {
             String command = "dot -Tjpg MD.txt -o MD.jpg";
+            Process child = Runtime.getRuntime().exec(command);
+        } catch (IOException e) {
+            System.out.println("ex: " + e.getMessage());
+        }
+        fichero = null;
+        pw = null;
+        try {
+            fichero = new FileWriter("MDF.txt");
+            pw = new PrintWriter(fichero);
+
+            NodoMDY auxy = mdd.filas;
+            pw.println("digraph G {\n node[shape=square, style=filled, height=1, width=1];");
+
+            while (auxy != null) {
+                Celda auxCelda = auxy.derecha;
+                while (auxCelda != null) {
+                    pw.println("C" + auxCelda.posx + "L" + auxCelda.posy + "[label=" + '"' + '"' + ", pos=" + '"' + auxCelda.posy * 70 + "," + auxCelda.posx * 70 + '"' + ", " + "fillcolor=" + auxCelda.tipo + "]");
+                    auxCelda = auxCelda.derecha;
+                }
+                auxy = auxy.siguiente;
+            }
+            pw.println("}");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fichero) {
+                    fichero.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+
+        try {
+            String command = "neato -n -Tjpg MDF.txt -o MDF.jpg";
             Process child = Runtime.getRuntime().exec(command);
         } catch (IOException e) {
             System.out.println("ex: " + e.getMessage());

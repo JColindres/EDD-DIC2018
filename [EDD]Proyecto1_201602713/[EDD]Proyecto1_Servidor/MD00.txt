@@ -1,0 +1,14 @@
+digraph G {
+ m[shape=square;label="Matriz";group = 0];
+x1[shape=square;label="1";group=1];
+m->x1;
+{rank = same; m;x1}
+y1[shape=square;label="1";group=0];
+m->y1;
+C1L1[shape=square; label = ""; color=blue; style = filled; group =1];
+y1->C1L1;
+y1->C1L1[dir=back];
+x1->C1L1;
+x1->C1L1[dir=back];
+{rank = same; y1;C1L1}
+}

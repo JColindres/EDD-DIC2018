@@ -74,7 +74,7 @@ public class inter extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jButton4.setText("Enviar Capa");
+        jButton4.setText("Graficar Mapa Final");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -100,7 +100,7 @@ public class inter extends javax.swing.JFrame {
                             .addComponent(jButton3)
                             .addComponent(jButton1)))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
+                        .addGap(60, 60, 60)
                         .addComponent(jButton4)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
@@ -123,7 +123,7 @@ public class inter extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -156,7 +156,7 @@ public class inter extends javax.swing.JFrame {
             try {
                 Scanner input = new Scanner(file);
                 MatrizDispersa md1 = new MatrizDispersa();
-                
+
                 while (input.hasNext()) {
 
                     String estring = input.nextLine();
@@ -179,7 +179,7 @@ public class inter extends javax.swing.JFrame {
                     }
                 }
                 input.close();
-                jTextArea1.setText("Se cargo capa");
+                jTextArea1.append("Se cargo capa " + jTextField1.getText() + "\n");
                 System.out.println(jTextField1.getText());
                 md1.graficar(jTextField1.getText());
                 md.agregarCapa(md1, jTextField1.getText());
@@ -187,7 +187,7 @@ public class inter extends javax.swing.JFrame {
                 Logger.getLogger(inter.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            jTextArea1.setText("No se selecciono ningun archivo");
+            jTextArea1.append("No se selecciono ningun archivo");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
