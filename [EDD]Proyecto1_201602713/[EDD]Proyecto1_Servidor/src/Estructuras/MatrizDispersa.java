@@ -381,8 +381,6 @@ public class MatrizDispersa {
         }
     }
     
-    
-
     public void graficar(String capa) {
         m = new Matriz(columnas, filas);
         FileWriter fichero = null;
@@ -700,7 +698,7 @@ public class MatrizDispersa {
         NodoMDX auxx = mdd.columnas;
         int numeroC = 0;
         while (auxx != null) {
-            numeroC++;
+            numeroC = auxx.columna;
             auxx = auxx.siguiente;
         }
         return numeroC;
@@ -710,7 +708,7 @@ public class MatrizDispersa {
         NodoMDY auxy = mdd.filas;
         int numeroF = 0;
         while (auxy != null) {
-            numeroF++;
+            numeroF = auxy.fila;
             auxy = auxy.siguiente;
         }
         return numeroF;

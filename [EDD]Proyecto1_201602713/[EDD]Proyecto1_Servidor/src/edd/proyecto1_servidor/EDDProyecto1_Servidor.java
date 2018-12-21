@@ -44,7 +44,9 @@ public class EDDProyecto1_Servidor {
                 Channel channel = connection.createChannel()) {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             channel.basicPublish("", QUEUE_NAME, null, messageC.getBytes("UTF-8"));
+            System.out.println(" [x] Sent '" + messageC + "'");
             channel.basicPublish("", QUEUE_NAME, null, messageF.getBytes("UTF-8"));
+            System.out.println(" [x] Sent '" + messageF + "'");
             channel.basicPublish("", QUEUE_NAME, null, message.getBytes("UTF-8"));
             System.out.println(" [x] Sent '" + message + "'");
             //Thread.sleep(5000);

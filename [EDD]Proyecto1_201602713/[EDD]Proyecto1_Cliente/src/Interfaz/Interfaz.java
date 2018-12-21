@@ -5,15 +5,24 @@
  */
 package Interfaz;
 
+import edd.proyecto1_cliente.EDDProyecto1_Cliente;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 /**
  *
  * @author pablo
  */
 public class Interfaz extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Interfaz
-     */
+    JButton[][] Matrizbotones;
+    String[][] pintar;
+
     public Interfaz() {
         initComponents();
     }
@@ -28,20 +37,56 @@ public class Interfaz extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jInternalFrame1.setResizable(true);
+        jInternalFrame1.setAutoscrolls(true);
         jInternalFrame1.setVisible(true);
+
+        jPanel1.setAutoscrolls(true);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 702, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jButton1.setText("Cargar Mapa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 859, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(0, 456, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -57,6 +102,121 @@ public class Interfaz extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        EDDProyecto1_Cliente eee = new EDDProyecto1_Cliente();
+        try {
+            eee.runMapa();
+            Thread.sleep(500);
+            int dimensionX = eee.mensajemapaC();
+            int dimensionY = eee.mensajemapaF();
+            pintar = new String[3][dimensionY * dimensionX];
+            leerMapa(eee.mensajemapa());
+            Matrizbotones = new JButton[dimensionX][dimensionY];
+            jPanel1.setLayout(new GridLayout(dimensionX, dimensionY));
+            int contadorX, contadorY;
+            for (contadorY = 0; contadorY < dimensionY; contadorY++) {
+                for (contadorX = 0; contadorX < dimensionX; contadorX++) {
+                    String color = "";
+                    for (int j = 0; j < dimensionY * dimensionX; j++) {
+                        if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("blue") == null : pintar[2][j].equals("blue"))) {
+                            color = pintar[2][j];
+                            break;
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("blue") == null : pintar[2][j].equals("green"))) {
+                            color = pintar[2][j];
+                            break;
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("blue") == null : pintar[2][j].equals("darkgreen"))) {
+                            color = pintar[2][j];
+                            break;
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("blue") == null : pintar[2][j].equals("gray"))) {
+                            color = pintar[2][j];
+                            break;
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("blue") == null : pintar[2][j].equals("brown"))) {
+                            color = pintar[2][j];
+                            break;
+                        }
+                    }
+                    if (color.equals("blue")) {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon("aguaAW.jpg");
+                        btnNuevo.setIcon(icono);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("green")) {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon("gramaAW.jpg");
+                        btnNuevo.setIcon(icono);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("darkgreen")) {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon("arbolAW.jpg");
+                        btnNuevo.setIcon(icono);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("gray")) {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon("carreteraAW.jpg");
+                        btnNuevo.setIcon(icono);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("brown")) {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon("montaniaAW.jpg");
+                        btnNuevo.setIcon(icono);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void leerMapa(String mensaje) {
+        Scanner input = new Scanner(mensaje);
+        int cont = 0;
+        while (input.hasNext()) {
+
+            String estring = input.nextLine();
+            String[] part = estring.split(",");
+            pintar[0][cont] = part[0];
+            pintar[1][cont] = part[1];
+            pintar[2][cont] = part[2];
+            cont++;
+        }
+        input.close();
+    }
 
     /**
      * @param args the command line arguments
@@ -94,6 +254,8 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
