@@ -192,7 +192,7 @@ public class inter extends javax.swing.JFrame {
                 Logger.getLogger(inter.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            jTextArea1.append("No se selecciono ningun archivo");
+            jTextArea1.append("No se selecciono ningun archivo\n");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

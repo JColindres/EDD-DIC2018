@@ -359,6 +359,7 @@ public class MatrizDispersa {
                     if (ant == null) {
                         if (aux.siguiente == inicio) {
                             inicio = null;
+                            break;
                         } else {
                             ant = aux.anterior;
                             ant.siguiente = aux.siguiente;
@@ -522,6 +523,7 @@ public class MatrizDispersa {
         try {
             ListaCapas lc = inicio;
             MatrizDispersa matrizDefinitiva = new MatrizDispersa();
+            if(inicio != null){
             do {
                 NodoMDY auxy = lc.matriz.cabeceraF;
                 while (auxy != null) {
@@ -540,6 +542,9 @@ public class MatrizDispersa {
             asa.mensajemapaF(filasCliente(matrizDefinitiva));
             asa.mensajemapa(mapaCliente(matrizDefinitiva));
             asa.enviarmapa();
+            }else{
+                System.out.println("La Lista esta vacia");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
