@@ -99,7 +99,6 @@ public class MatrizDispersa {
     NodoMDY ultimoy;
     Matriz m;
     ListaCapas inicio;
-    //public String tablero;
 
     EDDProyecto1_Servidor asa = new EDDProyecto1_Servidor();
 
@@ -354,7 +353,7 @@ public class MatrizDispersa {
         if (inicio != null) {
             ListaCapas aux = inicio;
             ListaCapas ant = null;
-            do{
+            do {
                 if (aux.capa == Integer.parseInt(capa)) {
                     if (ant == null) {
                         if (aux.siguiente == inicio) {
@@ -378,10 +377,10 @@ public class MatrizDispersa {
                     ant = aux;
                     aux = aux.siguiente;
                 }
-            }while(aux != inicio);
+            } while (aux != inicio);
         }
     }
-    
+
     public void graficar(String capa) {
         m = new Matriz(columnas, filas);
         FileWriter fichero = null;
@@ -523,26 +522,26 @@ public class MatrizDispersa {
         try {
             ListaCapas lc = inicio;
             MatrizDispersa matrizDefinitiva = new MatrizDispersa();
-            if(inicio != null){
-            do {
-                NodoMDY auxy = lc.matriz.cabeceraF;
-                while (auxy != null) {
-                    Celda auxCelda = auxy.derecha;
-                    while (auxCelda != null) {
-                        matrizDefinitiva.insertar(auxCelda.posx, auxCelda.posy, auxCelda.tipo);
-                        auxCelda = auxCelda.derecha;
+            if (inicio != null) {
+                do {
+                    NodoMDY auxy = lc.matriz.cabeceraF;
+                    while (auxy != null) {
+                        Celda auxCelda = auxy.derecha;
+                        while (auxCelda != null) {
+                            matrizDefinitiva.insertar(auxCelda.posx, auxCelda.posy, auxCelda.tipo);
+                            auxCelda = auxCelda.derecha;
+                        }
+                        System.out.println("");
+                        auxy = auxy.siguiente;
                     }
-                    System.out.println("");
-                    auxy = auxy.siguiente;
-                }
-                lc = lc.siguiente;
-            } while (lc != inicio);
-            graficarDefinitiva(matrizDefinitiva);
-            asa.mensajemapaC(columnasCliente(matrizDefinitiva));
-            asa.mensajemapaF(filasCliente(matrizDefinitiva));
-            asa.mensajemapa(mapaCliente(matrizDefinitiva));
-            asa.enviarmapa();
-            }else{
+                    lc = lc.siguiente;
+                } while (lc != inicio);
+                graficarDefinitiva(matrizDefinitiva);
+                asa.mensajemapaC(columnasCliente(matrizDefinitiva));
+                asa.mensajemapaF(filasCliente(matrizDefinitiva));
+                asa.mensajemapa(mapaCliente(matrizDefinitiva));
+                asa.enviarmapa();
+            } else {
                 System.out.println("La Lista esta vacia");
             }
         } catch (Exception e) {

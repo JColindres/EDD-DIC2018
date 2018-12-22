@@ -1,0 +1,66 @@
+digraph G{
+node[color = "orange";style = filled]
+C14L1[label="Posicion x: 14
+Posicion y: 1
+Vida: 50
+Alcance Movimiento: 3
+Ataque: 30
+Alcance Ataque: 1
+"];
+C15L1[label="Posicion x: 15
+Posicion y: 1
+Vida: 150
+Alcance Movimiento: 4
+Ataque: 80
+Alcance Ataque: 2
+"];
+C14L1->C15L1
+C3L3[label="Posicion x: 3
+Posicion y: 3
+Vida: 50
+Alcance Movimiento: 3
+Ataque: 30
+Alcance Ataque: 1
+"];
+C14L1->C3L3
+C15L4[label="Posicion x: 15
+Posicion y: 4
+Vida: 100
+Alcance Movimiento: 6
+Ataque: 50
+Alcance Ataque: 2
+"];
+C3L3->C15L4
+C14L2[label="Posicion x: 14
+Posicion y: 2
+Vida: 50
+Alcance Movimiento: 2
+Ataque: 50
+Alcance Ataque: 3
+"];
+C3L3->C14L2
+C15L2[label="Posicion x: 15
+Posicion y: 2
+Vida: 200
+Alcance Movimiento: 3
+Ataque: 100
+Alcance Ataque: 2
+"];
+C14L2->C15L2
+C15L3[label="Posicion x: 15
+Posicion y: 3
+Vida: 50
+Alcance Movimiento: 3
+Ataque: 150
+Alcance Ataque: 6
+"];
+C15L2->C15L3
+C7L6[label="Posicion x: 7
+Posicion y: 6
+Vida: 150
+Alcance Movimiento: 4
+Ataque: 80
+Alcance Ataque: 2
+"];
+C15L3->C7L6
+}

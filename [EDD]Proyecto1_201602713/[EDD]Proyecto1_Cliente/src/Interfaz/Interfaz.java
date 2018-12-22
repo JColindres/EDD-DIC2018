@@ -8,6 +8,7 @@ package Interfaz;
 import edd.proyecto1_cliente.EDDProyecto1_Cliente;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -140,7 +141,7 @@ public class Interfaz extends javax.swing.JFrame {
                     if (color.equals("blue")) {
                         JButton btnNuevo = new JButton();
                         btnNuevo.setSize(5, 5);
-                        ImageIcon icono = new ImageIcon("aguaAW.jpg");
+                        ImageIcon icono = new ImageIcon(new ImageIcon("aguaAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
                         btnNuevo.setIcon(icono);
                         btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
                         Matrizbotones[contadorX][contadorY] = btnNuevo;
@@ -150,7 +151,7 @@ public class Interfaz extends javax.swing.JFrame {
                     } else if (color.equals("green")) {
                         JButton btnNuevo = new JButton();
                         btnNuevo.setSize(5, 5);
-                        ImageIcon icono = new ImageIcon("gramaAW.jpg");
+                        ImageIcon icono = new ImageIcon(new ImageIcon("gramaAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
                         btnNuevo.setIcon(icono);
                         btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
                         Matrizbotones[contadorX][contadorY] = btnNuevo;
@@ -160,7 +161,7 @@ public class Interfaz extends javax.swing.JFrame {
                     } else if (color.equals("darkgreen")) {
                         JButton btnNuevo = new JButton();
                         btnNuevo.setSize(5, 5);
-                        ImageIcon icono = new ImageIcon("arbolAW.jpg");
+                        ImageIcon icono = new ImageIcon(new ImageIcon("arbolAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
                         btnNuevo.setIcon(icono);
                         btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
                         Matrizbotones[contadorX][contadorY] = btnNuevo;
@@ -170,7 +171,7 @@ public class Interfaz extends javax.swing.JFrame {
                     } else if (color.equals("gray")) {
                         JButton btnNuevo = new JButton();
                         btnNuevo.setSize(5, 5);
-                        ImageIcon icono = new ImageIcon("carreteraAW.jpg");
+                        ImageIcon icono = new ImageIcon(new ImageIcon("carreteraAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
                         btnNuevo.setIcon(icono);
                         btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
                         Matrizbotones[contadorX][contadorY] = btnNuevo;
@@ -180,7 +181,7 @@ public class Interfaz extends javax.swing.JFrame {
                     } else if (color.equals("brown")) {
                         JButton btnNuevo = new JButton();
                         btnNuevo.setSize(5, 5);
-                        ImageIcon icono = new ImageIcon("montaniaAW.jpg");
+                        ImageIcon icono = new ImageIcon(new ImageIcon("montaniaAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
                         btnNuevo.setIcon(icono);
                         btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
                         Matrizbotones[contadorX][contadorY] = btnNuevo;

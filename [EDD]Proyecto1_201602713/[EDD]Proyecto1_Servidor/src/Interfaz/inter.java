@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import Estructuras.ABB;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -24,6 +25,8 @@ public class inter extends javax.swing.JFrame {
      * Creates new form inter
      */
     MatrizDispersa md = new MatrizDispersa();
+    ABB abb1 = new ABB();
+    ABB abb2 = new ABB();
 
     public inter() {
         initComponents();
@@ -47,6 +50,12 @@ public class inter extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,29 +95,80 @@ public class inter extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Jugador 1");
+
+        jButton5.setText("Cargar Tropas");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Graficar Tropas");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Jugador 2");
+
+        jButton7.setText("Cargar Tropas");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText("Graficar Tropas");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(23, 23, 23)
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton6)
+                        .addGap(31, 31, 31))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addContainerGap()
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButton2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton3)
+                                    .addComponent(jButton1)))
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(jButton4))
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2))
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3))
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jButton7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
-                            .addComponent(jButton1)))
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton4)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                                .addComponent(jButton8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -125,7 +185,19 @@ public class inter extends javax.swing.JFrame {
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7)
+                    .addComponent(jButton8))
+                .addContainerGap(79, Short.MAX_VALUE))
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
@@ -206,6 +278,83 @@ public class inter extends javax.swing.JFrame {
         md.eliminarCapa(jTextField1.getText());
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+
+        if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+
+            File file = fc.getSelectedFile();
+            try {
+                Scanner input = new Scanner(file);
+
+                while (input.hasNext()) {
+
+                    String estring = input.nextLine();
+                    String[] part1 = estring.split(",|;");
+                    String posx = part1[0];
+                    String posy = part1[1];
+                    String id = part1[2];
+                    String tropa = part1[3];
+
+                    abb1.insertar(Integer.parseInt(id), Integer.parseInt(posx), Integer.parseInt(posy), tropa);
+
+                }
+                input.close();
+                jTextArea1.append("Se cargo tropas del jugador 1\n");
+                System.out.println(jTextField1.getText());
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(inter.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            jTextArea1.append("No se selecciono ningun archivo\n");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+
+        abb1.graficar();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+
+        if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+
+            File file = fc.getSelectedFile();
+            try {
+                Scanner input = new Scanner(file);
+
+                while (input.hasNext()) {
+
+                    String estring = input.nextLine();
+                    String[] part1 = estring.split(",|;");
+                    String posx = part1[0];
+                    String posy = part1[1];
+                    String id = part1[2];
+                    String tropa = part1[3];
+
+                    abb2.insertar(Integer.parseInt(id), Integer.parseInt(posx), Integer.parseInt(posy), tropa);
+
+                }
+                input.close();
+                jTextArea1.append("Se cargo tropas del jugador 2\n");
+                System.out.println(jTextField1.getText());
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(inter.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            jTextArea1.append("No se selecciono ningun archivo\n");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        abb2.graficar();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -246,8 +395,14 @@ public class inter extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
