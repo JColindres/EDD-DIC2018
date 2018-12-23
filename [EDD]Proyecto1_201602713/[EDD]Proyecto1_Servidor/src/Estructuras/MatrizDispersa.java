@@ -11,6 +11,8 @@ package Estructuras;
  */
 import edd.proyecto1_servidor.EDDProyecto1_Servidor;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 class Matriz {
 
@@ -99,6 +101,7 @@ public class MatrizDispersa {
     NodoMDY ultimoy;
     Matriz m;
     ListaCapas inicio;
+    MatrizDispersa matrizDefinitiva;
 
     EDDProyecto1_Servidor asa = new EDDProyecto1_Servidor();
 
@@ -521,7 +524,7 @@ public class MatrizDispersa {
     public void prueba() {
         try {
             ListaCapas lc = inicio;
-            MatrizDispersa matrizDefinitiva = new MatrizDispersa();
+            matrizDefinitiva = new MatrizDispersa();
             if (inicio != null) {
                 do {
                     NodoMDY auxy = lc.matriz.cabeceraF;
@@ -537,10 +540,6 @@ public class MatrizDispersa {
                     lc = lc.siguiente;
                 } while (lc != inicio);
                 graficarDefinitiva(matrizDefinitiva);
-                asa.mensajemapaC(columnasCliente(matrizDefinitiva));
-                asa.mensajemapaF(filasCliente(matrizDefinitiva));
-                asa.mensajemapa(mapaCliente(matrizDefinitiva));
-                asa.enviarmapa();
             } else {
                 System.out.println("La Lista esta vacia");
             }
@@ -684,8 +683,8 @@ public class MatrizDispersa {
         }
     }
 
-    public String mapaCliente(MatrizDispersa mdd) {
-        NodoMDY auxy = mdd.filas;
+    public String mapaCliente() {
+        NodoMDY auxy = matrizDefinitiva.filas;
         String mapa = "";
         while (auxy != null) {
             Celda auxCelda = auxy.derecha;
@@ -698,8 +697,8 @@ public class MatrizDispersa {
         return mapa;
     }
 
-    public int columnasCliente(MatrizDispersa mdd) {
-        NodoMDX auxx = mdd.columnas;
+    public int columnasCliente() {
+        NodoMDX auxx = matrizDefinitiva.columnas;
         int numeroC = 0;
         while (auxx != null) {
             numeroC = auxx.columna;
@@ -708,13 +707,24 @@ public class MatrizDispersa {
         return numeroC;
     }
 
-    public int filasCliente(MatrizDispersa mdd) {
-        NodoMDY auxy = mdd.filas;
+    public int filasCliente() {
+        NodoMDY auxy = matrizDefinitiva.filas;
         int numeroF = 0;
         while (auxy != null) {
             numeroF = auxy.fila;
             auxy = auxy.siguiente;
         }
         return numeroF;
+    }
+    
+    public void enviar(){
+        try {
+            asa.mensajemapaC(columnasCliente());
+            asa.mensajemapaF(filasCliente());
+            asa.mensajemapa(mapaCliente());        
+            asa.enviarmapa();
+        } catch (Exception ex) {
+            Logger.getLogger(MatrizDispersa.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -5,9 +5,12 @@
  */
 package Estructuras;
 
+import edd.proyecto1_servidor.EDDProyecto1_Servidor;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -42,6 +45,8 @@ public class ABB {
     public NodoABB raiz;
     int cont = 0;
     String resultado;
+    String tropas = "";
+    EDDProyecto1_Servidor asa = new EDDProyecto1_Servidor();
 
     public boolean esVacio() {
         return (raiz == null);
@@ -135,13 +140,13 @@ public class ABB {
         }
     }
 
-    public void graficar() {
+    public void graficar(String label) {
         if (raiz != null) {
 
             FileWriter fichero = null;
             PrintWriter pw = null;
             try {
-                fichero = new FileWriter("J1.txt");
+                fichero = new FileWriter(label+".txt");
                 pw = new PrintWriter(fichero);
 
                 resultado = ("digraph G{\n");
@@ -165,7 +170,7 @@ public class ABB {
             }
 
             try {
-                String command = "dot -Tjpg J1.txt -o J1.jpg";
+                String command = "dot -Tjpg "+label+".txt -o "+label+".jpg";
                 Process child = Runtime.getRuntime().exec(command);
             } catch (IOException e) {
                 System.out.println("ex: " + e.getMessage());
@@ -189,106 +194,31 @@ public class ABB {
 
     }
 
-    /*
-    public abb buscar(int a){
-        abb arbolito = null;
-        if (!esVacio()) {
-            if (a == raiz.dato) {
-            return this;
-            }
-            else {
-                if (a < raiz.dato) {
-                    arbolito = raiz.hi.buscar(a);
-                }
-                else {
-                    arbolito = raiz.hd.buscar(a);
-                }
-            }
+    public void textoTropas(NodoABB r){
+        if (r != null) {
+            tropas = tropas + r.posx + "," + r.posy + "," + r.tipo + "\n";
+            textoTropas(r.izquierda);
+            textoTropas(r.derecha);
         }
-        return arbolito;
-    }
- 
-    public boolean existe(int a){
-    if (!esVacio()) {
-            if (a == raiz.dato) {
-            return true;
-            }
-            else {
-                if (a < raiz.dato) {
-                    raiz.hi.existe(a);
-                }
-                else {
-                    raiz.hd.existe(a);
-                }
-            }
-        }
-        return false;
-    }
- 
-    public int cantidad(){
-        if (esVacio()) {
-            return 0;
-        }
-        else {
-            return (1 + raiz.hd.cantidad() + raiz.hi.cantidad());
+    } 
+    
+    public void enviarJ1(){
+        try {
+            textoTropas(raiz);
+            asa.mensajeJ1(tropas);
+            asa.enviartropa1();
+        } catch (Exception ex) {
+            Logger.getLogger(ABB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
- 
-    public int altura() {
-        if (esVacio()) {
-            return 0;
-        }
-        else {
-            return (1 + Math.max(((raiz.hi).altura()), ((raiz.hd).altura())));
+    
+    public void enviarJ2(){
+        try {
+            textoTropas(raiz);
+            asa.mensajeJ2(tropas);
+            asa.enviartropa2();
+        } catch (Exception ex) {
+            Logger.getLogger(ABB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
- 
-    public int buscarMin() {
-        abb arbolActual = this;
-        while( !arbolActual.raiz.hi.esVacio() ) {
-            arbolActual = arbolActual.raiz.hi;
-        }
-        int devuelvo= arbolActual.raiz.dato;
-        arbolActual.raiz=null;
-        return devuelvo;
-    }
- 
-    public int buscarMan() {
-        abb arbolActual = this;
-        while( !arbolActual.raiz.hd.esVacio() ) {
-            arbolActual = arbolActual.raiz.hd;
-        }
-        int devuelvo= arbolActual.raiz.dato;
-            arbolActual.raiz=null;
-        return devuelvo;
-    }
- 
-    public boolean esHoja() {
-        boolean hoja = false;
-        if( (raiz.hi).esVacio() && (raiz.hd).esVacio() ) {
-            hoja = true;
-        }
-        return hoja;
-    }
- 
-    public void eliminar(int a) {
-        abb paraEliminar = buscar(a);
-        if (!paraEliminar.esVacio()) {
-            if (paraEliminar.esHoja()) {
-                paraEliminar.raiz = null;
-            }
-            else {
-                if (!paraEliminar.raiz.hi.esVacio() && !paraEliminar.raiz.hd.esVacio()) {
-                    paraEliminar.raiz.dato = paraEliminar.raiz.hd.buscarMin();
-                }
-                else {
-                    if (paraEliminar.raiz.hi.esVacio()) {
-                        paraEliminar.raiz = paraEliminar.raiz.hd.raiz;
-                    }else{
-                        paraEliminar.raiz = paraEliminar.raiz.hi.raiz;
-                    }
-                }
-            }
-        }
-    }*/
 }

@@ -22,6 +22,8 @@ public class EDDProyecto1_Servidor {
     public static String message = "";
     public static String messageC = "";
     public static String messageF = "";
+    public static String messageJ1 = "";
+    public static String messageJ2 = "";
 
     public void mensajemapa(String h) {
         message = h;
@@ -36,6 +38,14 @@ public class EDDProyecto1_Servidor {
         String hh = Integer.toString(h);
         messageF = hh;
     }
+    
+    public void mensajeJ1(String h){
+        messageJ1 = h;
+    }
+    
+    public void mensajeJ2(String h){
+        messageJ2 = h;
+    }
 
     public void enviarmapa() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
@@ -49,6 +59,30 @@ public class EDDProyecto1_Servidor {
             System.out.println(" [x] Sent '" + messageF + "'");
             channel.basicPublish("", QUEUE_NAME, null, message.getBytes("UTF-8"));
             System.out.println(" [x] Sent '" + message + "'");
+            //Thread.sleep(5000);
+
+        }
+    }
+    
+    public void enviartropa1() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        try (Connection connection = factory.newConnection();
+                Channel channel = connection.createChannel()) {
+            channel.basicPublish("", QUEUE_NAME, null, messageJ1.getBytes("UTF-8"));
+            System.out.println(" [x] Sent '" + messageJ1 + "'");
+            //Thread.sleep(5000);
+
+        }
+    }
+    
+    public void enviartropa2() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        try (Connection connection = factory.newConnection();
+                Channel channel = connection.createChannel()) {
+            channel.basicPublish("", QUEUE_NAME, null, messageJ2.getBytes("UTF-8"));
+            System.out.println(" [x] Sent '" + messageJ2 + "'");
             //Thread.sleep(5000);
 
         }

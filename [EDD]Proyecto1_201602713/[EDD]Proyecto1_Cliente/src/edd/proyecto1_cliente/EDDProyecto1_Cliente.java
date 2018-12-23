@@ -23,7 +23,11 @@ public class EDDProyecto1_Cliente {
     public static String message = "";
     public static String messageC = "";
     public static String messageF = "";
-    private static int c = 0; ;
+    public static String messageJ1 = "";
+    public static String messageJ2 = "";
+    private static int c = 0;
+
+    ;
     
     public String mensajemapa() {
         return message;
@@ -38,8 +42,15 @@ public class EDDProyecto1_Cliente {
         int hh = Integer.parseInt(messageC);
         return hh;
     }
-    
-    
+
+    public String mensajeJ1() {
+        return messageJ1;
+    }
+
+    public String mensajeJ2() {
+        return messageJ2;
+    }
+
     public void runMapa() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
@@ -54,14 +65,22 @@ public class EDDProyecto1_Cliente {
                 messageC = new String(delivery.getBody(), "UTF-8");
                 System.out.println(" [x] Received '" + messageC + "'");
                 c++;
-            }else if(c == 1){
+            } else if (c == 1) {
                 messageF = new String(delivery.getBody(), "UTF-8");
                 System.out.println(" [x] Received '" + messageF + "'");
-                c++;                
-            }else if(c == 2){
+                c++;
+            } else if (c == 2) {
                 message = new String(delivery.getBody(), "UTF-8");
                 System.out.println(" [x] Received '" + message + "'");
-                c++;                
+                c++;
+            } else if (c == 3) {
+                messageJ1 = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received '" + messageJ1 + "'");
+                c++;
+            } else if (c == 4) {
+                messageJ2 = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received '" + messageJ2 + "'");
+                c++;
             }
         };
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {

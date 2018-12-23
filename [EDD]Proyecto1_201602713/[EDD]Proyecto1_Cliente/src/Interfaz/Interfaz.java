@@ -23,6 +23,8 @@ public class Interfaz extends javax.swing.JFrame {
 
     JButton[][] Matrizbotones;
     String[][] pintar;
+    String[][] j1;
+    String[][] j2;
 
     public Interfaz() {
         initComponents();
@@ -113,7 +115,11 @@ public class Interfaz extends javax.swing.JFrame {
             int dimensionX = eee.mensajemapaC();
             int dimensionY = eee.mensajemapaF();
             pintar = new String[3][dimensionY * dimensionX];
+            j1 = new String[3][dimensionY * dimensionX];
+            j2 = new String[3][dimensionY * dimensionX];
             leerMapa(eee.mensajemapa());
+            leerJ1(eee.mensajeJ1());
+            leerJ2(eee.mensajeJ2());
             Matrizbotones = new JButton[dimensionX][dimensionY];
             jPanel1.setLayout(new GridLayout(dimensionX, dimensionY));
             int contadorX, contadorY;
@@ -124,17 +130,38 @@ public class Interfaz extends javax.swing.JFrame {
                         if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("blue") == null : pintar[2][j].equals("blue"))) {
                             color = pintar[2][j];
                             break;
-                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("blue") == null : pintar[2][j].equals("green"))) {
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("green") == null : pintar[2][j].equals("green"))) {
                             color = pintar[2][j];
                             break;
-                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("blue") == null : pintar[2][j].equals("darkgreen"))) {
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("darkgreen") == null : pintar[2][j].equals("darkgreen"))) {
                             color = pintar[2][j];
                             break;
-                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("blue") == null : pintar[2][j].equals("gray"))) {
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("gray") == null : pintar[2][j].equals("gray"))) {
                             color = pintar[2][j];
                             break;
-                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("blue") == null : pintar[2][j].equals("brown"))) {
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("brown") == null : pintar[2][j].equals("brown"))) {
                             color = pintar[2][j];
+                            break;
+                        } 
+                    }
+                    for (int j = 0; j < dimensionY * dimensionX; j++) {
+                        if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("infanteria") == null : j1[2][j].equals("infanteria"))) {
+                            color = j1[2][j];
+                            break;
+                        } else if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("infanteriam") == null : j1[2][j].equals("infanteriam"))) {
+                            color = j1[2][j];
+                            break;
+                        }else if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("reconocimiento") == null : j1[2][j].equals("reconocimiento"))) {
+                            color = j1[2][j];
+                            break;
+                        }else if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("tanque") == null : j1[2][j].equals("tanque"))) {
+                            color = j1[2][j];
+                            break;
+                        }else if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("mtanque") == null : j1[2][j].equals("mtanque"))) {
+                            color = j1[2][j];
+                            break;
+                        }else if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("artilleria") == null : j1[2][j].equals("artilleria"))) {
+                            color = j1[2][j];
                             break;
                         }
                     }
@@ -188,6 +215,66 @@ public class Interfaz extends javax.swing.JFrame {
                         jPanel1.add(Matrizbotones[contadorX][contadorY]);
                         jPanel1.validate();
                         jPanel1.repaint();
+                    } else if (color.equals("infanteria")) {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon(new ImageIcon("infanteriaJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        btnNuevo.setIcon(icono);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("infanteriam")) {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon(new ImageIcon("infanteriamJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        btnNuevo.setIcon(icono);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("reconocimiento")) {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon(new ImageIcon("reconocimientoJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        btnNuevo.setIcon(icono);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("tanque")) {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon(new ImageIcon("tanqueJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        btnNuevo.setIcon(icono);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("mtanque")) {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon(new ImageIcon("mtanqueJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        btnNuevo.setIcon(icono);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("artilleria")) {
+                        JButton btnNuevo = new JButton();
+                        btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon(new ImageIcon("artilleriaJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        btnNuevo.setIcon(icono);
+                        btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
+                        Matrizbotones[contadorX][contadorY] = btnNuevo;
+                        jPanel1.add(Matrizbotones[contadorX][contadorY]);
+                        jPanel1.validate();
+                        jPanel1.repaint();
                     } else {
                         JButton btnNuevo = new JButton();
                         btnNuevo.setSize(5, 5);
@@ -219,6 +306,35 @@ public class Interfaz extends javax.swing.JFrame {
         input.close();
     }
 
+    public void leerJ1(String mensaje){
+        Scanner input = new Scanner(mensaje);
+        int cont = 0;
+        while (input.hasNext()) {
+
+            String estring = input.nextLine();
+            String[] part = estring.split(",");
+            pintar[0][cont] = part[0];
+            pintar[1][cont] = part[1];
+            pintar[2][cont] = part[2];
+            cont++;
+        }
+        input.close();        
+    }
+    
+    public void leerJ2(String mensaje){
+        Scanner input = new Scanner(mensaje);
+        int cont = 0;
+        while (input.hasNext()) {
+
+            String estring = input.nextLine();
+            String[] part = estring.split(",");
+            pintar[0][cont] = part[0];
+            pintar[1][cont] = part[1];
+            pintar[2][cont] = part[2];
+            cont++;
+        }
+        input.close();        
+    }
     /**
      * @param args the command line arguments
      */
