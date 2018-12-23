@@ -1,50 +1,50 @@
 digraph G{
 node[color = "orange";style = filled]
-C1L14[label="Posicion x: 1
-Posicion y: 14
+C14L1[label="Posicion x: 14
+Posicion y: 1
 Vida: 50
 Alcance Movimiento: 3
 Ataque: 30
 Alcance Ataque: 1
 "];
-C2L14[label="Posicion x: 2
-Posicion y: 14
+C14L2[label="Posicion x: 14
+Posicion y: 2
 Vida: 50
 Alcance Movimiento: 3
 Ataque: 30
 Alcance Ataque: 1
 "];
-C1L14->C2L14
-C1L15[label="Posicion x: 1
-Posicion y: 15
+C14L1->C14L2
+C15L1[label="Posicion x: 15
+Posicion y: 1
 Vida: 150
 Alcance Movimiento: 4
 Ataque: 80
 Alcance Ataque: 2
 "];
-C2L14->C1L15
-C2L15[label="Posicion x: 2
-Posicion y: 15
+C14L2->C15L1
+C15L2[label="Posicion x: 15
+Posicion y: 2
 Vida: 150
 Alcance Movimiento: 4
 Ataque: 80
 Alcance Ataque: 2
 "];
-C1L15->C2L15
-C3L15[label="Posicion x: 3
-Posicion y: 15
+C15L1->C15L2
+C15L3[label="Posicion x: 15
+Posicion y: 3
 Vida: 50
 Alcance Movimiento: 3
 Ataque: 150
 Alcance Ataque: 6
 "];
-C1L15->C3L15
-C4L15[label="Posicion x: 4
-Posicion y: 15
+C15L1->C15L3
+C15L4[label="Posicion x: 15
+Posicion y: 4
 Vida: 200
 Alcance Movimiento: 3
 Ataque: 100
 Alcance Ataque: 2
 "];
-C3L15->C4L15
+C15L3->C15L4
 }

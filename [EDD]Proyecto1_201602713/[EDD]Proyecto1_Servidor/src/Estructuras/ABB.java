@@ -42,17 +42,14 @@ class NodoABB {
 
 public class ABB {
 
-    public NodoABB raiz;
+    public NodoABB jugador1;
+    public NodoABB jugador2;
     int cont = 0;
     String resultado;
     String tropas = "";
     EDDProyecto1_Servidor asa = new EDDProyecto1_Servidor();
 
-    public boolean esVacio() {
-        return (raiz == null);
-    }
-
-    public void insertar(int id, int x, int y, String tipo) {
+    public void insertarJ1(int id, int x, int y, String tipo) {
         NodoABB nuevo = new NodoABB(id, x, y, tipo);
         switch (tipo) {
             case "infanteria":
@@ -94,11 +91,74 @@ public class ABB {
             default:
                 break;
         }
-        if (esVacio()) {
-            raiz = nuevo;
+        if (jugador1 == null) {
+            jugador1 = nuevo;
         } else {
             NodoABB ant = null, reco;
-            reco = raiz;
+            reco = jugador1;
+            while (reco != null) {
+                ant = reco;
+                if (id <= reco.id) {
+                    reco = reco.izquierda;
+                } else {
+                    reco = reco.derecha;
+                }
+            }
+            if (id <= ant.id) {
+                ant.izquierda = nuevo;
+            } else {
+                ant.derecha = nuevo;
+            }
+        }
+    }
+    
+    public void insertarJ2(int id, int x, int y, String tipo) {
+        NodoABB nuevo = new NodoABB(id, x, y, tipo);
+        switch (tipo) {
+            case "infanteria":
+                nuevo.vida = 50;
+                nuevo.alca_mov = 3;
+                nuevo.ataque = 30;
+                nuevo.alca_ata = 1;
+                break;
+            case "infanteriam":
+                nuevo.vida = 50;
+                nuevo.alca_mov = 2;
+                nuevo.ataque = 50;
+                nuevo.alca_ata = 3;
+                break;
+            case "reconocimiento":
+                nuevo.vida = 100;
+                nuevo.alca_mov = 6;
+                nuevo.ataque = 50;
+                nuevo.alca_ata = 2;
+                break;
+            case "tanque":
+                nuevo.vida = 150;
+                nuevo.alca_mov = 4;
+                nuevo.ataque = 80;
+                nuevo.alca_ata = 2;
+                break;
+            case "mtanque":
+                nuevo.vida = 200;
+                nuevo.alca_mov = 3;
+                nuevo.ataque = 100;
+                nuevo.alca_ata = 2;
+                break;
+            case "artilleria":
+                nuevo.vida = 50;
+                nuevo.alca_mov = 3;
+                nuevo.ataque = 150;
+                nuevo.alca_ata = 6;
+                break;
+            default:
+                break;
+        }
+        if (jugador2 == null) {
+            jugador2 = nuevo;
+        } else {
+            NodoABB ant = null, reco;
+            reco = jugador2;
             while (reco != null) {
                 ant = reco;
                 if (id <= reco.id) {
@@ -140,8 +200,8 @@ public class ABB {
         }
     }
 
-    public void graficar(String label) {
-        if (raiz != null) {
+    public void graficarJ1(String label) {
+        if (jugador1 != null) {
 
             FileWriter fichero = null;
             PrintWriter pw = null;
@@ -151,8 +211,8 @@ public class ABB {
 
                 resultado = ("digraph G{\n");
                 resultado = resultado + "node[color = \""+"orange"+"\";style = filled]\n";
-                resultado = resultado + ("C" + raiz.posx + "L" + raiz.posy + "[label=\"" + "Posicion x: " + raiz.posx + "\n" + "Posicion y: " + raiz.posy + "\n" + "Vida: " + raiz.vida + "\n" + "Alcance Movimiento: " + raiz.alca_mov + "\n" + "Ataque: " + raiz.ataque + "\n" + "Alcance Ataque: " + raiz.alca_ata + "\n" + "\"];\n");
-                graficar2(raiz);
+                resultado = resultado + ("C" + jugador1.posx + "L" + jugador1.posy + "[label=\"" + "Posicion x: " + jugador1.posx + "\n" + "Posicion y: " + jugador1.posy + "\n" + "Vida: " + jugador1.vida + "\n" + "Alcance Movimiento: " + jugador1.alca_mov + "\n" + "Ataque: " + jugador1.ataque + "\n" + "Alcance Ataque: " + jugador1.alca_ata + "\n" + "\"];\n");
+                graficar1(jugador1);
                 resultado = resultado + ("}\n");
                 pw.print(resultado);
                 //System.out.println(resultado);
@@ -178,7 +238,7 @@ public class ABB {
         }
     }
 
-    public void graficar2(NodoABB r) {
+    public void graficar1(NodoABB r) {
         if (r != null) {
             if (r.izquierda != null) {
                 resultado = resultado + ("C" + r.izquierda.posx + "L" + r.izquierda.posy + "[label=\"" + "Posicion x: " + r.izquierda.posx + "\n" + "Posicion y: " + r.izquierda.posy + "\n" + "Vida: " + r.izquierda.vida + "\n" + "Alcance Movimiento: " + r.izquierda.alca_mov + "\n" + "Ataque: " + r.izquierda.ataque + "\n" + "Alcance Ataque: " + r.izquierda.alca_ata + "\n" + "\"];\n");
@@ -188,11 +248,50 @@ public class ABB {
                 resultado = resultado + ("C" + r.derecha.posx + "L" + r.derecha.posy + "[label=\"" + "Posicion x: " + r.derecha.posx + "\n" + "Posicion y: " + r.derecha.posy + "\n" + "Vida: " + r.derecha.vida + "\n" + "Alcance Movimiento: " + r.derecha.alca_mov + "\n" + "Ataque: " + r.derecha.ataque + "\n" + "Alcance Ataque: " + r.derecha.alca_ata + "\n" + "\"];\n");
                 resultado = resultado + ("C" + r.posx + "L" + r.posy + "->" + "C" + r.derecha.posx + "L" + r.derecha.posy + "\n");
             }
-            graficar2(r.izquierda);
-            graficar2(r.derecha);
+            graficar1(r.izquierda);
+            graficar1(r.derecha);
         }
 
     }
+    
+    public void graficarJ2(String label) {
+        if (jugador2 != null) {
+
+            FileWriter fichero = null;
+            PrintWriter pw = null;
+            try {
+                fichero = new FileWriter(label+".txt");
+                pw = new PrintWriter(fichero);
+
+                resultado = ("digraph G{\n");
+                resultado = resultado + "node[color = \""+"orange"+"\";style = filled]\n";
+                resultado = resultado + ("C" + jugador2.posx + "L" + jugador2.posy + "[label=\"" + "Posicion x: " + jugador2.posx + "\n" + "Posicion y: " + jugador2.posy + "\n" + "Vida: " + jugador2.vida + "\n" + "Alcance Movimiento: " + jugador2.alca_mov + "\n" + "Ataque: " + jugador2.ataque + "\n" + "Alcance Ataque: " + jugador2.alca_ata + "\n" + "\"];\n");
+                graficar1(jugador2);
+                resultado = resultado + ("}\n");
+                pw.print(resultado);
+                //System.out.println(resultado);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (null != fichero) {
+                        fichero.close();
+                    }
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            }
+
+            try {
+                String command = "dot -Tjpg "+label+".txt -o "+label+".jpg";
+                Process child = Runtime.getRuntime().exec(command);
+            } catch (IOException e) {
+                System.out.println("ex: " + e.getMessage());
+            }
+        }
+    }
+
 
     public void textoTropas(NodoABB r){
         if (r != null) {
@@ -204,7 +303,8 @@ public class ABB {
     
     public void enviarJ1(){
         try {
-            textoTropas(raiz);
+            tropas = "";
+            textoTropas(jugador1);
             asa.mensajeJ1(tropas);
             asa.enviartropa1();
         } catch (Exception ex) {
@@ -214,7 +314,8 @@ public class ABB {
     
     public void enviarJ2(){
         try {
-            textoTropas(raiz);
+            tropas = "";
+            textoTropas(jugador2);
             asa.mensajeJ2(tropas);
             asa.enviartropa2();
         } catch (Exception ex) {

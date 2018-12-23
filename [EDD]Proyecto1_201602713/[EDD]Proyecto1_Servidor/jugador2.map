@@ -1,6 +1,6 @@
-1,14,4;infanteria
-2,14,4;infanteria
-1,15,1;tanque
-2,15,1;tanque
-3,15,3;artilleria
-4,15,3;mtanque
+14,1,4;infanteria
+14,2,4;infanteria
+15,1,1;tanque
+15,2,1;tanque
+15,3,3;artilleria
+15,4,3;mtanque

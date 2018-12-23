@@ -26,7 +26,6 @@ public class inter extends javax.swing.JFrame {
      */
     MatrizDispersa md = new MatrizDispersa();
     ABB abb1 = new ABB();
-    ABB abb2 = new ABB();
 
     public inter() {
         initComponents();
@@ -112,7 +111,7 @@ public class inter extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Jugador 2");
+        jLabel3.setText("Jugador2");
 
         jButton7.setText("Cargar Tropas");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -310,7 +309,7 @@ public class inter extends javax.swing.JFrame {
                     String id = part1[2];
                     String tropa = part1[3];
 
-                    abb1.insertar(Integer.parseInt(id), Integer.parseInt(posx), Integer.parseInt(posy), tropa);
+                    abb1.insertarJ1(Integer.parseInt(id), Integer.parseInt(posx), Integer.parseInt(posy), tropa);
 
                 }
                 input.close();
@@ -327,7 +326,7 @@ public class inter extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
 
-        abb1.graficar(jLabel2.getText());
+        abb1.graficarJ1(jLabel2.getText());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -349,7 +348,7 @@ public class inter extends javax.swing.JFrame {
                     String id = part1[2];
                     String tropa = part1[3];
 
-                    abb2.insertar(Integer.parseInt(id), Integer.parseInt(posx), Integer.parseInt(posy), tropa);
+                    abb1.insertarJ2(Integer.parseInt(id), Integer.parseInt(posx), Integer.parseInt(posy), tropa);
 
                 }
                 input.close();
@@ -365,14 +364,14 @@ public class inter extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        abb2.graficar(jLabel3.getText());
+        abb1.graficarJ2(jLabel3.getText());
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         md.enviar();
         abb1.enviarJ1();
-        abb2.enviarJ2();
+        abb1.enviarJ2();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**

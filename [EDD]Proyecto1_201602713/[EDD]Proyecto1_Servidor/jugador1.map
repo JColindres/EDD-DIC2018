@@ -1,8 +1,8 @@
-14,1,1;infanteria
+1,14,1;infanteria
 3,3,2;infanteria
-14,2,4;infanteriam
-15,1,1;tanque
-15,2,3;mtanque
-15,3,3;artilleria
-7,6,3;tanque
-15,4,2;reconocimiento
+2,14,4;infanteriam
+1,15,1;tanque
+2,15,3;mtanque
+3,15,3;artilleria
+6,7,3;tanque
+4,15,2;reconocimiento

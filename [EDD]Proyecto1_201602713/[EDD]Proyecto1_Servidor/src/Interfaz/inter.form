@@ -219,7 +219,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Jugador 2"/>
+            <Property name="text" type="java.lang.String" value="Jugador2"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton7">
