@@ -28,6 +28,7 @@ class NodoABB {
     int alca_ata;
     NodoABB izquierda;
     NodoABB derecha;
+    NodoABB padre;
 
     NodoABB(int id, int posx, int posy, String tipo) {
         this.id = id;
@@ -36,6 +37,15 @@ class NodoABB {
         this.tipo = tipo;
         izquierda = null;
         derecha = null;
+        padre = null;
+    }
+    
+    public NodoABB getPadre() {
+        return padre;
+    }
+ 
+    public void setPadre(NodoABB padre) {
+        this.padre = padre;
     }
 
 }
@@ -106,8 +116,10 @@ public class ABB {
             }
             if (id <= ant.id) {
                 ant.izquierda = nuevo;
+                nuevo.setPadre(ant);
             } else {
                 ant.derecha = nuevo;
+                nuevo.setPadre(ant);
             }
         }
     }
@@ -175,29 +187,133 @@ public class ABB {
         }
     }
 
-    public void preOrder(NodoABB r) {
-        if (r != null) {
-            System.out.print(r.id + ", ");
-            preOrder(r.izquierda);
-            preOrder(r.derecha);
+    public void modificar(){
+        try {
+            asa.actualizarPosJugador();
+        } catch (Exception ex) {
+            Logger.getLogger(ABB.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
-
-    public void inOrder(NodoABB r) {
-        if (r != null) {
-            inOrder(r.izquierda);
-            System.out.print(r.id + ", ");
-            inOrder(r.derecha);
+    
+    public boolean removeNodo(NodoABB nodo) {
+ 
+        /* Creamos variables para saber si tiene hijos izquierdo y derecho */
+        boolean tieneNodoDerecha = nodo.derecha != null ? true : false;
+        boolean tieneNodoIzquierda = nodo.izquierda != null ? true : false;
+ 
+        /* Verificamos los 3 casos diferentes y llamamos a la función correspondiente */
+ 
+        /* Caso 1: No tiene hijos */
+        if (!tieneNodoDerecha && !tieneNodoIzquierda) {
+            return removeNodoCaso1( nodo );
         }
+ 
+        /* Caso 2: Tiene un hijo y el otro no */
+        if ( tieneNodoDerecha && !tieneNodoIzquierda ) {
+            return removeNodoCaso2( nodo );
+        }
+ 
+        /* Caso 2: Tiene un hijo y el otro no */
+        if ( !tieneNodoDerecha && tieneNodoIzquierda ) {
+            return removeNodoCaso2( nodo );
+        }
+ 
+        /* Caso 3: Tiene ambos hijos */
+        if ( tieneNodoDerecha && tieneNodoIzquierda ) {
+            return removeNodoCaso3( nodo );
+        }
+ 
+        return false;
     }
-
-    public void posOrder(NodoABB r) {
-        if (r != null) {
-            posOrder(r.izquierda);
-            posOrder(r.derecha);
-            System.out.print(r.id + ", ");
-
+ 
+    private boolean removeNodoCaso1( NodoABB nodo ) {
+        /* lo único que hay que hacer es borrar el nodo y establecer el apuntador de su padre a nulo */
+ 
+        /*
+         * Guardemos los hijos del padre temporalmente para saber cuál de sus hijos hay que 
+         * eliminar
+         */
+        NodoABB hijoIzquierdo = nodo.getPadre().izquierda;
+        NodoABB hijoDerecho = nodo.getPadre().derecha;
+ 
+        if ( hijoIzquierdo == nodo ) {
+            nodo.getPadre().izquierda = ( null );
+            return true;
         }
+ 
+        if ( hijoDerecho == nodo) {
+            nodo.getPadre().derecha = ( null );
+            return true;
+        }
+ 
+        return false;
+    }
+ 
+    private boolean removeNodoCaso2( NodoABB nodo ) {
+        /* Borrar el Nodo y el subárbol que tenía pasa a ocupar su lugar */
+ 
+        /*
+         * Guardemos los hijos del padre temporalmente para saber cuál de sus hijos hay que 
+         * eliminar
+         */
+        NodoABB hijoIzquierdo = nodo.getPadre().izquierda;
+        NodoABB hijoDerecho = nodo.getPadre().derecha;
+ 
+        /*
+         * Buscamos el hijo existente del nodo que queremos eliminar
+         */
+        NodoABB hijoActual = nodo.izquierda != null ? 
+                nodo.izquierda : nodo.derecha;
+ 
+        if ( hijoIzquierdo == nodo ) {
+            nodo.getPadre().izquierda = ( hijoActual );
+ 
+            /* Eliminando todas las referencias hacia el nodo */
+            hijoActual.setPadre(nodo.getPadre());
+            nodo.derecha = (null);
+            nodo.izquierda = (null);
+ 
+            return true;
+        }
+ 
+        if ( hijoDerecho == nodo) {
+            nodo.getPadre().derecha = ( hijoActual );
+ 
+            /* Eliminando todas las referencias hacia el nodo */
+            hijoActual.setPadre(nodo.getPadre());
+            nodo.derecha = (null);
+            nodo.izquierda = (null);
+ 
+            return true;
+        } 
+ 
+        return false;
+    }
+ 
+    private boolean removeNodoCaso3( NodoABB nodo ) {
+        /* Tomar el hijo derecho del Nodo que queremos eliminar */
+        NodoABB nodoMasALaIzquierda = recorrerIzquierda( nodo.derecha );
+        if ( nodoMasALaIzquierda != null ) {
+            /*
+             * Reemplazamos el valor del nodo que queremos eliminar por el nodo que encontramos 
+             */
+            nodo = ( nodoMasALaIzquierda );
+            /* 
+             * Eliminar este nodo de las formas que conocemos ( caso 1, caso 2 ) 
+             */
+            removeNodo( nodoMasALaIzquierda  );
+            return true;
+        }
+        return false;
+    }
+ 
+    /* Recorrer de forma recursiva hasta encontrar el nodo más a la izquierda */
+    private NodoABB recorrerIzquierda(NodoABB nodo) {
+        if (nodo.izquierda != null) {
+            return recorrerIzquierda( nodo.izquierda );
+        }
+        return nodo;
     }
 
     public void graficarJ1(String label) {
@@ -295,7 +411,7 @@ public class ABB {
 
     public void textoTropas(NodoABB r){
         if (r != null) {
-            tropas = tropas + r.posx + "," + r.posy + "," + r.tipo + "\n";
+            tropas = tropas + r.posx + "," + r.posy + "," + r.tipo + "," + r.id + "\n";
             textoTropas(r.izquierda);
             textoTropas(r.derecha);
         }

@@ -26,8 +26,6 @@ public class EDDProyecto1_Cliente {
     public static String messageJ1 = "";
     public static String messageJ2 = "";
     private static int c = 0;
-
-    ;
     
     public String mensajemapa() {
         return message;
@@ -94,6 +92,32 @@ public class EDDProyecto1_Cliente {
         };
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
         });
+    }
+    
+    public static String posI = "";
+    public static String posF = "";
+    
+    public void posI(String h){
+        posI = h;
+    }
+    
+    public void posF(String h){
+        posF = h;
+    }
+
+    public void enviarmovimiento() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        try (Connection connection = factory.newConnection();
+                Channel channel = connection.createChannel()) {
+            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            channel.basicPublish("", QUEUE_NAME, null, posI.getBytes("UTF-8"));
+            System.out.println(" [x] Sent '" + posI + "'");
+            channel.basicPublish("", QUEUE_NAME, null, posF.getBytes("UTF-8"));
+            System.out.println(" [x] Sent '" + posF + "'");
+            //Thread.sleep(5000);
+
+        }
     }
 
 }

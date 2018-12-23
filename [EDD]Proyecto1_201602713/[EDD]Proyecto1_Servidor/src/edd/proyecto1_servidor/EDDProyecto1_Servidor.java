@@ -8,6 +8,7 @@ package edd.proyecto1_servidor;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.DeliverCallback;
 
 /**
  *
@@ -76,6 +77,48 @@ public class EDDProyecto1_Servidor {
             //Thread.sleep(5000);
 
         }
+    }
+    
+    public static String posI = "";
+    public static String posF = "";
+    private static int c = 0;
+
+    public String posI() {
+        return messageJ1;
+    }
+
+    public String posF() {
+        return messageJ2;
+    }
+
+    public void actualizarPosJugador() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
+        c = 0;
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+            switch (c) {
+                case 0:
+                    posI = new String(delivery.getBody(), "UTF-8");
+                    System.out.println(" [x] Received '" + posI + "'");
+                    c++;
+                    break;
+                case 1:
+                    posF = new String(delivery.getBody(), "UTF-8");
+                    System.out.println(" [x] Received '" + posF + "'");
+                    c++;
+                    break;
+                default:
+                    break;
+            }
+        };
+        channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
+        });
     }
 
 }
