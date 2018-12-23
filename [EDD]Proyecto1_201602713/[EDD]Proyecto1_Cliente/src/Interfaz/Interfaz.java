@@ -42,6 +42,7 @@ public class Interfaz extends javax.swing.JFrame {
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,7 +56,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 702, Short.MAX_VALUE)
+            .addGap(0, 695, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -69,14 +70,23 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Actualizar Mapa");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -87,7 +97,9 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(0, 456, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(0, 419, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -318,6 +330,187 @@ public class Interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        EDDProyecto1_Cliente eee = new EDDProyecto1_Cliente();
+        try {
+            eee.runMapa();
+            Thread.sleep(500);
+            int dimensionX = eee.mensajemapaC();
+            int dimensionY = eee.mensajemapaF();
+            pintar = new String[3][dimensionY * dimensionX];
+            j1 = new String[3][dimensionY * dimensionX];
+            j2 = new String[3][dimensionY * dimensionX];
+            leerMapa(eee.mensajemapa());
+            leerJ1(eee.mensajeJ1());
+            leerJ2(eee.mensajeJ2());
+            int contadorX, contadorY;
+            for (contadorY = 0; contadorY < dimensionY; contadorY++) {
+                for (contadorX = 0; contadorX < dimensionX; contadorX++) {
+                    String color = "";
+                    String tropa1 = "";
+                    String tropa2 = "";
+                    for (int j = 0; j < dimensionY * dimensionX; j++) {
+                        if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("blue") == null : pintar[2][j].equals("blue"))) {
+                            color = pintar[2][j];
+                            break;
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("green") == null : pintar[2][j].equals("green"))) {
+                            color = pintar[2][j];
+                            break;
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("darkgreen") == null : pintar[2][j].equals("darkgreen"))) {
+                            color = pintar[2][j];
+                            break;
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("gray") == null : pintar[2][j].equals("gray"))) {
+                            color = pintar[2][j];
+                            break;
+                        } else if (pintar[0][j] == null ? (Integer.toString(contadorX + 1)) == null : pintar[0][j].equals(Integer.toString(contadorX + 1)) && (pintar[1][j] == null ? (Integer.toString(contadorY + 1)) == null : pintar[1][j].equals(Integer.toString(contadorY + 1))) && (pintar[2][j] == null ? ("brown") == null : pintar[2][j].equals("brown"))) {
+                            color = pintar[2][j];
+                            break;
+                        } 
+                    }
+                    for (int j = 0; j < dimensionY * dimensionX; j++) {
+                        if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("infanteria") == null : j1[2][j].equals("infanteria"))) {
+                            tropa1 = j1[2][j];
+                            break;
+                        } else if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("infanteriam") == null : j1[2][j].equals("infanteriam"))) {
+                            tropa1 = j1[2][j];
+                            break;
+                        }else if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("reconocimiento") == null : j1[2][j].equals("reconocimiento"))) {
+                            tropa1 = j1[2][j];
+                            break;
+                        }else if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("tanque") == null : j1[2][j].equals("tanque"))) {
+                            tropa1 = j1[2][j];
+                            break;
+                        }else if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("mtanque") == null : j1[2][j].equals("mtanque"))) {
+                            tropa1 = j1[2][j];
+                            break;
+                        }else if (j1[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j1[0][j].equals(Integer.toString(contadorX + 1)) && (j1[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j1[1][j].equals(Integer.toString(contadorY + 1))) && (j1[2][j] == null ? ("artilleria") == null : j1[2][j].equals("artilleria"))) {
+                            tropa1 = j1[2][j];
+                            break;
+                        }
+                    }
+                    
+                    for (int j = 0; j < dimensionY * dimensionX; j++) {
+                        if (j2[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j2[0][j].equals(Integer.toString(contadorX + 1)) && (j2[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j2[1][j].equals(Integer.toString(contadorY + 1))) && (j2[2][j] == null ? ("infanteria") == null : j2[2][j].equals("infanteria"))) {
+                            tropa2 = j2[2][j];
+                            break;
+                        } else if (j2[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j2[0][j].equals(Integer.toString(contadorX + 1)) && (j2[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j2[1][j].equals(Integer.toString(contadorY + 1))) && (j2[2][j] == null ? ("infanteriam") == null : j2[2][j].equals("infanteriam"))) {
+                            tropa2 = j2[2][j];
+                            break;
+                        }else if (j2[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j2[0][j].equals(Integer.toString(contadorX + 1)) && (j2[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j2[1][j].equals(Integer.toString(contadorY + 1))) && (j2[2][j] == null ? ("reconocimiento") == null : j2[2][j].equals("reconocimiento"))) {
+                            tropa2 = j2[2][j];
+                            break;
+                        }else if (j2[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j2[0][j].equals(Integer.toString(contadorX + 1)) && (j2[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j2[1][j].equals(Integer.toString(contadorY + 1))) && (j2[2][j] == null ? ("tanque") == null : j2[2][j].equals("tanque"))) {
+                            tropa2 = j2[2][j];
+                            break;
+                        }else if (j2[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j2[0][j].equals(Integer.toString(contadorX + 1)) && (j2[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j2[1][j].equals(Integer.toString(contadorY + 1))) && (j2[2][j] == null ? ("mtanque") == null : j2[2][j].equals("mtanque"))) {
+                            tropa2 = j2[2][j];
+                            break;
+                        }else if (j2[0][j] == null ? (Integer.toString(contadorX + 1)) == null : j2[0][j].equals(Integer.toString(contadorX + 1)) && (j2[1][j] == null ? (Integer.toString(contadorY + 1)) == null : j2[1][j].equals(Integer.toString(contadorY + 1))) && (j2[2][j] == null ? ("artilleria") == null : j2[2][j].equals("artilleria"))) {
+                            tropa2 = j2[2][j];
+                            break;
+                        }
+                    }
+                    if (color.equals("blue")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("aguaAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("green")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("gramaAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("darkgreen")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("arbolAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("gray")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("carreteraAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (color.equals("brown")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("montaniaAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("gramaAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);                        
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    }
+                    if (tropa1.equals("infanteria")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("infanteriaJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (tropa1.equals("infanteriam")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("infanteriamJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (tropa1.equals("reconocimiento")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("reconocimientoJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (tropa1.equals("tanque")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("tanqueJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (tropa1.equals("mtanque")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("mtanqueJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (tropa1.equals("artilleria")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("artilleriaJ1.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } 
+                    if (tropa2.equals("infanteria")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("infanteriaJ2.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (tropa2.equals("infanteriam")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("infanteriamJ2.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (tropa2.equals("reconocimiento")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("reconocimientoJ2.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (tropa2.equals("tanque")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("tanqueJ2.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (tropa2.equals("mtanque")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("mtanqueJ2.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } else if (tropa2.equals("artilleria")) {
+                        ImageIcon icono = new ImageIcon(new ImageIcon("artilleriaJ2.png").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        Matrizbotones[contadorX][contadorY].setIcon(icono);
+                        jPanel1.validate();
+                        jPanel1.repaint();
+                    } 
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public void leerMapa(String mensaje) {
         Scanner input = new Scanner(mensaje);
         int cont = 0;
@@ -399,6 +592,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

@@ -64,23 +64,13 @@ public class EDDProyecto1_Servidor {
         }
     }
     
-    public void enviartropa1() throws Exception {
+    public void enviartropa12() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         try (Connection connection = factory.newConnection();
                 Channel channel = connection.createChannel()) {
             channel.basicPublish("", QUEUE_NAME, null, messageJ1.getBytes("UTF-8"));
             System.out.println(" [x] Sent '" + messageJ1 + "'");
-            //Thread.sleep(5000);
-
-        }
-    }
-    
-    public void enviartropa2() throws Exception {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
-        try (Connection connection = factory.newConnection();
-                Channel channel = connection.createChannel()) {
             channel.basicPublish("", QUEUE_NAME, null, messageJ2.getBytes("UTF-8"));
             System.out.println(" [x] Sent '" + messageJ2 + "'");
             //Thread.sleep(5000);

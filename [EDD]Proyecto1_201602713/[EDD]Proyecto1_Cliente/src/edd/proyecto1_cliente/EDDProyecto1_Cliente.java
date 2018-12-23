@@ -60,27 +60,36 @@ public class EDDProyecto1_Cliente {
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
+        c = 0;
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-            if (c == 0) {
-                messageC = new String(delivery.getBody(), "UTF-8");
-                System.out.println(" [x] Received '" + messageC + "'");
-                c++;
-            } else if (c == 1) {
-                messageF = new String(delivery.getBody(), "UTF-8");
-                System.out.println(" [x] Received '" + messageF + "'");
-                c++;
-            } else if (c == 2) {
-                message = new String(delivery.getBody(), "UTF-8");
-                System.out.println(" [x] Received '" + message + "'");
-                c++;
-            } else if (c == 3) {
-                messageJ1 = new String(delivery.getBody(), "UTF-8");
-                System.out.println(" [x] Received '" + messageJ1 + "'");
-                c++;
-            } else if (c == 4) {
-                messageJ2 = new String(delivery.getBody(), "UTF-8");
-                System.out.println(" [x] Received '" + messageJ2 + "'");
-                c++;
+            switch (c) {
+                case 0:
+                    messageC = new String(delivery.getBody(), "UTF-8");
+                    System.out.println(" [x] Received '" + messageC + "'");
+                    c++;
+                    break;
+                case 1:
+                    messageF = new String(delivery.getBody(), "UTF-8");
+                    System.out.println(" [x] Received '" + messageF + "'");
+                    c++;
+                    break;
+                case 2:
+                    message = new String(delivery.getBody(), "UTF-8");
+                    System.out.println(" [x] Received '" + message + "'");
+                    c++;
+                    break;
+                case 3:
+                    messageJ1 = new String(delivery.getBody(), "UTF-8");
+                    System.out.println(" [x] Received '" + messageJ1 + "'");
+                    c++;
+                    break;
+                case 4:
+                    messageJ2 = new String(delivery.getBody(), "UTF-8");
+                    System.out.println(" [x] Received '" + messageJ2 + "'");
+                    c++;
+                    break;
+                default:
+                    break;
             }
         };
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {

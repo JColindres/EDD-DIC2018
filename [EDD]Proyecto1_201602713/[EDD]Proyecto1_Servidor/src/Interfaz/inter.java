@@ -370,8 +370,7 @@ public class inter extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         md.enviar();
-        abb1.enviarJ1();
-        abb1.enviarJ2();
+        abb1.enviarJ12();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**

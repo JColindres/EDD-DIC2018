@@ -301,23 +301,16 @@ public class ABB {
         }
     } 
     
-    public void enviarJ1(){
+    public void enviarJ12(){
         try {
             tropas = "";
             textoTropas(jugador1);
             asa.mensajeJ1(tropas);
-            asa.enviartropa1();
-        } catch (Exception ex) {
-            Logger.getLogger(ABB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void enviarJ2(){
-        try {
+            asa.enviartropa12();
             tropas = "";
             textoTropas(jugador2);
             asa.mensajeJ2(tropas);
-            asa.enviartropa2();
+            asa.enviartropa12();
         } catch (Exception ex) {
             Logger.getLogger(ABB.class.getName()).log(Level.SEVERE, null, ex);
         }
