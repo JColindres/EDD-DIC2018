@@ -47,6 +47,10 @@ public class Interfaz extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,12 +87,25 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel1.setText("Mover A");
 
-        jButton3.setText("Aceptar");
+        jButton3.setText("Mover");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        jButton4.setText("Atacar");
+
+        jLabel2.setText("Turno del jugador:");
+
+        jButton5.setText("Terminar Turno");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("1");
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -106,11 +123,22 @@ public class Interfaz extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField2))))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton3))
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4)
+                            .addComponent(jButton3)))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton5))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -132,7 +160,15 @@ public class Interfaz extends javax.swing.JFrame {
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)
-                        .addGap(0, 314, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addGap(9, 9, 9)
+                        .addComponent(jButton5)
+                        .addGap(0, 183, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -162,8 +198,11 @@ public class Interfaz extends javax.swing.JFrame {
             pintar = new String[3][dimensionY * dimensionX];
             j1 = new String[4][dimensionY * dimensionX];
             j2 = new String[4][dimensionY * dimensionX];
+            Thread.sleep(125);
             leerMapa(eee.mensajemapa());
+            Thread.sleep(125);
             leerJ1(eee.mensajeJ1());
+            Thread.sleep(125);
             leerJ2(eee.mensajeJ2());
             Matrizbotones = new JButton[dimensionX][dimensionY];
             jPanel1.setLayout(new GridLayout(dimensionX, dimensionY));
@@ -373,8 +412,11 @@ public class Interfaz extends javax.swing.JFrame {
             pintar = new String[3][dimensionY * dimensionX];
             j1 = new String[3][dimensionY * dimensionX];
             j2 = new String[3][dimensionY * dimensionX];
+            Thread.sleep(125);
             leerMapa(eee.mensajemapa());
+            Thread.sleep(125);
             leerJ1(eee.mensajeJ1());
+            Thread.sleep(125);
             leerJ2(eee.mensajeJ2());
             int contadorX, contadorY;
             for (contadorY = 0; contadorY < dimensionY; contadorY++) {
@@ -549,11 +591,21 @@ public class Interfaz extends javax.swing.JFrame {
             EDDProyecto1_Cliente eee = new EDDProyecto1_Cliente();
             eee.posI(jTextField1.getText());
             eee.posF(jTextField2.getText());
+            eee.jugador(jLabel3.getText());
             eee.enviarmovimiento();
         } catch (Exception ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if("1".equals(jLabel3.getText())){
+            jLabel3.setText("2");
+        }else{
+            jLabel3.setText("1");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     public void leerMapa(String mensaje) {
         Scanner input = new Scanner(mensaje);
@@ -640,8 +692,12 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

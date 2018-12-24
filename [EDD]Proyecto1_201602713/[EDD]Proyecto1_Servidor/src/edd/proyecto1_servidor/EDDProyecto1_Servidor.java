@@ -79,16 +79,22 @@ public class EDDProyecto1_Servidor {
         }
     }
     
+    private final static String QUEUE = "adios";
     public static String posI = "";
     public static String posF = "";
+    public static String jugador = "";
     private static int c = 0;
 
     public String posI() {
-        return messageJ1;
+        return posI;
     }
 
     public String posF() {
-        return messageJ2;
+        return posF;
+    }
+
+    public String jugador() {
+        return jugador;
     }
 
     public void actualizarPosJugador() throws Exception {
@@ -97,7 +103,7 @@ public class EDDProyecto1_Servidor {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.queueDeclare(QUEUE, false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
         c = 0;
@@ -113,11 +119,16 @@ public class EDDProyecto1_Servidor {
                     System.out.println(" [x] Received '" + posF + "'");
                     c++;
                     break;
+                case 2:
+                    jugador = new String(delivery.getBody(), "UTF-8");
+                    System.out.println(" [x] Received '" + jugador + "'");
+                    c++;
+                    break;
                 default:
                     break;
             }
         };
-        channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
+        channel.basicConsume(QUEUE, true, deliverCallback, consumerTag -> {
         });
     }
 

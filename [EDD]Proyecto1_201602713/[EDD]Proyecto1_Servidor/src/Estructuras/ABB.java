@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,11 +40,11 @@ class NodoABB {
         derecha = null;
         padre = null;
     }
-    
+
     public NodoABB getPadre() {
         return padre;
     }
- 
+
     public void setPadre(NodoABB padre) {
         this.padre = padre;
     }
@@ -123,7 +124,7 @@ public class ABB {
             }
         }
     }
-    
+
     public void insertarJ2(int id, int x, int y, String tipo) {
         NodoABB nuevo = new NodoABB(id, x, y, tipo);
         switch (tipo) {
@@ -187,131 +188,166 @@ public class ABB {
         }
     }
 
-    public void modificar(){
+    public void modificar() {
         try {
-            asa.actualizarPosJugador();
+            EDDProyecto1_Servidor eee = new EDDProyecto1_Servidor();
+            eee.actualizarPosJugador();
+            Thread.sleep(500);
+            String posI = eee.posI();
+            String posF = eee.posF();
+            String jugador = eee.jugador();
+            
+            String[] pos1 = posI.split(",");
+            int posxI = Integer.parseInt(pos1[0]);
+            int posyI = Integer.parseInt(pos1[1]);
+
+            String[] pos2 = posF.split(",");
+            int posxF = Integer.parseInt(pos2[0]);
+            int posyF = Integer.parseInt(pos2[1]);
+            
+            if("1".equals(jugador)){
+                cambiarPos(posxI, posyI, posxF, posyF, jugador1);
+            }else{
+                cambiarPos(posxI, posyI, posxF, posyF, jugador2);
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(ABB.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
+    public void cambiarPos(int posxI, int posyI, int posxF, int posyF, NodoABB j) {
+        if (j != null) {
+            if (j.posx == posxI && j.posy == posyI) {
+                if((posxI == posxF && Math.abs(posyF - posyI) <= j.alca_mov) || (posyI == posyF && Math.abs(posxF - posxI) <= j.alca_mov)){
+                    j.posx = posxF;
+                    j.posy = posyF;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Movimiento no permitido");
+                }
+            } else {
+                cambiarPos(posxI, posyI, posxF, posyF, j.izquierda);
+                cambiarPos(posxI, posyI, posxF, posyF, j.derecha);
+            }
+        }
+    }
+
     public boolean removeNodo(NodoABB nodo) {
- 
+
         /* Creamos variables para saber si tiene hijos izquierdo y derecho */
         boolean tieneNodoDerecha = nodo.derecha != null ? true : false;
         boolean tieneNodoIzquierda = nodo.izquierda != null ? true : false;
- 
+
         /* Verificamos los 3 casos diferentes y llamamos a la función correspondiente */
- 
-        /* Caso 1: No tiene hijos */
+ /* Caso 1: No tiene hijos */
         if (!tieneNodoDerecha && !tieneNodoIzquierda) {
-            return removeNodoCaso1( nodo );
+            return removeNodoCaso1(nodo);
         }
- 
+
         /* Caso 2: Tiene un hijo y el otro no */
-        if ( tieneNodoDerecha && !tieneNodoIzquierda ) {
-            return removeNodoCaso2( nodo );
+        if (tieneNodoDerecha && !tieneNodoIzquierda) {
+            return removeNodoCaso2(nodo);
         }
- 
+
         /* Caso 2: Tiene un hijo y el otro no */
-        if ( !tieneNodoDerecha && tieneNodoIzquierda ) {
-            return removeNodoCaso2( nodo );
+        if (!tieneNodoDerecha && tieneNodoIzquierda) {
+            return removeNodoCaso2(nodo);
         }
- 
+
         /* Caso 3: Tiene ambos hijos */
-        if ( tieneNodoDerecha && tieneNodoIzquierda ) {
-            return removeNodoCaso3( nodo );
+        if (tieneNodoDerecha && tieneNodoIzquierda) {
+            return removeNodoCaso3(nodo);
         }
- 
+
         return false;
     }
- 
-    private boolean removeNodoCaso1( NodoABB nodo ) {
+
+    private boolean removeNodoCaso1(NodoABB nodo) {
         /* lo único que hay que hacer es borrar el nodo y establecer el apuntador de su padre a nulo */
- 
-        /*
+
+ /*
          * Guardemos los hijos del padre temporalmente para saber cuál de sus hijos hay que 
          * eliminar
          */
         NodoABB hijoIzquierdo = nodo.getPadre().izquierda;
         NodoABB hijoDerecho = nodo.getPadre().derecha;
- 
-        if ( hijoIzquierdo == nodo ) {
-            nodo.getPadre().izquierda = ( null );
+
+        if (hijoIzquierdo == nodo) {
+            nodo.getPadre().izquierda = (null);
             return true;
         }
- 
-        if ( hijoDerecho == nodo) {
-            nodo.getPadre().derecha = ( null );
+
+        if (hijoDerecho == nodo) {
+            nodo.getPadre().derecha = (null);
             return true;
         }
- 
+
         return false;
     }
- 
-    private boolean removeNodoCaso2( NodoABB nodo ) {
+
+    private boolean removeNodoCaso2(NodoABB nodo) {
         /* Borrar el Nodo y el subárbol que tenía pasa a ocupar su lugar */
- 
-        /*
+
+ /*
          * Guardemos los hijos del padre temporalmente para saber cuál de sus hijos hay que 
          * eliminar
          */
         NodoABB hijoIzquierdo = nodo.getPadre().izquierda;
         NodoABB hijoDerecho = nodo.getPadre().derecha;
- 
+
         /*
          * Buscamos el hijo existente del nodo que queremos eliminar
          */
-        NodoABB hijoActual = nodo.izquierda != null ? 
-                nodo.izquierda : nodo.derecha;
- 
-        if ( hijoIzquierdo == nodo ) {
-            nodo.getPadre().izquierda = ( hijoActual );
- 
+        NodoABB hijoActual = nodo.izquierda != null
+                ? nodo.izquierda : nodo.derecha;
+
+        if (hijoIzquierdo == nodo) {
+            nodo.getPadre().izquierda = (hijoActual);
+
             /* Eliminando todas las referencias hacia el nodo */
             hijoActual.setPadre(nodo.getPadre());
             nodo.derecha = (null);
             nodo.izquierda = (null);
- 
+
             return true;
         }
- 
-        if ( hijoDerecho == nodo) {
-            nodo.getPadre().derecha = ( hijoActual );
- 
+
+        if (hijoDerecho == nodo) {
+            nodo.getPadre().derecha = (hijoActual);
+
             /* Eliminando todas las referencias hacia el nodo */
             hijoActual.setPadre(nodo.getPadre());
             nodo.derecha = (null);
             nodo.izquierda = (null);
- 
+
             return true;
-        } 
- 
+        }
+
         return false;
     }
- 
-    private boolean removeNodoCaso3( NodoABB nodo ) {
+
+    private boolean removeNodoCaso3(NodoABB nodo) {
         /* Tomar el hijo derecho del Nodo que queremos eliminar */
-        NodoABB nodoMasALaIzquierda = recorrerIzquierda( nodo.derecha );
-        if ( nodoMasALaIzquierda != null ) {
+        NodoABB nodoMasALaIzquierda = recorrerIzquierda(nodo.derecha);
+        if (nodoMasALaIzquierda != null) {
             /*
              * Reemplazamos el valor del nodo que queremos eliminar por el nodo que encontramos 
              */
-            nodo = ( nodoMasALaIzquierda );
+            nodo = (nodoMasALaIzquierda);
             /* 
              * Eliminar este nodo de las formas que conocemos ( caso 1, caso 2 ) 
              */
-            removeNodo( nodoMasALaIzquierda  );
+            removeNodo(nodoMasALaIzquierda);
             return true;
         }
         return false;
     }
- 
+
     /* Recorrer de forma recursiva hasta encontrar el nodo más a la izquierda */
     private NodoABB recorrerIzquierda(NodoABB nodo) {
         if (nodo.izquierda != null) {
-            return recorrerIzquierda( nodo.izquierda );
+            return recorrerIzquierda(nodo.izquierda);
         }
         return nodo;
     }
@@ -322,11 +358,11 @@ public class ABB {
             FileWriter fichero = null;
             PrintWriter pw = null;
             try {
-                fichero = new FileWriter(label+".txt");
+                fichero = new FileWriter(label + ".txt");
                 pw = new PrintWriter(fichero);
 
                 resultado = ("digraph G{\n");
-                resultado = resultado + "node[color = \""+"orange"+"\";style = filled]\n";
+                resultado = resultado + "node[color = \"" + "orange" + "\";style = filled]\n";
                 resultado = resultado + ("C" + jugador1.posx + "L" + jugador1.posy + "[label=\"" + "Posicion x: " + jugador1.posx + "\n" + "Posicion y: " + jugador1.posy + "\n" + "Vida: " + jugador1.vida + "\n" + "Alcance Movimiento: " + jugador1.alca_mov + "\n" + "Ataque: " + jugador1.ataque + "\n" + "Alcance Ataque: " + jugador1.alca_ata + "\n" + "\"];\n");
                 graficar1(jugador1);
                 resultado = resultado + ("}\n");
@@ -346,7 +382,7 @@ public class ABB {
             }
 
             try {
-                String command = "dot -Tjpg "+label+".txt -o "+label+".jpg";
+                String command = "dot -Tjpg " + label + ".txt -o " + label + ".jpg";
                 Process child = Runtime.getRuntime().exec(command);
             } catch (IOException e) {
                 System.out.println("ex: " + e.getMessage());
@@ -369,18 +405,18 @@ public class ABB {
         }
 
     }
-    
+
     public void graficarJ2(String label) {
         if (jugador2 != null) {
 
             FileWriter fichero = null;
             PrintWriter pw = null;
             try {
-                fichero = new FileWriter(label+".txt");
+                fichero = new FileWriter(label + ".txt");
                 pw = new PrintWriter(fichero);
 
                 resultado = ("digraph G{\n");
-                resultado = resultado + "node[color = \""+"orange"+"\";style = filled]\n";
+                resultado = resultado + "node[color = \"" + "orange" + "\";style = filled]\n";
                 resultado = resultado + ("C" + jugador2.posx + "L" + jugador2.posy + "[label=\"" + "Posicion x: " + jugador2.posx + "\n" + "Posicion y: " + jugador2.posy + "\n" + "Vida: " + jugador2.vida + "\n" + "Alcance Movimiento: " + jugador2.alca_mov + "\n" + "Ataque: " + jugador2.ataque + "\n" + "Alcance Ataque: " + jugador2.alca_ata + "\n" + "\"];\n");
                 graficar1(jugador2);
                 resultado = resultado + ("}\n");
@@ -400,7 +436,7 @@ public class ABB {
             }
 
             try {
-                String command = "dot -Tjpg "+label+".txt -o "+label+".jpg";
+                String command = "dot -Tjpg " + label + ".txt -o " + label + ".jpg";
                 Process child = Runtime.getRuntime().exec(command);
             } catch (IOException e) {
                 System.out.println("ex: " + e.getMessage());
@@ -408,16 +444,15 @@ public class ABB {
         }
     }
 
-
-    public void textoTropas(NodoABB r){
+    public void textoTropas(NodoABB r) {
         if (r != null) {
             tropas = tropas + r.posx + "," + r.posy + "," + r.tipo + "," + r.id + "\n";
             textoTropas(r.izquierda);
             textoTropas(r.derecha);
         }
-    } 
-    
-    public void enviarJ12(){
+    }
+
+    public void enviarJ12() {
         try {
             tropas = "";
             textoTropas(jugador1);

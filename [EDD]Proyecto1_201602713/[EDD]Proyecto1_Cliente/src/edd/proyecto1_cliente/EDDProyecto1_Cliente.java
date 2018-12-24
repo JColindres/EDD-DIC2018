@@ -94,8 +94,15 @@ public class EDDProyecto1_Cliente {
         });
     }
     
+    private final static String QUEUE = "adios";
+    public static String jugador = "";
     public static String posI = "";
     public static String posF = "";
+    
+    
+    public void jugador(String h){
+        jugador = h;
+    }
     
     public void posI(String h){
         posI = h;
@@ -110,11 +117,13 @@ public class EDDProyecto1_Cliente {
         factory.setHost("localhost");
         try (Connection connection = factory.newConnection();
                 Channel channel = connection.createChannel()) {
-            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            channel.basicPublish("", QUEUE_NAME, null, posI.getBytes("UTF-8"));
+            channel.queueDeclare(QUEUE, false, false, false, null);
+            channel.basicPublish("", QUEUE, null, posI.getBytes("UTF-8"));
             System.out.println(" [x] Sent '" + posI + "'");
-            channel.basicPublish("", QUEUE_NAME, null, posF.getBytes("UTF-8"));
+            channel.basicPublish("", QUEUE, null, posF.getBytes("UTF-8"));
             System.out.println(" [x] Sent '" + posF + "'");
+            channel.basicPublish("", QUEUE, null, jugador.getBytes("UTF-8"));
+            System.out.println(" [x] Sent '" + jugador + "'");
             //Thread.sleep(5000);
 
         }
