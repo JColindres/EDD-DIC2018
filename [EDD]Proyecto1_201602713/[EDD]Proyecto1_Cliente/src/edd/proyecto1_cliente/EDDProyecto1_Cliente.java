@@ -19,14 +19,17 @@ public class EDDProyecto1_Cliente {
     /**
      * @param args the command line arguments
      */
-    private final static String QUEUE_NAME = "hello";
+    private final static String stringMapa = "stringMapa";
+    private final static String stringMapaC = "stringMapaC";
+    private final static String stringMapaF = "stringMapaF";
+    private final static String stringJ1 = "stringMapaJ1";
+    private final static String stringJ2 = "stringMapaJ2";
     public static String message = "";
     public static String messageC = "";
     public static String messageF = "";
     public static String messageJ1 = "";
     public static String messageJ2 = "";
-    private static int c = 0;
-    
+
     public String mensajemapa() {
         return message;
     }
@@ -49,83 +52,140 @@ public class EDDProyecto1_Cliente {
         return messageJ2;
     }
 
+    public void runMapaC() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.queueDeclare(stringMapaC, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                messageC = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received C'" + messageC + "'");
+        };
+        channel.basicConsume(stringMapaC, true, deliverCallback, consumerTag -> {
+        });
+    }
+        
+    public void runMapaF() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.queueDeclare(stringMapaF, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                messageF = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received F'" + messageF + "'");
+        };
+        channel.basicConsume(stringMapaF, true, deliverCallback, consumerTag -> {
+        });
+    }
+    
     public void runMapa() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.queueDeclare(stringMapa, false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
-        c = 0;
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-            switch (c) {
-                case 0:
-                    messageC = new String(delivery.getBody(), "UTF-8");
-                    System.out.println(" [x] Received '" + messageC + "'");
-                    c++;
-                    break;
-                case 1:
-                    messageF = new String(delivery.getBody(), "UTF-8");
-                    System.out.println(" [x] Received '" + messageF + "'");
-                    c++;
-                    break;
-                case 2:
-                    message = new String(delivery.getBody(), "UTF-8");
-                    System.out.println(" [x] Received '" + message + "'");
-                    c++;
-                    break;
-                case 3:
-                    messageJ1 = new String(delivery.getBody(), "UTF-8");
-                    System.out.println(" [x] Received '" + messageJ1 + "'");
-                    c++;
-                    break;
-                case 4:
-                    messageJ2 = new String(delivery.getBody(), "UTF-8");
-                    System.out.println(" [x] Received '" + messageJ2 + "'");
-                    c++;
-                    break;
-                default:
-                    break;
-            }
+                message = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received mapa '" + message + "'");
         };
-        channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
+        channel.basicConsume(stringMapa, true, deliverCallback, consumerTag -> {
         });
     }
     
-    private final static String QUEUE = "adios";
+    public void runJugador1() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.queueDeclare(stringJ1, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                messageJ1 = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received j1'" + messageJ1 + "'");
+        };
+        channel.basicConsume(stringJ1, true, deliverCallback, consumerTag -> {
+        });
+    }
+    
+    public void runJugador2() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.queueDeclare(stringJ2, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                messageJ2 = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received j2'" + messageJ2 + "'");
+        };
+        channel.basicConsume(stringJ2, true, deliverCallback, consumerTag -> {
+        });
+    }
+
+    private final static String stringPOSI = "stringPOSI";
+    private final static String stringPOSF = "stringPOSF";
+    private final static String stringJugadorID = "stringJugadorID";
     public static String jugador = "";
     public static String posI = "";
     public static String posF = "";
-    
-    
-    public void jugador(String h){
+
+    public void jugador(String h) {
         jugador = h;
     }
-    
-    public void posI(String h){
+
+    public void posI(String h) {
         posI = h;
     }
-    
-    public void posF(String h){
+
+    public void posF(String h) {
         posF = h;
     }
 
-    public void enviarmovimiento() throws Exception {
+    public void enviarmovimientoI() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         try (Connection connection = factory.newConnection();
                 Channel channel = connection.createChannel()) {
-            channel.queueDeclare(QUEUE, false, false, false, null);
-            channel.basicPublish("", QUEUE, null, posI.getBytes("UTF-8"));
-            System.out.println(" [x] Sent '" + posI + "'");
-            channel.basicPublish("", QUEUE, null, posF.getBytes("UTF-8"));
-            System.out.println(" [x] Sent '" + posF + "'");
-            channel.basicPublish("", QUEUE, null, jugador.getBytes("UTF-8"));
-            System.out.println(" [x] Sent '" + jugador + "'");
-            //Thread.sleep(5000);
-
+            channel.queueDeclare(stringPOSI, false, false, false, null);
+            channel.basicPublish("", stringPOSI, null, posI.getBytes("UTF-8"));
+            System.out.println(" [x] Sent posI '" + posI + "'");
+        }
+    }
+    
+    public void enviarmovimientoF() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        try (Connection connection = factory.newConnection();
+                Channel channel = connection.createChannel()) {
+            channel.queueDeclare(stringPOSF, false, false, false, null);
+            channel.basicPublish("", stringPOSF, null, posF.getBytes("UTF-8"));
+            System.out.println(" [x] Sent posF '" + posF + "'");
+        }
+    }
+    
+    public void enviarmovimientoID() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        try (Connection connection = factory.newConnection();
+                Channel channel = connection.createChannel()) {
+            channel.queueDeclare(stringJugadorID, false, false, false, null);
+            channel.basicPublish("", stringJugadorID, null, jugador.getBytes("UTF-8"));
+            System.out.println(" [x] Sent j '" + jugador + "'");
         }
     }
 

@@ -191,7 +191,9 @@ public class ABB {
     public void modificar() {
         try {
             EDDProyecto1_Servidor eee = new EDDProyecto1_Servidor();
-            eee.actualizarPosJugador();
+            eee.actualizarPosJugadorI();
+            eee.actualizarPosJugadorF();
+            eee.actualizarPosJugadorID();
             Thread.sleep(500);
             String posI = eee.posI();
             String posF = eee.posF();
@@ -446,22 +448,29 @@ public class ABB {
 
     public void textoTropas(NodoABB r) {
         if (r != null) {
-            tropas = tropas + r.posx + "," + r.posy + "," + r.tipo + "," + r.id + "\n";
+            tropas = tropas + r.posx + "," + r.posy + "," + r.tipo + "," + r.id + "," + r.alca_ata + "," + r.alca_mov + "," + r.ataque + "," + r.vida + "\n";
             textoTropas(r.izquierda);
             textoTropas(r.derecha);
         }
     }
 
-    public void enviarJ12() {
+    public void enviarJ1() {
         try {
             tropas = "";
             textoTropas(jugador1);
             asa.mensajeJ1(tropas);
-            asa.enviartropa12();
+            asa.enviartropa1();
+        } catch (Exception ex) {
+            Logger.getLogger(ABB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void enviarJ2() {
+        try {
             tropas = "";
             textoTropas(jugador2);
             asa.mensajeJ2(tropas);
-            asa.enviartropa12();
+            asa.enviartropa2();
         } catch (Exception ex) {
             Logger.getLogger(ABB.class.getName()).log(Level.SEVERE, null, ex);
         }

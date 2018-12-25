@@ -723,6 +723,8 @@ public class MatrizDispersa {
             asa.mensajemapaF(filasCliente());
             asa.mensajemapa(mapaCliente());        
             asa.enviarmapa();
+            asa.enviarmapaC();
+            asa.enviarmapaF();
         } catch (Exception ex) {
             Logger.getLogger(MatrizDispersa.class.getName()).log(Level.SEVERE, null, ex);
         }
