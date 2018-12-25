@@ -5,6 +5,7 @@
  */
 package Estructuras;
 
+import Interfaz.inter;
 import edd.proyecto1_servidor.EDDProyecto1_Servidor;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -58,6 +59,7 @@ public class ABB {
     int cont = 0;
     String resultado;
     String tropas = "";
+    public String consola = "";
     EDDProyecto1_Servidor asa = new EDDProyecto1_Servidor();
 
     public void insertarJ1(int id, int x, int y, String tipo) {
@@ -198,7 +200,7 @@ public class ABB {
             String posI = eee.posI();
             String posF = eee.posF();
             String jugador = eee.jugador();
-            
+
             String[] pos1 = posI.split(",");
             int posxI = Integer.parseInt(pos1[0]);
             int posyI = Integer.parseInt(pos1[1]);
@@ -206,10 +208,10 @@ public class ABB {
             String[] pos2 = posF.split(",");
             int posxF = Integer.parseInt(pos2[0]);
             int posyF = Integer.parseInt(pos2[1]);
-            
-            if("1".equals(jugador)){
+
+            if ("1".equals(jugador)) {
                 cambiarPos(posxI, posyI, posxF, posyF, jugador1);
-            }else{
+            } else {
                 cambiarPos(posxI, posyI, posxF, posyF, jugador2);
             }
 
@@ -222,15 +224,88 @@ public class ABB {
     public void cambiarPos(int posxI, int posyI, int posxF, int posyF, NodoABB j) {
         if (j != null) {
             if (j.posx == posxI && j.posy == posyI) {
-                if((posxI == posxF && Math.abs(posyF - posyI) <= j.alca_mov) || (posyI == posyF && Math.abs(posxF - posxI) <= j.alca_mov)){
+                if ((posxI == posxF && Math.abs(posyF - posyI) <= j.alca_mov) || (posyI == posyF && Math.abs(posxF - posxI) <= j.alca_mov)) {
                     j.posx = posxF;
                     j.posy = posyF;
+                    consola = "Se movio " + j.tipo + " de la posicion " + posxI + "," + posyI + " a la posicion " + posxF + "," + posyF;
                 } else {
                     JOptionPane.showMessageDialog(null, "Movimiento no permitido");
                 }
             } else {
                 cambiarPos(posxI, posyI, posxF, posyF, j.izquierda);
                 cambiarPos(posxI, posyI, posxF, posyF, j.derecha);
+            }
+        }
+    }
+
+    public void atacar() {
+        try {
+            EDDProyecto1_Servidor eee = new EDDProyecto1_Servidor();
+            eee.ataquePosJugadorI();
+            eee.ataquePosJugadorF();
+            eee.ataquePosJugadorID();
+            eee.ataqueDano1();
+            eee.ataqueDano2();
+            Thread.sleep(500);
+            String posI = eee.posI();
+            String posF = eee.posF();
+            String jugador = eee.jugador();
+            double dano1 = Double.parseDouble(eee.dano1());
+            double dano2 = Double.parseDouble(eee.dano2());
+
+            String[] pos1 = posI.split(",");
+            int posxI = Integer.parseInt(pos1[0]);
+            int posyI = Integer.parseInt(pos1[1]);
+
+            String[] pos2 = posF.split(",");
+            int posxF = Integer.parseInt(pos2[0]);
+            int posyF = Integer.parseInt(pos2[1]);
+
+            if ("1".equals(jugador)) {
+                consola = "";
+                cambiarVida(posxI, posyI, posxF, posyF, dano1, jugador2);
+                cambiarVida(posxF, posyF, posxI, posyI, dano2, jugador1);
+            } else {
+                cambiarVida(posxI, posyI, posxF, posyF, dano1, jugador1);
+                cambiarVida(posxF, posyF, posxI, posyI, dano2, jugador2);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(ABB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void cambiarVida(int posxI, int posyI, int posxF, int posyF, double dano, NodoABB j) {
+        if (j != null) {
+            if (j.posx == posxF && j.posy == posyF && j.vida > 0) {
+                if ((posxI == posxF && Math.abs(posyF - posyI) <= j.alca_ata) || (posyI == posyF && Math.abs(posxF - posxI) <= j.alca_ata)) {
+                    j.vida = (int) (j.vida - (dano));
+                    if (j.vida > 0) {
+                        consola = consola + "El jugador de la posicion " + posxI + "," + posyI + " ataco a la tropa " + j.tipo + " de la posicion " + posxF + "," + posyF + " dejandolo a " + j.vida + " de vida\n";
+                    } else {
+                        jugadorEliminado(posxF, posyF, j);
+                        consola = consola + "El jugador de la posicion " + j.posx + "," + j.posy + " murio";
+                    }
+                } else {
+                    consola = consola + "El jugador no esta al alcance de contraataque";
+                }
+            } else if (j.posx == posxF && j.posy == posyF && j.vida <= 0) {
+                consola = "El jugador no puede contraatacar porque murio";
+            } else {
+                cambiarVida(posxI, posyI, posxF, posyF, dano, j.izquierda);
+                cambiarVida(posxI, posyI, posxF, posyF, dano, j.derecha);
+            }
+        }
+    }
+
+    public void jugadorEliminado(int posx, int posy, NodoABB j) {
+        if (j != null) {
+            if (j.posx == posx && j.posy == posy) {
+                removeNodo(j);
+            } else {
+                jugadorEliminado(posx, posy, j.izquierda);
+                jugadorEliminado(posx, posy, j.derecha);
             }
         }
     }
@@ -464,7 +539,7 @@ public class ABB {
             Logger.getLogger(ABB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void enviarJ2() {
         try {
             tropas = "";

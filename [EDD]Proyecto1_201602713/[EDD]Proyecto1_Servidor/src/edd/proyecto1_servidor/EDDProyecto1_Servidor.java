@@ -108,9 +108,16 @@ public class EDDProyecto1_Servidor {
     private final static String stringPOSI = "stringPOSI";
     private final static String stringPOSF = "stringPOSF";
     private final static String stringJugadorID = "stringJugadorID";
+    private final static String ataquePOSI = "ataPOSI";
+    private final static String ataquePOSF = "ataPOSF";
+    private final static String ataqueJugadorID = "ataJugadorID";
+    private final static String ataqueDano1 = "ataDano1";
+    private final static String ataqueDano2 = "ataDano2";
+    public static String jugador = "";
     public static String posI = "";
     public static String posF = "";
-    public static String jugador = "";
+    public static String dano1 = "";
+    public static String dano2 = "";
 
     public String posI() {
         return posI;
@@ -122,6 +129,14 @@ public class EDDProyecto1_Servidor {
 
     public String jugador() {
         return jugador;
+    }
+    
+    public String dano1(){
+        return dano1;
+    }
+    
+    public String dano2(){
+        return dano2;
     }
 
     public void actualizarPosJugadorI() throws Exception {
@@ -172,6 +187,91 @@ public class EDDProyecto1_Servidor {
                 System.out.println(" [x] Received j '" + jugador + "'");
         };
         channel.basicConsume(stringJugadorID, true, deliverCallback, consumerTag -> {
+        });
+    }
+    
+    public void ataquePosJugadorI() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.queueDeclare(ataquePOSI, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                posI = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received posI '" + posI + "'");
+        };
+        channel.basicConsume(ataquePOSI, true, deliverCallback, consumerTag -> {
+        });
+    }
+        
+    public void ataquePosJugadorF() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.queueDeclare(ataquePOSF, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                posF = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received posF '" + posF + "'");
+        };
+        channel.basicConsume(ataquePOSF, true, deliverCallback, consumerTag -> {
+        });
+    }
+        
+    public void ataquePosJugadorID() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.queueDeclare(ataqueJugadorID, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                jugador = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received j '" + jugador + "'");
+        };
+        channel.basicConsume(ataqueJugadorID, true, deliverCallback, consumerTag -> {
+        });
+    }
+    
+    public void ataqueDano1() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.queueDeclare(ataqueDano1, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                dano1 = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received dano1 '" + dano1 + "'");
+        };
+        channel.basicConsume(ataqueDano1, true, deliverCallback, consumerTag -> {
+        });
+    }
+    
+    public void ataqueDano2() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.queueDeclare(ataqueDano2, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                dano2 = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received dano2 '" + dano2 + "'");
+        };
+        channel.basicConsume(ataqueDano2, true, deliverCallback, consumerTag -> {
         });
     }
 

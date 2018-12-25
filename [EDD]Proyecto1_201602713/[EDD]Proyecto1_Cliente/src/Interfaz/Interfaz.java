@@ -27,6 +27,7 @@ public class Interfaz extends javax.swing.JFrame {
     String[][] j1;
     String[][] j2;
     String[][] deshabilitados;
+    String[][] deshabilitadosA;
     int dimensionX;
     int dimensionY;
     int cont = 0;
@@ -94,6 +95,11 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         jButton4.setText("Atacar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Turno del jugador:");
 
@@ -427,7 +433,7 @@ public class Interfaz extends javax.swing.JFrame {
             boolean turno = false;
 
             for (int i = 0; i < dimensionX * dimensionY; i++) {
-                if (pintar[0][i].equals(pos2[0]) && pintar[0][i].equals(pos2[1])) {
+                if (pintar[0][i].equals(pos2[0]) && pintar[1][i].equals(pos2[1])) {
                     terrenoAux = pintar[2][i];
                 }
             }
@@ -528,6 +534,7 @@ public class Interfaz extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         deshabilitados = new String[2][dimensionX * dimensionY];
+        deshabilitadosA = new String[2][dimensionX * dimensionY];
         cont = 0;
         if ("1".equals(jTextField3.getText())) {
             jTextField3.setText("2");
@@ -535,6 +542,197 @@ public class Interfaz extends javax.swing.JFrame {
             jTextField3.setText("1");
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:String posI = eee.posI();
+            String posI = jTextField1.getText();
+            String posF = jTextField2.getText();
+
+            String[] pos1 = posI.split(",");
+            int posxI = Integer.parseInt(pos1[0]);
+            int posyI = Integer.parseInt(pos1[1]);
+
+            String[] pos2 = posF.split(",");
+            int posxF = Integer.parseInt(pos2[0]);
+            int posyF = Integer.parseInt(pos2[1]);
+
+            int alc_atcAux1 = 0;
+            int alc_atcAux2 = 0;
+            int atcAux1 = 0;
+            int atcAux2 = 0;
+            int vidaAux1 = 0;
+            int vidaAux2 = 0;
+            String tropaAux1 = "";
+            String tropaAux2 = "";
+            String terrenoAux1 = "";
+            String terrenoAux2 = "";
+            boolean nosepuede = false;
+            boolean turno = false;
+            double dano1 = 0;
+            double dano2 = 0;
+
+            for (int i = 0; i < dimensionX * dimensionY; i++) {
+                if (pintar[0][i].equals(pos1[0]) && pintar[1][i].equals(pos1[1])) {
+                    terrenoAux1 = pintar[2][i];
+                }
+                if (pintar[0][i].equals(pos2[0]) && pintar[1][i].equals(pos2[1])) {
+                    terrenoAux2 = pintar[2][i];
+                }
+            }
+            if (jTextField3.getText().contains("1")) {
+                for (int i = 0; i < dimensionX * dimensionY; i++) {
+                    if (j1[0][i] != null) {
+                        if (j1[0][i].equals(pos2[0]) && j1[1][i].equals(pos2[1])) {
+                            nosepuede = true;
+                        }
+                        if (j1[0][i].equals(pos1[0]) && j1[1][i].equals(pos1[1])) {
+                            alc_atcAux1 = Integer.parseInt(j1[4][i]);
+                            atcAux1 = Integer.parseInt(j1[6][i]);
+                            vidaAux1 = Integer.parseInt(j1[7][i]);
+                            tropaAux1 = j1[2][i];
+                        }
+                    }
+                    if (j2[0][i] != null) {
+                        if (j2[0][i].equals(pos1[0]) && j2[1][i].equals(pos1[1])) {
+                            turno = true;
+                            nosepuede = true;
+                        }
+                        if (j2[0][i].equals(pos2[0]) && j2[1][i].equals(pos2[1])) {
+                            alc_atcAux2 = Integer.parseInt(j2[4][i]);
+                            atcAux2 = Integer.parseInt(j2[6][i]);
+                            vidaAux2 = Integer.parseInt(j2[7][i]);
+                            tropaAux2 = j2[2][i];
+                        }
+                    }
+                }
+            } else if (jTextField3.getText().contains("2")) {
+                for (int i = 0; i < dimensionX * dimensionY; i++) {
+                    if (j2[0][i] != null) {
+                        if (j2[0][i].equals(pos2[0]) && j2[1][i].equals(pos2[1])) {
+                            nosepuede = true;
+                        }
+                        if (j2[0][i].equals(pos1[0]) && j2[1][i].equals(pos1[1])) {
+                            alc_atcAux1 = Integer.parseInt(j2[4][i]);
+                            atcAux1 = Integer.parseInt(j2[6][i]);
+                            vidaAux1 = Integer.parseInt(j2[7][i]);
+                            tropaAux1 = j2[2][i];
+                        }
+                    }
+                    if (j1[0][i] != null) {
+                        if (j1[0][i].equals(pos1[0]) && j1[1][i].equals(pos1[1])) {
+                            turno = true;
+                            nosepuede = true;
+                        }
+                        if (j1[0][i].equals(pos2[0]) && j1[1][i].equals(pos2[1])) {
+                            alc_atcAux2 = Integer.parseInt(j1[4][i]);
+                            atcAux2 = Integer.parseInt(j1[6][i]);
+                            vidaAux2 = Integer.parseInt(j1[7][i]);
+                            tropaAux2 = j1[2][i];
+                        }
+                    }
+                }
+            }
+            
+            if (nosepuede == false) {
+                double bonus1 = 0;
+                if (terrenoAux1.equals("blue")) {
+                    bonus1 = -0.05;
+                } else if (terrenoAux1.equals("brown")) {
+                    bonus1 = 0.25;
+                } else if (terrenoAux1.equals("darkgreen")) {
+                    bonus1 = -0.10;
+                } else if (terrenoAux1.equals("green")) {
+                    bonus1 = 0.10;
+                } else if (terrenoAux1.equals("gray")) {
+                    bonus1 = 0;
+                }
+                double bonus2 = 0;
+                if (terrenoAux2.equals("blue")) {
+                    bonus2 = 0.95;
+                } else if (terrenoAux2.equals("brown")) {
+                    bonus2 = 1.25;
+                } else if (terrenoAux2.equals("darkgreen")) {
+                    bonus2 = 0.90;
+                } else if (terrenoAux2.equals("green")) {
+                    bonus2 = 1.10;
+                } else if (terrenoAux2.equals("gray")) {
+                    bonus2 = 1;
+                }
+
+                if (tropaAux1.equals("infanteria")) {
+                    dano1 = atcAux1*(vidaAux1 / 50) + atcAux1*(vidaAux1 / 50)*bonus1;
+                } else if (tropaAux1.equals("infanteriam")) {
+                    dano1 = atcAux1*(vidaAux1 / 50) + atcAux1*(vidaAux1 / 50)*bonus1;
+                } else if (tropaAux1.equals("reconocimiento")) {
+                    dano1 = atcAux1*(vidaAux1 / 100) + atcAux1*(vidaAux1 / 100)*bonus1;
+                } else if (tropaAux1.equals("tanque")) {
+                    dano1 = atcAux1*(vidaAux1 / 150) + atcAux1*(vidaAux1 / 150)*bonus1;
+                } else if (tropaAux1.equals("mtanque")) {
+                    dano1 = atcAux1*(vidaAux1 / 200) + atcAux1*(vidaAux1 / 200)*bonus1;
+                } else if (tropaAux1.equals("artilleria")) {
+                    dano1 = atcAux1*(vidaAux1 / 50) + atcAux1*(vidaAux1 / 50)*bonus1;
+                }
+                
+                if (tropaAux2.equals("infanteria")) {
+                    dano2 = atcAux2*(vidaAux2 / 50) + atcAux2*(vidaAux2 / 50)*bonus2;
+                } else if (tropaAux2.equals("infanteriam")) {
+                    dano2 = atcAux2*(vidaAux2 / 50) + atcAux2*(vidaAux2 / 50)*bonus2;
+                } else if (tropaAux2.equals("reconocimiento")) {
+                    dano2 = atcAux2*(vidaAux2 / 100) + atcAux2*(vidaAux2 / 100)*bonus2;
+                } else if (tropaAux2.equals("tanque")) {
+                    dano2 = atcAux2*(vidaAux2 / 150) + atcAux2*(vidaAux2 / 150)*bonus2;
+                } else if (tropaAux2.equals("mtanque")) {
+                    dano2 = atcAux2*(vidaAux2 / 200) + atcAux2*(vidaAux2 / 200)*bonus2;
+                } else if (tropaAux2.equals("artilleria")) {
+                    dano2 = atcAux2*(vidaAux2 / 50) + atcAux2*(vidaAux2 / 50)*bonus2;
+                }
+            }
+
+            if (!turno) {
+                if (nosepuede == false) {
+                    if ((posxI == posxF && Math.abs(posyF - posyI) <= alc_atcAux1) || (posyI == posyF && Math.abs(posxF - posxI) <= alc_atcAux1)) {
+                        if (deshabilitadosA == null) {
+                            deshabilitadosA = new String[2][dimensionX * dimensionY];
+                        }
+                        boolean esta = false;
+                        for (int i = 0; i < dimensionX * dimensionY; i++) {
+                            if (deshabilitadosA[0][i] != null) {
+                                if (deshabilitadosA[0][i].equals(pos1[0]) && deshabilitadosA[1][i].equals(pos1[1])) {
+                                    JOptionPane.showMessageDialog(null, "Ese personaje esta deshabilitado");
+                                    esta = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!esta) {
+                            deshabilitadosA[0][cont] = pos2[0];
+                            deshabilitadosA[1][cont] = pos2[1];
+                            cont++;
+                            eee.posI(jTextField1.getText());
+                            eee.posF(jTextField2.getText());
+                            eee.jugador(jTextField3.getText());
+                            eee.dano1(Double.toString(dano1));
+                            eee.dano2(Double.toString(dano2));
+                            eee.enviarAtaqueID();
+                            eee.enviarAtaqueI();
+                            eee.enviarAtaqueF();
+                            eee.enviarDano1();
+                            eee.enviarDano2();
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ataque no permitido");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Esa tropa no es tuya");
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public void leerMapa(String mensaje) {
         Scanner input = new Scanner(mensaje);

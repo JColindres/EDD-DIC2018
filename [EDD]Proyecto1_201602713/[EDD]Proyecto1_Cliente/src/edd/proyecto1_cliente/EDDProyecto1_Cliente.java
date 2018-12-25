@@ -140,9 +140,16 @@ public class EDDProyecto1_Cliente {
     private final static String stringPOSI = "stringPOSI";
     private final static String stringPOSF = "stringPOSF";
     private final static String stringJugadorID = "stringJugadorID";
+    private final static String ataquePOSI = "ataPOSI";
+    private final static String ataquePOSF = "ataPOSF";
+    private final static String ataqueJugadorID = "ataJugadorID";
+    private final static String ataqueDano1 = "ataDano1";
+    private final static String ataqueDano2 = "ataDano2";
     public static String jugador = "";
     public static String posI = "";
     public static String posF = "";
+    public static String dano1 = "";
+    public static String dano2 = "";
 
     public void jugador(String h) {
         jugador = h;
@@ -154,6 +161,14 @@ public class EDDProyecto1_Cliente {
 
     public void posF(String h) {
         posF = h;
+    }
+    
+    public void dano1(String h){
+        dano1 = h;
+    }    
+    
+    public void dano2(String h){
+        dano2 = h;
     }
 
     public void enviarmovimientoI() throws Exception {
@@ -186,6 +201,61 @@ public class EDDProyecto1_Cliente {
             channel.queueDeclare(stringJugadorID, false, false, false, null);
             channel.basicPublish("", stringJugadorID, null, jugador.getBytes("UTF-8"));
             System.out.println(" [x] Sent j '" + jugador + "'");
+        }
+    }
+    
+    public void enviarAtaqueI() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        try (Connection connection = factory.newConnection();
+                Channel channel = connection.createChannel()) {
+            channel.queueDeclare(ataquePOSI, false, false, false, null);
+            channel.basicPublish("", ataquePOSI, null, posI.getBytes("UTF-8"));
+            System.out.println(" [x] Sent posI '" + posI + "'");
+        }
+    }
+    
+    public void enviarAtaqueF() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        try (Connection connection = factory.newConnection();
+                Channel channel = connection.createChannel()) {
+            channel.queueDeclare(ataquePOSF, false, false, false, null);
+            channel.basicPublish("", ataquePOSF, null, posF.getBytes("UTF-8"));
+            System.out.println(" [x] Sent posF '" + posF + "'");
+        }
+    }
+    
+    public void enviarAtaqueID() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        try (Connection connection = factory.newConnection();
+                Channel channel = connection.createChannel()) {
+            channel.queueDeclare(ataqueJugadorID, false, false, false, null);
+            channel.basicPublish("", ataqueJugadorID, null, jugador.getBytes("UTF-8"));
+            System.out.println(" [x] Sent j '" + jugador + "'");
+        }
+    }
+    
+    public void enviarDano1() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        try (Connection connection = factory.newConnection();
+                Channel channel = connection.createChannel()) {
+            channel.queueDeclare(ataqueDano1, false, false, false, null);
+            channel.basicPublish("", ataqueDano1, null, dano1.getBytes("UTF-8"));
+            System.out.println(" [x] Sent dano1 '" + dano1 + "'");
+        }
+    }
+    
+    public void enviarDano2() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        try (Connection connection = factory.newConnection();
+                Channel channel = connection.createChannel()) {
+            channel.queueDeclare(ataqueDano2, false, false, false, null);
+            channel.basicPublish("", ataqueDano2, null, dano2.getBytes("UTF-8"));
+            System.out.println(" [x] Sent dano2 '" + dano2 + "'");
         }
     }
 
