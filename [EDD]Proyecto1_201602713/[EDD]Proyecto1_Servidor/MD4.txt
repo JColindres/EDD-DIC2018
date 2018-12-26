@@ -71,271 +71,271 @@ y12->y13[dir=back];
 y14[shape=square;label="14";group=0];
 y13->y14;
 y13->y14[dir=back];
-C8L1[shape=square; label = ""; color=brown; style = filled; group =8];
+C8L1[shape=square; label = "8,1"; fontcolor=white; color=brown; style = filled; group =8];
 y1->C8L1;
 y1->C8L1[dir=back];
 x8->C8L1;
 x8->C8L1[dir=back];
 {rank = same; y1;C8L1}
-C9L1[shape=square; label = ""; color=brown; style = filled; group =9];
+C9L1[shape=square; label = "9,1"; fontcolor=white; color=brown; style = filled; group =9];
 C8L1->C9L1;
 C8L1->C9L1[dir=back];
 x9->C9L1;
 x9->C9L1[dir=back];
 {rank = same; y1;C8L1;C9L1}
-C10L1[shape=square; label = ""; color=brown; style = filled; group =10];
+C10L1[shape=square; label = "10,1"; fontcolor=white; color=brown; style = filled; group =10];
 C9L1->C10L1;
 C9L1->C10L1[dir=back];
 x10->C10L1;
 x10->C10L1[dir=back];
 {rank = same; y1;C8L1;C9L1;C10L1}
-C11L1[shape=square; label = ""; color=brown; style = filled; group =11];
+C11L1[shape=square; label = "11,1"; fontcolor=white; color=brown; style = filled; group =11];
 C10L1->C11L1;
 C10L1->C11L1[dir=back];
 x11->C11L1;
 x11->C11L1[dir=back];
 {rank = same; y1;C8L1;C9L1;C10L1;C11L1}
-C12L1[shape=square; label = ""; color=brown; style = filled; group =12];
+C12L1[shape=square; label = "12,1"; fontcolor=white; color=brown; style = filled; group =12];
 C11L1->C12L1;
 C11L1->C12L1[dir=back];
 x12->C12L1;
 x12->C12L1[dir=back];
 {rank = same; y1;C8L1;C9L1;C10L1;C11L1;C12L1}
-C5L2[shape=square; label = ""; color=brown; style = filled; group =5];
+C5L2[shape=square; label = "5,2"; fontcolor=white; color=brown; style = filled; group =5];
 y2->C5L2;
 y2->C5L2[dir=back];
 x5->C5L2;
 x5->C5L2[dir=back];
 {rank = same; y2;C5L2}
-C11L2[shape=square; label = ""; color=brown; style = filled; group =11];
+C11L2[shape=square; label = "11,2"; fontcolor=white; color=brown; style = filled; group =11];
 C5L2->C11L2;
 C5L2->C11L2[dir=back];
 C11L1->C11L2;
 C11L1->C11L2[dir=back];
 {rank = same; y2;C5L2;C11L2}
-C12L2[shape=square; label = ""; color=brown; style = filled; group =12];
+C12L2[shape=square; label = "12,2"; fontcolor=white; color=brown; style = filled; group =12];
 C11L2->C12L2;
 C11L2->C12L2[dir=back];
 C12L1->C12L2;
 C12L1->C12L2[dir=back];
 {rank = same; y2;C5L2;C11L2;C12L2}
-C9L3[shape=square; label = ""; color=brown; style = filled; group =9];
+C9L3[shape=square; label = "9,3"; fontcolor=white; color=brown; style = filled; group =9];
 y3->C9L3;
 y3->C9L3[dir=back];
 C9L1->C9L3;
 C9L1->C9L3[dir=back];
 {rank = same; y3;C9L3}
-C10L3[shape=square; label = ""; color=brown; style = filled; group =10];
+C10L3[shape=square; label = "10,3"; fontcolor=white; color=brown; style = filled; group =10];
 C9L3->C10L3;
 C9L3->C10L3[dir=back];
 C10L1->C10L3;
 C10L1->C10L3[dir=back];
 {rank = same; y3;C9L3;C10L3}
-C11L3[shape=square; label = ""; color=brown; style = filled; group =11];
+C11L3[shape=square; label = "11,3"; fontcolor=white; color=brown; style = filled; group =11];
 C10L3->C11L3;
 C10L3->C11L3[dir=back];
 C11L2->C11L3;
 C11L2->C11L3[dir=back];
 {rank = same; y3;C9L3;C10L3;C11L3}
-C12L3[shape=square; label = ""; color=brown; style = filled; group =12];
+C12L3[shape=square; label = "12,3"; fontcolor=white; color=brown; style = filled; group =12];
 C11L3->C12L3;
 C11L3->C12L3[dir=back];
 C12L2->C12L3;
 C12L2->C12L3[dir=back];
 {rank = same; y3;C9L3;C10L3;C11L3;C12L3}
-C7L4[shape=square; label = ""; color=brown; style = filled; group =7];
+C7L4[shape=square; label = "7,4"; fontcolor=white; color=brown; style = filled; group =7];
 y4->C7L4;
 y4->C7L4[dir=back];
 x7->C7L4;
 x7->C7L4[dir=back];
 {rank = same; y4;C7L4}
-C8L4[shape=square; label = ""; color=brown; style = filled; group =8];
+C8L4[shape=square; label = "8,4"; fontcolor=white; color=brown; style = filled; group =8];
 C7L4->C8L4;
 C7L4->C8L4[dir=back];
 C8L1->C8L4;
 C8L1->C8L4[dir=back];
 {rank = same; y4;C7L4;C8L4}
-C9L4[shape=square; label = ""; color=brown; style = filled; group =9];
+C9L4[shape=square; label = "9,4"; fontcolor=white; color=brown; style = filled; group =9];
 C8L4->C9L4;
 C8L4->C9L4[dir=back];
 C9L3->C9L4;
 C9L3->C9L4[dir=back];
 {rank = same; y4;C7L4;C8L4;C9L4}
-C12L6[shape=square; label = ""; color=brown; style = filled; group =12];
+C12L6[shape=square; label = "12,6"; fontcolor=white; color=brown; style = filled; group =12];
 y6->C12L6;
 y6->C12L6[dir=back];
 C12L3->C12L6;
 C12L3->C12L6[dir=back];
 {rank = same; y6;C12L6}
-C1L7[shape=square; label = ""; color=brown; style = filled; group =1];
+C1L7[shape=square; label = "1,7"; fontcolor=white; color=brown; style = filled; group =1];
 y7->C1L7;
 y7->C1L7[dir=back];
 x1->C1L7;
 x1->C1L7[dir=back];
 {rank = same; y7;C1L7}
-C12L7[shape=square; label = ""; color=brown; style = filled; group =12];
+C12L7[shape=square; label = "12,7"; fontcolor=white; color=brown; style = filled; group =12];
 C1L7->C12L7;
 C1L7->C12L7[dir=back];
 C12L6->C12L7;
 C12L6->C12L7[dir=back];
 {rank = same; y7;C1L7;C12L7}
-C13L7[shape=square; label = ""; color=brown; style = filled; group =13];
+C13L7[shape=square; label = "13,7"; fontcolor=white; color=brown; style = filled; group =13];
 C12L7->C13L7;
 C12L7->C13L7[dir=back];
 x13->C13L7;
 x13->C13L7[dir=back];
 {rank = same; y7;C1L7;C12L7;C13L7}
-C14L7[shape=square; label = ""; color=brown; style = filled; group =14];
+C14L7[shape=square; label = "14,7"; fontcolor=white; color=brown; style = filled; group =14];
 C13L7->C14L7;
 C13L7->C14L7[dir=back];
 x14->C14L7;
 x14->C14L7[dir=back];
 {rank = same; y7;C1L7;C12L7;C13L7;C14L7}
-C1L8[shape=square; label = ""; color=brown; style = filled; group =1];
+C1L8[shape=square; label = "1,8"; fontcolor=white; color=brown; style = filled; group =1];
 y8->C1L8;
 y8->C1L8[dir=back];
 C1L7->C1L8;
 C1L7->C1L8[dir=back];
 {rank = same; y8;C1L8}
-C9L8[shape=square; label = ""; color=brown; style = filled; group =9];
+C9L8[shape=square; label = "9,8"; fontcolor=white; color=brown; style = filled; group =9];
 C1L8->C9L8;
 C1L8->C9L8[dir=back];
 C9L4->C9L8;
 C9L4->C9L8[dir=back];
 {rank = same; y8;C1L8;C9L8}
-C10L8[shape=square; label = ""; color=brown; style = filled; group =10];
+C10L8[shape=square; label = "10,8"; fontcolor=white; color=brown; style = filled; group =10];
 C9L8->C10L8;
 C9L8->C10L8[dir=back];
 C10L3->C10L8;
 C10L3->C10L8[dir=back];
 {rank = same; y8;C1L8;C9L8;C10L8}
-C11L8[shape=square; label = ""; color=brown; style = filled; group =11];
+C11L8[shape=square; label = "11,8"; fontcolor=white; color=brown; style = filled; group =11];
 C10L8->C11L8;
 C10L8->C11L8[dir=back];
 C11L3->C11L8;
 C11L3->C11L8[dir=back];
 {rank = same; y8;C1L8;C9L8;C10L8;C11L8}
-C12L8[shape=square; label = ""; color=brown; style = filled; group =12];
+C12L8[shape=square; label = "12,8"; fontcolor=white; color=brown; style = filled; group =12];
 C11L8->C12L8;
 C11L8->C12L8[dir=back];
 C12L7->C12L8;
 C12L7->C12L8[dir=back];
 {rank = same; y8;C1L8;C9L8;C10L8;C11L8;C12L8}
-C1L9[shape=square; label = ""; color=brown; style = filled; group =1];
+C1L9[shape=square; label = "1,9"; fontcolor=white; color=brown; style = filled; group =1];
 y9->C1L9;
 y9->C1L9[dir=back];
 C1L8->C1L9;
 C1L8->C1L9[dir=back];
 {rank = same; y9;C1L9}
-C6L9[shape=square; label = ""; color=brown; style = filled; group =6];
+C6L9[shape=square; label = "6,9"; fontcolor=white; color=brown; style = filled; group =6];
 C1L9->C6L9;
 C1L9->C6L9[dir=back];
 x6->C6L9;
 x6->C6L9[dir=back];
 {rank = same; y9;C1L9;C6L9}
-C1L10[shape=square; label = ""; color=brown; style = filled; group =1];
+C1L10[shape=square; label = "1,10"; fontcolor=white; color=brown; style = filled; group =1];
 y10->C1L10;
 y10->C1L10[dir=back];
 C1L9->C1L10;
 C1L9->C1L10[dir=back];
 {rank = same; y10;C1L10}
-C5L10[shape=square; label = ""; color=brown; style = filled; group =5];
+C5L10[shape=square; label = "5,10"; fontcolor=white; color=brown; style = filled; group =5];
 C1L10->C5L10;
 C1L10->C5L10[dir=back];
 C5L2->C5L10;
 C5L2->C5L10[dir=back];
 {rank = same; y10;C1L10;C5L10}
-C6L10[shape=square; label = ""; color=brown; style = filled; group =6];
+C6L10[shape=square; label = "6,10"; fontcolor=white; color=brown; style = filled; group =6];
 C5L10->C6L10;
 C5L10->C6L10[dir=back];
 C6L9->C6L10;
 C6L9->C6L10[dir=back];
 {rank = same; y10;C1L10;C5L10;C6L10}
-C10L11[shape=square; label = ""; color=brown; style = filled; group =10];
+C10L11[shape=square; label = "10,11"; fontcolor=white; color=brown; style = filled; group =10];
 y11->C10L11;
 y11->C10L11[dir=back];
 C10L8->C10L11;
 C10L8->C10L11[dir=back];
 {rank = same; y11;C10L11}
-C11L11[shape=square; label = ""; color=brown; style = filled; group =11];
+C11L11[shape=square; label = "11,11"; fontcolor=white; color=brown; style = filled; group =11];
 C10L11->C11L11;
 C10L11->C11L11[dir=back];
 C11L8->C11L11;
 C11L8->C11L11[dir=back];
 {rank = same; y11;C10L11;C11L11}
-C12L11[shape=square; label = ""; color=brown; style = filled; group =12];
+C12L11[shape=square; label = "12,11"; fontcolor=white; color=brown; style = filled; group =12];
 C11L11->C12L11;
 C11L11->C12L11[dir=back];
 C12L8->C12L11;
 C12L8->C12L11[dir=back];
 {rank = same; y11;C10L11;C11L11;C12L11}
-C13L11[shape=square; label = ""; color=brown; style = filled; group =13];
+C13L11[shape=square; label = "13,11"; fontcolor=white; color=brown; style = filled; group =13];
 C12L11->C13L11;
 C12L11->C13L11[dir=back];
 C13L7->C13L11;
 C13L7->C13L11[dir=back];
 {rank = same; y11;C10L11;C11L11;C12L11;C13L11}
-C8L12[shape=square; label = ""; color=brown; style = filled; group =8];
+C8L12[shape=square; label = "8,12"; fontcolor=white; color=brown; style = filled; group =8];
 y12->C8L12;
 y12->C8L12[dir=back];
 C8L4->C8L12;
 C8L4->C8L12[dir=back];
 {rank = same; y12;C8L12}
-C9L12[shape=square; label = ""; color=brown; style = filled; group =9];
+C9L12[shape=square; label = "9,12"; fontcolor=white; color=brown; style = filled; group =9];
 C8L12->C9L12;
 C8L12->C9L12[dir=back];
 C9L8->C9L12;
 C9L8->C9L12[dir=back];
 {rank = same; y12;C8L12;C9L12}
-C10L12[shape=square; label = ""; color=brown; style = filled; group =10];
+C10L12[shape=square; label = "10,12"; fontcolor=white; color=brown; style = filled; group =10];
 C9L12->C10L12;
 C9L12->C10L12[dir=back];
 C10L11->C10L12;
 C10L11->C10L12[dir=back];
 {rank = same; y12;C8L12;C9L12;C10L12}
-C11L12[shape=square; label = ""; color=brown; style = filled; group =11];
+C11L12[shape=square; label = "11,12"; fontcolor=white; color=brown; style = filled; group =11];
 C10L12->C11L12;
 C10L12->C11L12[dir=back];
 C11L11->C11L12;
 C11L11->C11L12[dir=back];
 {rank = same; y12;C8L12;C9L12;C10L12;C11L12}
-C12L12[shape=square; label = ""; color=brown; style = filled; group =12];
+C12L12[shape=square; label = "12,12"; fontcolor=white; color=brown; style = filled; group =12];
 C11L12->C12L12;
 C11L12->C12L12[dir=back];
 C12L11->C12L12;
 C12L11->C12L12[dir=back];
 {rank = same; y12;C8L12;C9L12;C10L12;C11L12;C12L12}
-C8L13[shape=square; label = ""; color=brown; style = filled; group =8];
+C8L13[shape=square; label = "8,13"; fontcolor=white; color=brown; style = filled; group =8];
 y13->C8L13;
 y13->C8L13[dir=back];
 C8L12->C8L13;
 C8L12->C8L13[dir=back];
 {rank = same; y13;C8L13}
-C9L13[shape=square; label = ""; color=brown; style = filled; group =9];
+C9L13[shape=square; label = "9,13"; fontcolor=white; color=brown; style = filled; group =9];
 C8L13->C9L13;
 C8L13->C9L13[dir=back];
 C9L12->C9L13;
 C9L12->C9L13[dir=back];
 {rank = same; y13;C8L13;C9L13}
-C5L14[shape=square; label = ""; color=brown; style = filled; group =5];
+C5L14[shape=square; label = "5,14"; fontcolor=white; color=brown; style = filled; group =5];
 y14->C5L14;
 y14->C5L14[dir=back];
 C5L10->C5L14;
 C5L10->C5L14[dir=back];
 {rank = same; y14;C5L14}
-C6L14[shape=square; label = ""; color=brown; style = filled; group =6];
+C6L14[shape=square; label = "6,14"; fontcolor=white; color=brown; style = filled; group =6];
 C5L14->C6L14;
 C5L14->C6L14[dir=back];
 C6L10->C6L14;
 C6L10->C6L14[dir=back];
 {rank = same; y14;C5L14;C6L14}
-C7L14[shape=square; label = ""; color=brown; style = filled; group =7];
+C7L14[shape=square; label = "7,14"; fontcolor=white; color=brown; style = filled; group =7];
 C6L14->C7L14;
 C6L14->C7L14[dir=back];
 C7L4->C7L14;
 C7L4->C7L14[dir=back];
 {rank = same; y14;C5L14;C6L14;C7L14}
-C8L14[shape=square; label = ""; color=brown; style = filled; group =8];
+C8L14[shape=square; label = "8,14"; fontcolor=white; color=brown; style = filled; group =8];
 C7L14->C8L14;
 C7L14->C8L14[dir=back];
 C8L13->C8L14;

@@ -427,7 +427,7 @@ public class MatrizDispersa {
                 rank = "";
 
                 while (auxCelday != null) {
-                    pw.println("C" + auxCelday.posx + "L" + auxCelday.posy + "[shape=square; label = \"" + "\"; color=" + auxCelday.tipo + "; style = filled; group =" + auxCelday.posx + "];");
+                    pw.println("C" + auxCelday.posx + "L" + auxCelday.posy + "[shape=square; label = \"" + auxCelday.posx + "," + auxCelday.posy + "\"; fontcolor=white; color=" + auxCelday.tipo + "; style = filled; group =" + auxCelday.posx + "];");
                     rank = rank + ";" + "C" + auxCelday.posx + "L" + auxCelday.posy;
 
                     if (auxCelday == auxy.derecha) {
@@ -540,6 +540,7 @@ public class MatrizDispersa {
                     lc = lc.siguiente;
                 } while (lc != inicio);
                 graficarDefinitiva(matrizDefinitiva);
+                graficarLCDE();
             } else {
                 System.out.println("La Lista esta vacia");
             }
@@ -548,6 +549,53 @@ public class MatrizDispersa {
         }
     }
 
+    public void graficarLCDE(){
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try {
+            fichero = new FileWriter("LCDE.txt");
+            pw = new PrintWriter(fichero);
+
+            ListaCapas lc = inicio;
+            pw.println("digraph G {\n");
+            pw.println("node[color = orange; style = filled];");
+            if (inicio != null) {
+                pw.println(lc.capa + ";\n");
+                lc = lc.siguiente;
+                while (lc != inicio) {
+                    pw.println(lc.capa + ";\n");
+                    pw.print(lc.anterior.capa + "->" + lc.capa + ";\n");
+                    pw.print(lc.anterior.capa + "->" + lc.capa + "[dir=back];\n");
+                    lc = lc.siguiente;
+                } 
+                if(lc == inicio){
+                    pw.println(lc.capa + ";\n");
+                    pw.print(lc.anterior.capa + "->" + lc.capa + ";\n");
+                    pw.print(lc.anterior.capa + "->" + lc.capa + "[dir=back];\n");                 
+                }
+            }
+            pw.println("}");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fichero) {
+                    fichero.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+
+        try {
+            String command = "dot -Tjpg LCDE.txt -o LCDE.jpg";
+            Process child = Runtime.getRuntime().exec(command);
+        } catch (IOException e) {
+            System.out.println("ex: " + e.getMessage());
+        }
+    }
+    
     public void graficarDefinitiva(MatrizDispersa mdd) {
         FileWriter fichero = null;
         PrintWriter pw = null;
@@ -590,7 +638,7 @@ public class MatrizDispersa {
                 rank = "";
 
                 while (auxCelday != null) {
-                    pw.println("C" + auxCelday.posx + "L" + auxCelday.posy + "[shape=square; label = \"" + "\"; color=" + auxCelday.tipo + "; style = filled; group =" + auxCelday.posx + "];");
+                    pw.println("C" + auxCelday.posx + "L" + auxCelday.posy + "[shape=square; label = \"" + auxCelday.posx + "," + auxCelday.posy + "\"; fontcolor=white; color=" + auxCelday.tipo + "; style = filled; group =" + auxCelday.posx + "];");
                     rank = rank + ";" + "C" + auxCelday.posx + "L" + auxCelday.posy;
 
                     if (auxCelday == auxy.derecha) {

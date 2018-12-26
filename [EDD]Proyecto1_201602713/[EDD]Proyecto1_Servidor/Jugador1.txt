@@ -7,30 +7,6 @@ Alcance Movimiento: 3
 Ataque: 30
 Alcance Ataque: 1
 "];
-C1L15[label="Posicion x: 1
-Posicion y: 15
-Vida: 150
-Alcance Movimiento: 4
-Ataque: 80
-Alcance Ataque: 2
-"];
-C1L14->C1L15
-C12L3[label="Posicion x: 12
-Posicion y: 3
-Vida: -83
-Alcance Movimiento: 3
-Ataque: 30
-Alcance Ataque: 1
-"];
-C1L14->C12L3
-C4L15[label="Posicion x: 4
-Posicion y: 15
-Vida: 100
-Alcance Movimiento: 6
-Ataque: 50
-Alcance Ataque: 2
-"];
-C12L3->C4L15
 C2L14[label="Posicion x: 2
 Posicion y: 14
 Vida: 50
@@ -38,15 +14,23 @@ Alcance Movimiento: 2
 Ataque: 50
 Alcance Ataque: 3
 "];
-C12L3->C2L14
-C2L15[label="Posicion x: 2
-Posicion y: 15
-Vida: 200
+C1L14->C2L14
+C3L3[label="Posicion x: 3
+Posicion y: 3
+Vida: 50
 Alcance Movimiento: 3
-Ataque: 100
+Ataque: 30
+Alcance Ataque: 1
+"];
+C1L14->C3L3
+C1L15[label="Posicion x: 1
+Posicion y: 15
+Vida: 150
+Alcance Movimiento: 4
+Ataque: 80
 Alcance Ataque: 2
 "];
-C2L14->C2L15
+C2L14->C1L15
 C3L15[label="Posicion x: 3
 Posicion y: 15
 Vida: 50
@@ -54,5 +38,29 @@ Alcance Movimiento: 3
 Ataque: 150
 Alcance Ataque: 6
 "];
-C2L15->C3L15
+C1L15->C3L15
+C4L15[label="Posicion x: 4
+Posicion y: 15
+Vida: 100
+Alcance Movimiento: 6
+Ataque: 50
+Alcance Ataque: 2
+"];
+C3L15->C4L15
+C2L15[label="Posicion x: 2
+Posicion y: 15
+Vida: 200
+Alcance Movimiento: 3
+Ataque: 100
+Alcance Ataque: 2
+"];
+C3L3->C2L15
+C6L7[label="Posicion x: 6
+Posicion y: 7
+Vida: 150
+Alcance Movimiento: 4
+Ataque: 80
+Alcance Ataque: 2
+"];
+C2L15->C6L7
 }

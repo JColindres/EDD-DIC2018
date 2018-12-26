@@ -1,0 +1,26 @@
+digraph G {
+
+node[color = orange; style = filled];
+0;
+
+1;
+
+0->1;
+0->1[dir=back];
+2;
+
+1->2;
+1->2[dir=back];
+3;
+
+2->3;
+2->3[dir=back];
+4;
+
+3->4;
+3->4[dir=back];
+0;
+
+4->0;
+4->0[dir=back];
+}

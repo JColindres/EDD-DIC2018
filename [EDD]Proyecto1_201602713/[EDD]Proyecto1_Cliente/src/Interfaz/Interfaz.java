@@ -214,6 +214,13 @@ public class Interfaz extends javax.swing.JFrame {
             leerJ1(eee.mensajeJ1());
             Thread.sleep(500);
             leerJ2(eee.mensajeJ2());
+            if (j1[0][0] == null && j2[0][0] == null) {
+                JOptionPane.showMessageDialog(null, "Nadie gana, juego empatado");
+            } else if (j1[0][0] == null) {
+                JOptionPane.showMessageDialog(null, "J1 ha perdido, gana J2");
+            } else if (j2[0][0] == null) {
+                JOptionPane.showMessageDialog(null, "J2 ha perdido, gana J1");
+            }
             Matrizbotones = new JButton[dimensionX][dimensionY];
             jPanel1.setLayout(new GridLayout(dimensionX, dimensionY));
             int contadorX, contadorY;
@@ -336,6 +343,8 @@ public class Interfaz extends javax.swing.JFrame {
                     } else {
                         JButton btnNuevo = new JButton();
                         btnNuevo.setSize(5, 5);
+                        ImageIcon icono = new ImageIcon(new ImageIcon("gramaAW.jpg").getImage().getScaledInstance(47, 40, Image.SCALE_DEFAULT));
+                        btnNuevo.setIcon(icono);
                         btnNuevo.setToolTipText(Integer.toString(contadorX + 1) + "," + Integer.toString(contadorY + 1));
                         Matrizbotones[contadorX][contadorY] = btnNuevo;
                         jPanel1.add(Matrizbotones[contadorX][contadorY]);
@@ -515,6 +524,8 @@ public class Interfaz extends javax.swing.JFrame {
                                 eee.enviarmovimientoI();
                                 eee.enviarmovimientoF();
                             }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se puede hacer eso");
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Movimiento no permitido");
@@ -634,7 +645,7 @@ public class Interfaz extends javax.swing.JFrame {
                     }
                 }
             }
-            
+
             if (nosepuede == false) {
                 double bonus1 = 0;
                 if (terrenoAux1.equals("blue")) {
@@ -662,31 +673,31 @@ public class Interfaz extends javax.swing.JFrame {
                 }
 
                 if (tropaAux1.equals("infanteria")) {
-                    dano1 = atcAux1*(vidaAux1 / 50) + atcAux1*(vidaAux1 / 50)*bonus1;
+                    dano1 = atcAux1 * (vidaAux1 / 50) + atcAux1 * (vidaAux1 / 50) * bonus1;
                 } else if (tropaAux1.equals("infanteriam")) {
-                    dano1 = atcAux1*(vidaAux1 / 50) + atcAux1*(vidaAux1 / 50)*bonus1;
+                    dano1 = atcAux1 * (vidaAux1 / 50) + atcAux1 * (vidaAux1 / 50) * bonus1;
                 } else if (tropaAux1.equals("reconocimiento")) {
-                    dano1 = atcAux1*(vidaAux1 / 100) + atcAux1*(vidaAux1 / 100)*bonus1;
+                    dano1 = atcAux1 * (vidaAux1 / 100) + atcAux1 * (vidaAux1 / 100) * bonus1;
                 } else if (tropaAux1.equals("tanque")) {
-                    dano1 = atcAux1*(vidaAux1 / 150) + atcAux1*(vidaAux1 / 150)*bonus1;
+                    dano1 = atcAux1 * (vidaAux1 / 150) + atcAux1 * (vidaAux1 / 150) * bonus1;
                 } else if (tropaAux1.equals("mtanque")) {
-                    dano1 = atcAux1*(vidaAux1 / 200) + atcAux1*(vidaAux1 / 200)*bonus1;
+                    dano1 = atcAux1 * (vidaAux1 / 200) + atcAux1 * (vidaAux1 / 200) * bonus1;
                 } else if (tropaAux1.equals("artilleria")) {
-                    dano1 = atcAux1*(vidaAux1 / 50) + atcAux1*(vidaAux1 / 50)*bonus1;
+                    dano1 = atcAux1 * (vidaAux1 / 50) + atcAux1 * (vidaAux1 / 50) * bonus1;
                 }
-                
+
                 if (tropaAux2.equals("infanteria")) {
-                    dano2 = atcAux2*(vidaAux2 / 50) + atcAux2*(vidaAux2 / 50)*bonus2;
+                    dano2 = atcAux2 * (vidaAux2 / 50) + atcAux2 * (vidaAux2 / 50) * bonus2;
                 } else if (tropaAux2.equals("infanteriam")) {
-                    dano2 = atcAux2*(vidaAux2 / 50) + atcAux2*(vidaAux2 / 50)*bonus2;
+                    dano2 = atcAux2 * (vidaAux2 / 50) + atcAux2 * (vidaAux2 / 50) * bonus2;
                 } else if (tropaAux2.equals("reconocimiento")) {
-                    dano2 = atcAux2*(vidaAux2 / 100) + atcAux2*(vidaAux2 / 100)*bonus2;
+                    dano2 = atcAux2 * (vidaAux2 / 100) + atcAux2 * (vidaAux2 / 100) * bonus2;
                 } else if (tropaAux2.equals("tanque")) {
-                    dano2 = atcAux2*(vidaAux2 / 150) + atcAux2*(vidaAux2 / 150)*bonus2;
+                    dano2 = atcAux2 * (vidaAux2 / 150) + atcAux2 * (vidaAux2 / 150) * bonus2;
                 } else if (tropaAux2.equals("mtanque")) {
-                    dano2 = atcAux2*(vidaAux2 / 200) + atcAux2*(vidaAux2 / 200)*bonus2;
+                    dano2 = atcAux2 * (vidaAux2 / 200) + atcAux2 * (vidaAux2 / 200) * bonus2;
                 } else if (tropaAux2.equals("artilleria")) {
-                    dano2 = atcAux2*(vidaAux2 / 50) + atcAux2*(vidaAux2 / 50)*bonus2;
+                    dano2 = atcAux2 * (vidaAux2 / 50) + atcAux2 * (vidaAux2 / 50) * bonus2;
                 }
             }
 
@@ -721,6 +732,8 @@ public class Interfaz extends javax.swing.JFrame {
                             eee.enviarDano1();
                             eee.enviarDano2();
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se puede hacer eso");
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Ataque no permitido");

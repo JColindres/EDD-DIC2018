@@ -111,13 +111,13 @@ public class ABB {
             reco = jugador1;
             while (reco != null) {
                 ant = reco;
-                if (id <= reco.id) {
+                if (id < reco.id) {
                     reco = reco.izquierda;
                 } else {
                     reco = reco.derecha;
                 }
             }
-            if (id <= ant.id) {
+            if (id < ant.id) {
                 ant.izquierda = nuevo;
                 nuevo.setPadre(ant);
             } else {
@@ -176,13 +176,13 @@ public class ABB {
             reco = jugador2;
             while (reco != null) {
                 ant = reco;
-                if (id <= reco.id) {
+                if (id < reco.id) {
                     reco = reco.izquierda;
                 } else {
                     reco = reco.derecha;
                 }
             }
-            if (id <= ant.id) {
+            if (id < ant.id) {
                 ant.izquierda = nuevo;
             } else {
                 ant.derecha = nuevo;
@@ -263,11 +263,12 @@ public class ABB {
 
             if ("1".equals(jugador)) {
                 consola = "";
-                cambiarVida(posxI, posyI, posxF, posyF, dano1, jugador2);
-                cambiarVida(posxF, posyF, posxI, posyI, dano2, jugador1);
+                cambiarVida(posxI, posyI, posxF, posyF, dano1, jugador2, jugador);
+                cambiarVida(posxF, posyF, posxI, posyI, dano2, jugador1, "2");
             } else {
-                cambiarVida(posxI, posyI, posxF, posyF, dano1, jugador1);
-                cambiarVida(posxF, posyF, posxI, posyI, dano2, jugador2);
+                consola = "";
+                cambiarVida(posxI, posyI, posxF, posyF, dano1, jugador1, jugador);
+                cambiarVida(posxF, posyF, posxI, posyI, dano2, jugador2, "1");
             }
 
         } catch (Exception ex) {
@@ -276,7 +277,7 @@ public class ABB {
 
     }
 
-    public void cambiarVida(int posxI, int posyI, int posxF, int posyF, double dano, NodoABB j) {
+    public void cambiarVida(int posxI, int posyI, int posxF, int posyF, double dano, NodoABB j, String jugador) {
         if (j != null) {
             if (j.posx == posxF && j.posy == posyF && j.vida > 0) {
                 if ((posxI == posxF && Math.abs(posyF - posyI) <= j.alca_ata) || (posyI == posyF && Math.abs(posxF - posxI) <= j.alca_ata)) {
@@ -284,149 +285,95 @@ public class ABB {
                     if (j.vida > 0) {
                         consola = consola + "El jugador de la posicion " + posxI + "," + posyI + " ataco a la tropa " + j.tipo + " de la posicion " + posxF + "," + posyF + " dejandolo a " + j.vida + " de vida\n";
                     } else {
-                        jugadorEliminado(posxF, posyF, j);
-                        consola = consola + "El jugador de la posicion " + j.posx + "," + j.posy + " murio";
+                        if (jugador.equals("1")) {
+                            jugadorEliminado(j.id, jugador2);
+                            consola = consola + "El jugador de la posicion " + j.posx + "," + j.posy + " murio \n";
+                        } else {
+                            jugadorEliminado(j.id, jugador1);
+                            consola = consola + "El jugador de la posicion " + j.posx + "," + j.posy + " murio \n";
+                        }
                     }
                 } else {
-                    consola = consola + "El jugador no esta al alcance de contraataque";
+                    consola = consola + "El jugador no esta al alcance de contraataque \n";
                 }
             } else if (j.posx == posxF && j.posy == posyF && j.vida <= 0) {
-                consola = "El jugador no puede contraatacar porque murio";
+                consola = consola + "El jugador no puede contraatacar porque murio \n";
             } else {
-                cambiarVida(posxI, posyI, posxF, posyF, dano, j.izquierda);
-                cambiarVida(posxI, posyI, posxF, posyF, dano, j.derecha);
+                cambiarVida(posxI, posyI, posxF, posyF, dano, j.izquierda, jugador);
+                cambiarVida(posxI, posyI, posxF, posyF, dano, j.derecha, jugador);
             }
         }
     }
 
-    public void jugadorEliminado(int posx, int posy, NodoABB j) {
-        if (j != null) {
-            if (j.posx == posx && j.posy == posy) {
-                removeNodo(j);
+    public boolean jugadorEliminado(int id, NodoABB j) {
+        NodoABB aux = j;
+        NodoABB padre = j;
+        boolean esHijoIzq = true;
+        while (aux.id != id) {
+            padre = aux;
+            if (id < aux.id) {
+                esHijoIzq = true;
+                aux = aux.izquierda;
             } else {
-                jugadorEliminado(posx, posy, j.izquierda);
-                jugadorEliminado(posx, posy, j.derecha);
+                esHijoIzq = false;
+                aux = aux.derecha;
+            }
+            if (aux == null) {
+                return false;
             }
         }
+        if (aux.izquierda == null && aux.derecha == null) {
+            if (aux == j) {
+                j = null;
+            } else if (esHijoIzq) {
+                padre.izquierda = null;
+            } else {
+                padre.derecha = null;
+            }
+        } else if (aux.derecha == null) {
+            if (aux == j) {
+                j = aux.izquierda;
+            } else if (esHijoIzq) {
+                padre.izquierda = aux.izquierda;
+            } else {
+                padre.derecha = aux.izquierda;
+            }
+        } else if (aux.izquierda == null) {
+            if (aux == j) {
+                j = aux.derecha;
+            } else if (esHijoIzq) {
+                padre.izquierda = aux.derecha;
+            } else {
+                padre.derecha = aux.derecha;
+            }
+        } else {
+            NodoABB reemplazo = obtenerR(aux);
+            if (aux == j) {
+                j = reemplazo;
+            } else if (esHijoIzq) {
+                padre.izquierda = reemplazo;
+            } else {
+                padre.derecha = reemplazo;
+            }
+            reemplazo.izquierda = aux.izquierda;
+        }
+        return true;
     }
 
-    public boolean removeNodo(NodoABB nodo) {
-
-        /* Creamos variables para saber si tiene hijos izquierdo y derecho */
-        boolean tieneNodoDerecha = nodo.derecha != null ? true : false;
-        boolean tieneNodoIzquierda = nodo.izquierda != null ? true : false;
-
-        /* Verificamos los 3 casos diferentes y llamamos a la función correspondiente */
- /* Caso 1: No tiene hijos */
-        if (!tieneNodoDerecha && !tieneNodoIzquierda) {
-            return removeNodoCaso1(nodo);
+    public NodoABB obtenerR(NodoABB nR) {
+        NodoABB reemP = nR;
+        NodoABB reemplazo = nR;
+        NodoABB aux = nR.derecha;
+        while (aux != null) {
+            reemP = reemplazo;
+            reemplazo = aux;
+            aux = aux.izquierda;
         }
-
-        /* Caso 2: Tiene un hijo y el otro no */
-        if (tieneNodoDerecha && !tieneNodoIzquierda) {
-            return removeNodoCaso2(nodo);
+        if (reemplazo != nR.derecha) {
+            reemP.izquierda = reemplazo.derecha;
+            reemplazo.derecha = nR.derecha;
         }
-
-        /* Caso 2: Tiene un hijo y el otro no */
-        if (!tieneNodoDerecha && tieneNodoIzquierda) {
-            return removeNodoCaso2(nodo);
-        }
-
-        /* Caso 3: Tiene ambos hijos */
-        if (tieneNodoDerecha && tieneNodoIzquierda) {
-            return removeNodoCaso3(nodo);
-        }
-
-        return false;
-    }
-
-    private boolean removeNodoCaso1(NodoABB nodo) {
-        /* lo único que hay que hacer es borrar el nodo y establecer el apuntador de su padre a nulo */
-
- /*
-         * Guardemos los hijos del padre temporalmente para saber cuál de sus hijos hay que 
-         * eliminar
-         */
-        NodoABB hijoIzquierdo = nodo.getPadre().izquierda;
-        NodoABB hijoDerecho = nodo.getPadre().derecha;
-
-        if (hijoIzquierdo == nodo) {
-            nodo.getPadre().izquierda = (null);
-            return true;
-        }
-
-        if (hijoDerecho == nodo) {
-            nodo.getPadre().derecha = (null);
-            return true;
-        }
-
-        return false;
-    }
-
-    private boolean removeNodoCaso2(NodoABB nodo) {
-        /* Borrar el Nodo y el subárbol que tenía pasa a ocupar su lugar */
-
- /*
-         * Guardemos los hijos del padre temporalmente para saber cuál de sus hijos hay que 
-         * eliminar
-         */
-        NodoABB hijoIzquierdo = nodo.getPadre().izquierda;
-        NodoABB hijoDerecho = nodo.getPadre().derecha;
-
-        /*
-         * Buscamos el hijo existente del nodo que queremos eliminar
-         */
-        NodoABB hijoActual = nodo.izquierda != null
-                ? nodo.izquierda : nodo.derecha;
-
-        if (hijoIzquierdo == nodo) {
-            nodo.getPadre().izquierda = (hijoActual);
-
-            /* Eliminando todas las referencias hacia el nodo */
-            hijoActual.setPadre(nodo.getPadre());
-            nodo.derecha = (null);
-            nodo.izquierda = (null);
-
-            return true;
-        }
-
-        if (hijoDerecho == nodo) {
-            nodo.getPadre().derecha = (hijoActual);
-
-            /* Eliminando todas las referencias hacia el nodo */
-            hijoActual.setPadre(nodo.getPadre());
-            nodo.derecha = (null);
-            nodo.izquierda = (null);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    private boolean removeNodoCaso3(NodoABB nodo) {
-        /* Tomar el hijo derecho del Nodo que queremos eliminar */
-        NodoABB nodoMasALaIzquierda = recorrerIzquierda(nodo.derecha);
-        if (nodoMasALaIzquierda != null) {
-            /*
-             * Reemplazamos el valor del nodo que queremos eliminar por el nodo que encontramos 
-             */
-            nodo = (nodoMasALaIzquierda);
-            /* 
-             * Eliminar este nodo de las formas que conocemos ( caso 1, caso 2 ) 
-             */
-            removeNodo(nodoMasALaIzquierda);
-            return true;
-        }
-        return false;
-    }
-
-    /* Recorrer de forma recursiva hasta encontrar el nodo más a la izquierda */
-    private NodoABB recorrerIzquierda(NodoABB nodo) {
-        if (nodo.izquierda != null) {
-            return recorrerIzquierda(nodo.izquierda);
-        }
-        return nodo;
+        return reemplazo;
     }
 
     public void graficarJ1(String label) {
