@@ -1,50 +1,82 @@
 digraph G{
 node[color = "orange";style = filled]
-C14L1[label="Posicion x: 14
+C20L1[label="Posicion x: 20
 Posicion y: 1
 Vida: 50
 Alcance Movimiento: 3
 Ataque: 30
 Alcance Ataque: 1
 "];
-C14L2[label="Posicion x: 14
-Posicion y: 2
-Vida: 50
-Alcance Movimiento: 3
-Ataque: 30
-Alcance Ataque: 1
-"];
-C14L1->C14L2
-C15L1[label="Posicion x: 15
-Posicion y: 1
-Vida: 150
-Alcance Movimiento: 4
-Ataque: 80
-Alcance Ataque: 2
-"];
-C14L1->C15L1
-C15L2[label="Posicion x: 15
-Posicion y: 2
-Vida: 150
-Alcance Movimiento: 4
-Ataque: 80
-Alcance Ataque: 2
-"];
-C14L2->C15L2
-C15L4[label="Posicion x: 15
+C20L4[label="Posicion x: 20
 Posicion y: 4
+Vida: 50
+Alcance Movimiento: 2
+Ataque: 50
+Alcance Ataque: 3
+"];
+C20L1->C20L4
+C20L6[label="Posicion x: 20
+Posicion y: 6
+Vida: 100
+Alcance Movimiento: 6
+Ataque: 50
+Alcance Ataque: 2
+"];
+C20L1->C20L6
+C20L7[label="Posicion x: 20
+Posicion y: 7
 Vida: 200
 Alcance Movimiento: 3
 Ataque: 100
 Alcance Ataque: 2
 "];
-C14L2->C15L4
-C15L3[label="Posicion x: 15
-Posicion y: 3
+C20L4->C20L7
+C17L6[label="Posicion x: 17
+Posicion y: 6
+Vida: 150
+Alcance Movimiento: 4
+Ataque: 80
+Alcance Ataque: 2
+"];
+C20L4->C17L6
+C20L8[label="Posicion x: 20
+Posicion y: 8
 Vida: 50
 Alcance Movimiento: 3
 Ataque: 150
 Alcance Ataque: 6
 "];
-C15L1->C15L3
+C20L7->C20L8
+C20L10[label="Posicion x: 20
+Posicion y: 10
+Vida: 50
+Alcance Movimiento: 3
+Ataque: 30
+Alcance Ataque: 1
+"];
+C17L6->C20L10
+C20L11[label="Posicion x: 20
+Posicion y: 11
+Vida: 50
+Alcance Movimiento: 2
+Ataque: 50
+Alcance Ataque: 3
+"];
+C20L10->C20L11
+C20L12[label="Posicion x: 20
+Posicion y: 12
+Vida: 50
+Alcance Movimiento: 2
+Ataque: 50
+Alcance Ataque: 3
+"];
+C20L6->C20L12
+C20L9[label="Posicion x: 20
+Posicion y: 9
+Vida: 50
+Alcance Movimiento: 3
+Ataque: 30
+Alcance Ataque: 1
+"];
+C20L6->C20L9
 }

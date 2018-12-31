@@ -442,8 +442,10 @@ public class Interfaz extends javax.swing.JFrame {
             boolean turno = false;
 
             for (int i = 0; i < dimensionX * dimensionY; i++) {
-                if (pintar[0][i].equals(pos2[0]) && pintar[1][i].equals(pos2[1])) {
-                    terrenoAux = pintar[2][i];
+                if (pintar[0][i] != null) {
+                    if (pintar[0][i].equals(pos2[0]) && pintar[1][i].equals(pos2[1])) {
+                        terrenoAux = pintar[2][i];
+                    }
                 }
             }
             if (jTextField3.getText().contains("1")) {
@@ -585,11 +587,13 @@ public class Interfaz extends javax.swing.JFrame {
             double dano2 = 0;
 
             for (int i = 0; i < dimensionX * dimensionY; i++) {
-                if (pintar[0][i].equals(pos1[0]) && pintar[1][i].equals(pos1[1])) {
-                    terrenoAux1 = pintar[2][i];
-                }
-                if (pintar[0][i].equals(pos2[0]) && pintar[1][i].equals(pos2[1])) {
-                    terrenoAux2 = pintar[2][i];
+                if (pintar[0][i] != null) {
+                    if (pintar[0][i].equals(pos1[0]) && pintar[1][i].equals(pos1[1])) {
+                        terrenoAux1 = pintar[2][i];
+                    }
+                    if (pintar[0][i].equals(pos2[0]) && pintar[1][i].equals(pos2[1])) {
+                        terrenoAux2 = pintar[2][i];
+                    }
                 }
             }
             if (jTextField3.getText().contains("1")) {
