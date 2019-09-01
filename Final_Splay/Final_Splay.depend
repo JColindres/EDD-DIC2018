@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1546391332 source:c:\users\pablo\desktop\edd-dic2018\final_splay\main.cpp
+	<stdio.h>
+	<math.h>
+	<string.h>
+	<time.h>
+	<iostream>
+	<fstream>
+	<sstream>
+	<vector>
+	<list>
+	<string>
+	<algorithm>
+	<queue>
+	<stack>
+	<set>
+	<map>
+	<complex>
+
